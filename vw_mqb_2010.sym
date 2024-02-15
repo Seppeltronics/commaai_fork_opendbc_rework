@@ -1,0 +1,1783 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="vw_mqb_2010"
+
+{ENUMS}
+enum VtSig_ACC_limitierte_Anfahrdyn(0="keine_Limitierung", 1="Limitierung_Anfahrdynamik_angefordert")
+enum VtSig_ACC_nachtr_Stopp_Anf(0="nicht_angefordert", 1="angefordert")
+enum VtSig_ACC_StartStopp_Info(0="Motorlauf_langfristig_nicht_notwendig_Stoppfreigabe",
+  1="Motoranlauf_nicht_zwingend_notwendig_Stoppverbot_keine_Startanforderung",
+  2="Motoranlauf_zwingend_notwendig_Startanforderung", 3="Systemfehler")
+enum VtSig_ACC_Sollbeschleunigung_02(2046="Neutralwert", 2047="Fehler")
+enum VtSig_ACC_Anfahren(0="keine_Anforderung_Anfahren", 1="Anforderung_Anfahren")
+enum VtSig_ACC_Anhalten(0="kein_Anhalten_gewuenscht", 1="Anhalten_gewuenscht")
+enum VtSig_ACC_Typ(0="Basis_ACC", 1="ACC_mit_FollowToStop", 2="ACC_mit_StopAndGo", 3="ACC_nicht_codiert")
+enum VtSig_ACC_Status_ACC(0="ACC_OFF_Hauptschalter_aus", 1="ACC_INIT", 2="ACC_STANDBY", 3="ACC_AKTIV_regelt",
+  4="ACC_OVERRIDE", 5="ACC_Abschaltreaktion", 6="reversibler_Fehler_im_ACC_System",
+  7="irreversibler_Fehler_im_ACC_System")
+enum VtSig_ACC_Minimale_Bremsung(0="Anforderung_Minimale_Bremsung_nicht_aktiv", 1="Anforderung_Minimale_Bremsung_aktiv")
+enum VtSig_AWV1_Anf_Prefill(0="Prefill_nicht_aktivieren", 1="Prefill_aktivieren")
+enum VtSig_ANB_CM_Info(0="Standard", 1="Erweitert")
+enum VtSig_EA_Ruckfreigabe(0="keine_Freigabe", 1="Freigabe")
+enum VtSig_AWV1_HBA_Param(0="Defaultparametersatz", 1="Parametersatz_mit_leicht_erhoehter_Empfindlichkeit",
+  2="Parametersatz_mit_erhoehter_Empfindlichkeit", 3="Parametersatz_mit_hoechster_Empfindlichkeit")
+enum VtSig_AWV2_Priowarnung(0="Anzeige_Verlassen_der_Fahrspur_wird_nicht_unterdrueckt",
+  1="Anzeige_Verlassen_der_Fahrspur_wird_unterdrueckt")
+enum VtSig_ANB_CM_Anforderung(0="keine_Anforderung", 1="Anforderung_aktiv")
+enum VtSig_ANB_Info_Teilbremsung(0="Auspraegung_Standard", 1="Auspraegung_Erweitert")
+enum VtSig_ANB_Notfallblinken(0="kein_ANB_Notfallblinken", 1="Notfallblinken_ANB_angefordert")
+enum VtSig_ANB_Teilbremsung_Freigabe(0="Teilbremsung_nicht_freigegeben", 1="Teilbremsung_freigegeben")
+enum VtSig_ANB_Zielbremsung_Freigabe(0="Zielbremsung_nicht_freigegeben", 1="Zielbremsung_freigegeben")
+enum VtSig_AWV_Vorstufe(0="keine_Notbremsung_erwartet", 1="Notbremsung_in_Kuerze")
+enum VtSig_AWV_Halten(0="keine_Anforderung", 1="Anforderung_das_Fzg_im_Stillstand_zu_halten")
+enum VtSig_AWV_CityANB_Auspraegung(0="autom_Bremsung_im_ges_vBereich", 1="autom_Bremsung_im_def_vBereich")
+enum VtSig_PCF_Freigabe(0="keine_Freigabe_PreCrashFront", 1="Freigabe_PreCrashFront")
+enum VtSig_AWV1_ECD_Anlauf(0="ECD_Anlauf_nicht_aktivieren", 1="ECD_Anlauf_aktivieren")
+enum VtSig_PCF_Time_to_collision(255="Objektstatus=0x0__oder_berechneter_TTC_Wert_groesser_als_Maximalwert")
+enum VtSig_ACC_Wunschgeschw_02(1023="keine_Anzeige")
+enum VtSig_ACC_Einheit_maxSetzgeschw(0="kmh", 1="mph")
+enum VtSig_ACC_maxSetzgeschw(511="Init_Neutralwert")
+enum VtSig_ACC_minRegelgeschw(255="keine_Anzeige")
+enum VtSig_ACC_Tempolimitassistent(0="keine_Anzeige", 1="Tempolimitassistent_aktiv",
+  2="Tempolimitassistent_nicht_verfuegbar", 3="Tempolimitassistent_Fahreruebernahme")
+enum VtSig_ACC_Kurvenassistent(0="keine_Anzeige", 1="Kreuzung", 2="Rechtskurve", 3="Linkskurve", 4="Kreisverkehr")
+enum VtSig_ACC_RUV(0="keine_Anzeige", 1="RUV_aktiv_Rechtsverkehr", 2="RUV_aktiv_Linksverkehr")
+enum VtSig_ACC_Tachokranz(0="Tachokranz_nicht_beleuchtet", 1="Tachokranz_beleuchtet")
+enum VtSig_ACC_Typ_Tachokranz_unten(0="LEDs_an", 1="LEDs_aus")
+enum VtSig_ACC_ENG_Texte(0="keine_Anzeige", 1="keine_Laenderverfuegbarkeit", 2="nicht_verfuegbar",
+  3="Geschwindigkeitsgrenze")
+enum VtSig_AWV_Warnung(0="keine_Anzeige", 1="latente_Vorwarnung", 2="Vorwarnung", 3="Akutwarnung", 4="Eingriff",
+  5="Fahreruebernahmeaufforderung", 6="Abbiegewarnung")
+enum VtSig_AWV_Texte(0="keine_Anzeige", 1="Systemstoerung", 2="keine_Sensorsicht", 3="Demomodus", 4="System_aus",
+  5="nicht_definiert", 6="ESC_aus", 7="zurzeit_eingeschraenkt")
+enum VtSig_AWV_Status_Anzeige(0="Init", 1="verfuegbar", 2="nicht_verfuegbar")
+enum VtSig_AWV_Einstellung_System_FSG(0="deaktiviert", 1="aktiviert")
+enum VtSig_AWV_Einstellung_Warnung_FS(0="Aus", 1="Setting_2", 2="Setting_3", 3="Setting_4", 4="Setting_5", 5="Ein")
+enum VtSig_AWV_Warnlevel(0="keine_Gefaehrdung", 63="max_Gefaehrdung")
+enum VtSig_GE_Fahrstufe(5="P", 6="R", 7="N", 8="D", 9="S", 10="E", 13="T", 14="T")
+enum VtSig_TSK_Status(0="init", 1="disabled", 2="enabled", 3="regulating", 4="accel_pedal_override", 5="brake_only",
+  6="temp_fault", 7="perm_fault")
+enum VtSig_EA_ACC_Sollstatus(0="Init", 1="ACC_aktivieren", 2="ACC_deaktivieren")
+enum VtSig_EA_Ruckprofil(0="Init", 1="Profil_1", 2="Profil_2", 3="Profil_3", 4="Profil_4", 5="Profil_5", 6="Profil_6",
+  7="Profil_7")
+enum VtSig_HCA_01_Sendestatus(0="HCA_sendet_mit_1000ms", 1="HCA_sendet_mit_20ms")
+enum VtSig_HCA_01_LM_OffSign(0="positives_Vorzeichen", 1="negatives_Vorzeichen")
+enum VtSig_HCA_01_Status_HCA(0="deaktiviert", 1="reserviert", 2="reserviert", 3="funktionsbereit", 4="reserviert",
+  5="HCA_Momenteneingriff_1", 6="MA_Aktiv", 7="HCA_Momenteneingriff_2", 8="reserviert", 9="reserviert", 10="reserviert",
+  11="reserviert", 12="reserviert", 13="reserviert", 14="reserviert", 15="reserviert")
+enum VtSig_EA_ACC_Wunschgeschwindigke(1023="Init")
+enum VtSig_EPS_HCA_Status(0="disabled", 1="initializing", 2="fault", 3="ready", 4="rejected", 5="active")
+enum VtSig_ACC_Status_Prim_Anz(0="Symbol nicht beleuchtet", 1="Farbe 1 (typisch 'gruen')", 2="Farbe 2 (typisch 'rot')",
+  3="Farbe 3 (typisch 'gelb')")
+enum VtSig_ACC_Abstandsindex(0="Sonderanzeige_graue_Fahrbahn", 1022="Sonderanzeige_graue_Fahrbahn",
+  1023="Sonderanzeige_Fahrbahn_mit_gruenem_roten_Bereich")
+enum VtSig_ACC_Akustik_02(0="keine_Akustik", 1="hochpriore_Akustik", 2="niederpriore_Akustik",
+  3="hochpriore_Dauerakustik")
+enum VtSig_ACC_Warnung_Verkehrszeiche(0="keine_Warnung_Initialwert", 1="Warnung")
+enum VtSig_ACC_Gesetzte_Zeitluecke(0="keine_Anzeige", 1="Zeitluecke_1", 2="Zeitluecke_2", 3="Zeitluecke_3",
+  4="Zeitluecke_4", 5="Zeitluecke_5", 6="nicht_definiert", 7="nicht_definiert")
+enum VtSig_ACC_Optischer_Fahrerhinwei(0="optischer_Fahrerhinweis_AUS", 1="optischer_Fahrerhinweis_EIN")
+enum VtSig_ACC_Typ_Tachokranz(0="Tachokranz_lang", 1="Tachokranz_kurz")
+enum VtSig_ACC_Anzeige_Zeitluecke(0="Anzeige_Zeitluecke_nicht_angefordert", 1="Anzeige_Zeitluecke_angefordert")
+enum VtSig_ACC_Display_Prio(0="hoechste_Prio", 1="mittlere_Prio", 2="geringe_Prio", 3="keine_Prio")
+enum VtSig_ACC_Relevantes_Objekt(0="Symbol_nicht_beleuchtet", 1="Farbe_1_typisch_gruen", 2="Farbe_2_typisch_rot",
+  3="Farbe_3_typisch_gelb")
+enum VtSig_ACC_Texte_Primaeranz(0="keine Anzeige", 1="ACC nicht verfuegbar !", 2="Auto_Auto_ _ _", 3="Auto_ _Auto_ _",
+  4="Auto_ _ _Auto_", 5="Auto_ _ _ _Auto", 6="Auto_Auto_ _ _ Gong (durchgestrichen)",
+  7="Auto_ _Auto_ _ Gong (durchgestrichen)", 8="Auto_ _ _Auto_ Gong (durchgestrichen)",
+  9="Auto_ _ _ _Auto Gong (durchgestrichen)", 10="ACC bereit", 11="keine Abstandsregelung", 12="ACC Sensor Sicht !",
+  13="ACC nicht verfuegbar", 14="o  o  o", 15="Hochschalten", 16="ESP Eingriff", 17="Herunterschalten",
+  18="Parkbremse !", 19="Geschwindigkeitsgrenze", 20="Waehlhebelposition !", 21="VDA ACC-Symbol YYY km/h / mph",
+  22="Tempolimit XXX km/h / mph", 23="Kurve XXX km/h / mph", 24="ACC Abschaltung", 25="Symbol 'Eieruhr'", 26="!",
+  27="--- km/h / mph", 28="XXX km/h / mph (Schriftart 2)", 29="Lenkradwinkel", 30="Anfahren bestaetigen",
+  31="Fahrzeug verloren", 32="Im Stand nicht moeglich", 33="Ungueltiger Anfahrbefehl", 34="Tuer offen !",
+  35="Fahrer Gurtschloss offen !", 36="Schalthebelposition !", 37="Drehzahl !", 38="Kurvenassistent aus",
+  39="Tempolimit aus", 40="Abbiegeassistent", 41="Ortsanfang XXX km/h / mph", 42="Ortsende XXX km/h / mph",
+  43="Tempolimit Ende XXX km/h / mph", 44="HDC aktiv", 45="braking guard Bremsruck", 46="braking guard aus",
+  47="braking guard aus", 48="Uebernehmen !", 49="Steigung zu gross", 50="Stehendes Objekt voraus",
+  51="SET / 'GRA Symbol'___xxx km/h / mph", 52="SET / 'GRA Symbol' xxx km/h / mph", 53="ACC aus", 54="ACC startet",
+  55="ACC reinigen", 56="ACC Fehler", 57="ACC haelt an !", 58="Bremse betaetigen !", 59="Kupplung betaetigt",
+  60="LIM AUS", 61="LIM AKTIV", 62="LIM PASSIV", 63="LIM FEHLER", 64="Bremse ueberhitzt !", 65="Bremse haelt !",
+  66="ESP PASSIV !", 67="ACC_anfahrbereit", 68="Gang_einlegen", 69="Rechtsueberholen_verhindert",
+  70="Linksueberholen_verhindert", 71="Achtung_Geschwindigkeitsueberschreitung",
+  72="Tempolimit_und_Kurvenassistent_nicht_verfuegbar")
+enum VtSig_ACC_Wunschgeschw_erreicht(0="Wunschgeschwindigkeit_nicht_erreicht", 1="Wunschgeschwindigkeit_erreicht")
+enum VtSig_ACC_Status_Anzeige(0="ACC_GRA_Hauptschalter_aus", 1="ACC_in_Init_nicht_bei_GRA", 2="ACC_GRA_passiv",
+  3="ACC_GRA_aktiv", 4="ACC_GRA_im_Hintergrund_uebertreten", 5="ACC_GRA_Abschaltreaktion",
+  6="ACC_reversibel_aus_nicht_bei_GRA", 7="ACC_GRA_irreversibel_aus")
+enum VtSig_ACC_Freilauf_Anf(0="keine Freilauf-Anforderung", 1="Freilauf-Anforderung")
+enum VtSig_ACC_Freilauf_Info(0="Freilauf_freigegeben", 1="kein_Uebergang_in_Freilauf_zulaessig",
+  2="Freilauf_nicht_freigegeben", 3="Freilauf_Anforderung")
+enum VtSig_ACC_Anforderung_HMS(0="keine_Anforderung", 1="halten", 2="parken", 3="halten_Standby", 4="anfahren",
+  5="Loesen_ueber_Rampe")
+enum VtSig_ACC_Folgebeschl(254="Neutralwert")
+enum VtSig_ACC_Texte_Sekundaeranz(0="keine_Anzeige", 1="Zielfahrzeug_erkannt", 2="Rechtskurve_voraus",
+  3="Linkskurve_voraus", 4="Tempolimit_voraus", 5="Sensorsicht", 6="Anfahrbereit", 7="Tempolimit_erkannt",
+  8="Kreuzung_voraus", 9="Kreisverkehr_voraus")
+enum VtSig_ACC_Texte_Zusatzanz(0="keine_Anzeige", 1="ACC_AUS", 2="ACC_BEREIT", 3="UEBERTRETEN", 4="ABSTAND",
+  5="DISTANZ_1", 6="DISTANZ_2", 7="DISTANZ_3", 8="DISTANZ_4", 9="DISTANZ_1__dyn", 10="DISTANZ_2__dyn",
+  11="DISTANZ_3__dyn", 12="DISTANZ_4__dyn", 13="DISTANZ_1__stand", 14="DISTANZ_2__stand", 15="DISTANZ_3__stand",
+  16="DISTANZ_4__stand", 17="DISTANZ_1__comf", 18="DISTANZ_2__comf", 19="DISTANZ_3__comf", 20="DISTANZ_4__comf",
+  21="DISTANZ_1__efficiency", 22="DISTANZ_2__efficiency", 23="DISTANZ_3__efficiency", 24="DISTANZ_4__efficiency",
+  25="DISTANZ_5", 26="DISTANZ_5__dyn", 27="DISTANZ_5__stand", 28="DISTANZ_5__comf", 29="DISTANZ_5__efficiency",
+  30="ACHTUNG", 31="Abstandsanzeige", 32="Abstandsanz_Warnung_aktiviert")
+enum VtSig_ACC_Status_Zusatzanz(0="keine Anzeige", 1="Bild 1 (Fzg. Silhouette, typ. farblos)",
+  2="Bild 2 (Fzg. Farbe 1, typ. grau)", 3="Bild 3 (Fzg. Farbe 2, typ. rot)",
+  4="Bild 4 (Symbol 1 ACCplus, typ. Doppelfzg. gelb)", 5="Bild 5 (Symbol 2 ACCplus, typ. Doppelfzg. grau)",
+  6="Bild 6 (Fzg. Farbe 2, typ. rot) mit Priorität im Kombi (Pop-up)")
+enum VtSig_ACC_Texte(0="keine_Anzeige", 1="ACC_nicht_verfuegbar", 2="ACC_und_AWV_nicht_verfuegbar",
+  3="ACC_keine_Sensorsicht", 4="ACC_und_AWV_keine_Sensorsicht", 5="ACC_Steigung_zu_gross",
+  6="ACC_nur_in_Fahrstufe_verfuegbar", 7="ACC_Parkbremse_betaetigt", 8="ACC_ESP_Eingriff", 9="ACC_Bitte_uebernehmen",
+  10="ACC_HDC_betaetigt", 11="ACC_Geschwindigkeitsgrenze", 12="ACC_Schalthebelposition", 13="ACC_Drehzahl",
+  14="ACC_Kupplung_betaetigt", 15="ACC_Aktivierverhinderung", 16="ACC_Abschaltung", 17="ACC_Parkassistent_aktiv",
+  18="ACC_ESC_aus", 19="ACC_Charisma_Modus_inkompatibel", 20="ACC_Stehendes_Objekt_voraus", 21="ACA_Fahreruebernahme",
+  22="ACA_Querfuehrung_nicht_verfuegbar")
+enum VtSig_ACC_Texte_braking_guard(0="keine_Anzeige", 1="AWV_aus", 2="AWV_Warnung", 3="AWV_Demomodus",
+  4="AWV_Systemstoerung", 5="AWV_Eingriff", 6="AWV_Vorwarnung_aus", 7="AWV_keine_Sensorsicht")
+enum VtSig_ACC_Warnhinweis(0="kein_Warnhinweis", 1="Warnhinweis")
+enum VtSig_ACC_Zeitluecke_Abstandswar(61="Freifahrt", 62="nicht_definiert", 63="keine_Anzeige")
+enum VtSig_ACC_Abstand_Abstandswarner(509="Freifahrt", 510="nicht_definiert", 511="keine_Anzeige")
+enum VtSig_ACC_Tempolimit(0="keine_Anzeige", 1="5_zulHoechstgeschw", 2="7_zulHoechstgeschw", 3="10_zulHoechstgeschw",
+  4="15_zulHoechstgeschw", 5="20_zulHoechstgeschw", 6="25_zulHoechstgeschw", 7="30_zulHoechstgeschw",
+  8="35_zulHoechstgeschw", 9="40_zulHoechstgeschw", 10="45_zulHoechstgeschw", 11="50_zulHoechstgeschw",
+  12="55_zulHoechstgeschw", 13="60_zulHoechstgeschw", 14="65_zulHoechstgeschw", 15="70_zulHoechstgeschw",
+  16="75_zulHoechstgeschw", 17="80_zulHoechstgeschw", 18="85_zulHoechstgeschw", 19="90_zulHoechstgeschw",
+  20="95_zulHoechstgeschw", 21="100_zulHoechstgeschw", 22="110_zulHoechstgeschw", 23="120_zulHoechstgeschw",
+  24="130_zulHoechstgeschw", 25="140_zulHoechstgeschw", 26="150_zulHoechstgeschw", 27="160_zulHoechstgeschw",
+  28="200_zulHoechstgeschw", 30="250_zulHoechstgeschw", 31="Ende_zulHoechstgeschw")
+enum VtSig_ACC_Charisma_FahrPr(0="keine_Funktion", 1="Programm_1", 2="Programm_2", 3="Programm_3", 4="Programm_4",
+  5="Programm_5", 6="Programm_6", 7="Programm_7", 8="Programm_8", 9="Programm_9", 10="Programm_10", 11="Programm_11",
+  12="Programm_12", 13="Programm_13", 14="Programm_14", 15="Programm_15")
+enum VtSig_ACC_Charisma_Status(0="Init", 1="verfuegbar", 2="nicht_verfuegbar", 3="asynchron_durch_Fahrerwunsch")
+enum VtSig_ACC_Texte_Abstandswarner(0="keine_Anzeige", 1="Systemstoerung", 2="keine_Sensorsicht",
+  3="zurzeit_eingeschraenkt")
+enum VtSig_Fast_Send_Rate_Active(0="1 Hz", 1="50 Hz")
+enum VtSig_KBI_Variante_USA(0="keine USA-Variante", 1="USA-Variante")
+enum VtSig_KBI_Variante(0="Zeiger Kombiinstrument", 1="Volldisplay Kombiinstrument")
+enum VtSig_KBI_BCmE_aktiv(0="Anzeige_nicht_aktiv", 1="Anzeige_aktiv")
+enum VtSig_KBI_Sparhinweis_quittiert(0="nicht_quittiert", 1="quittiert")
+enum VtSig_KBI_Tankfuellstand_Prozent(126="Init", 127="Fehler")
+enum VtSig_KBI_Nachtanken_erkannt(0="Geberbetrieb", 1="Nachtankmodus")
+enum VtSig_KBI_Tankinhalt_hochaufl(16382="Init", 16383="Fehler")
+enum VtSig_KBI_Max_Tankinhalt(254="Init", 255="Fehler")
+enum VtSig_GearPosition(2="P", 3="R", 4="N", 5="D", 6="D")
+enum VtSig_RegenBrakingMode(0="default", 1="B1", 2="B2", 3="B3")
+
+{SENDRECEIVE}
+
+[ACC_06]
+ID=122h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=ACC_limitierte_Anfahrdyn bit 12,1 /e:VtSig_ACC_limitierte_Anfahrdyn
+Var=ACC_nachtr_Stopp_Anf bit 13,1 /e:VtSig_ACC_nachtr_Stopp_Anf
+Var=ACC_DynErhoehung bit 14,1
+Var=ACC_Freilaufstrategie_TSK bit 15,1
+Var=ACC_zul_Regelabw_unten unsigned 16,6 /u:Unit_MeterPerSec /f:0.024
+Var=ACC_StartStopp_Info unsigned 22,2 /e:VtSig_ACC_StartStopp_Info
+Var=ACC_Sollbeschleunigung_02 unsigned 24,11 /u:Unit_MeterPerSec /f:0.005 /o:-7.22 /max:3.005 /e:VtSig_ACC_Sollbeschleunigung_02
+Var=ACC_zul_Regelabw_oben unsigned 35,5 /u:Unit_MeterPerSec /f:0.0625
+Var=ACC_neg_Sollbeschl_Grad_02 unsigned 40,8 /u:Unit_MeterPerCub /f:0.05
+Var=ACC_pos_Sollbeschl_Grad_02 unsigned 48,8 /u:Unit_MeterPerCub /f:0.05
+Var=ACC_Anfahren bit 56,1 /e:VtSig_ACC_Anfahren
+Var=ACC_Anhalten bit 57,1 /e:VtSig_ACC_Anhalten
+Var=ACC_Typ unsigned 58,2 /e:VtSig_ACC_Typ
+Var=ACC_Status_ACC unsigned 60,3 /e:VtSig_ACC_Status_ACC
+Var=ACC_Minimale_Bremsung bit 63,1 /e:VtSig_ACC_Minimale_Bremsung
+
+[ACC_10]
+ID=117h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=AWV1_Anf_Prefill bit 16,1 /e:VtSig_AWV1_Anf_Prefill
+Var=ANB_CM_Info bit 17,1 /e:VtSig_ANB_CM_Info
+Var=AWV2_Freigabe bit 18,1 /e:VtSig_EA_Ruckfreigabe
+Var=AWV1_HBA_Param unsigned 19,2 /e:VtSig_AWV1_HBA_Param
+Var=AWV2_Ruckprofil unsigned 21,3
+Var=AWV2_Priowarnung bit 24,1 /e:VtSig_AWV2_Priowarnung
+Var=ANB_CM_Anforderung bit 25,1 /e:VtSig_ANB_CM_Anforderung
+Var=ANB_Info_Teilbremsung bit 26,1 /e:VtSig_ANB_Info_Teilbremsung
+Var=ANB_Notfallblinken bit 27,1 /e:VtSig_ANB_Notfallblinken
+Var=ANB_Teilbremsung_Freigabe bit 28,1 /e:VtSig_ANB_Teilbremsung_Freigabe
+Var=ANB_Zielbrems_Teilbrems_Verz_Anf unsigned 29,10 /u:Unit_MeterPerSec /f:0.024 /o:-20.016 /max:4.536
+Var=ANB_Zielbremsung_Freigabe bit 39,1 /e:VtSig_ANB_Zielbremsung_Freigabe
+Var=AWV_Vorstufe bit 40,1 /e:VtSig_AWV_Vorstufe
+Var=AWV_Halten bit 41,1 /e:VtSig_AWV_Halten
+Var=AWV_CityANB_Auspraegung bit 42,1 /e:VtSig_AWV_CityANB_Auspraegung
+Var=PCF_Freigabe bit 43,1 /e:VtSig_PCF_Freigabe
+Var=AWV1_ECD_Anlauf bit 44,1 /e:VtSig_AWV1_ECD_Anlauf
+Var=AWV_AWA_VZ_Anf_Lenkmomoffset bit 46,1
+Var=AWV_AWA_Anf_Lenkmomoffset unsigned 47,9 /u:Unit_NewtoMeter /f:0.01
+Var=PCF_Time_to_collision unsigned 56,8 /u:Unit_Secon /f:0.01 /max:2.5 /e:VtSig_PCF_Time_to_collision
+
+[ACC_13]
+ID=2A7h
+DLC=8
+Var=ACC_Regelgeschw unsigned 12,10 /u:Unit_KiloMeterPe /f:0.32 /max:327.04 /e:VtSig_ACC_Wunschgeschw_02
+Var=ACC_Einheit_maxSetzgeschw bit 22,1 /e:VtSig_ACC_Einheit_maxSetzgeschw
+Var=ACC_maxSetzgeschw unsigned 23,9 /max:510 /e:VtSig_ACC_maxSetzgeschw
+Var=ACC_minRegelgeschw unsigned 32,8 /u:Unit_KiloMeterPe /f:0.32 /max:81.28 /e:VtSig_ACC_minRegelgeschw
+Var=ACC_maxRegelgeschw unsigned 40,8 /u:Unit_KiloMeterPe /f:0.32 /max:81.28 /e:VtSig_ACC_minRegelgeschw
+Var=ACC_Tempolimitassistent unsigned 48,2 /e:VtSig_ACC_Tempolimitassistent
+Var=ACC_Kurvenassistent unsigned 52,3 /e:VtSig_ACC_Kurvenassistent
+Var=ACC_RUV unsigned 56,2 /e:VtSig_ACC_RUV
+Var=ACC_Tachokranz bit 58,1 /e:VtSig_ACC_Tachokranz
+Var=ACC_Typ_Tachokranz_unten bit 59,1 /e:VtSig_ACC_Typ_Tachokranz_unten
+Var=ACC_ENG_Texte unsigned 60,2 /e:VtSig_ACC_ENG_Texte
+
+[ACC_15]
+ID=2A9h
+DLC=8
+Var=AWV_Warnung unsigned 16,3 /e:VtSig_AWV_Warnung
+Var=AWV_Texte unsigned 24,3 /e:VtSig_AWV_Texte
+Var=AWV_Status_Anzeige unsigned 32,2 /e:VtSig_AWV_Status_Anzeige
+Var=AWV_Einstellung_System_FSG bit 34,1 /e:VtSig_AWV_Einstellung_System_FSG
+Var=AWV_Einstellung_Warnung_FSG unsigned 36,3 /e:VtSig_AWV_Einstellung_Warnung_FS
+Var=AWV_Warnlevel unsigned 58,6 /e:VtSig_AWV_Warnlevel
+
+[Airbag_01]
+ID=040h
+DLC=8
+Var=Airbag_01_CRC unsigned 0,8
+Var=Airbag_01_BZ unsigned 8,4
+Var=AB_RGS_Anst unsigned 12,4
+Var=AB_Front_Crash bit 16,1
+Var=AB_Heck_Crash bit 17,1
+Var=AB_SF_Crash bit 18,1
+Var=AB_SB_Crash bit 19,1
+Var=AB_Rollover_Crash bit 20,1
+Var=AB_Crash_Int unsigned 21,3
+Var=AB_Lampe bit 24,1
+Var=AB_Deaktiviert bit 25,1
+Var=AB_VB_deaktiviert bit 26,1
+Var=AB_Systemfehler bit 27,1
+Var=AB_Diagnose bit 28,1
+Var=AB_Stellgliedtest bit 29,1
+Var=AB_Erh_Auf_VB unsigned 30,2
+Var=AB_Gurtwarn_VF bit 32,1
+Var=AB_Gurtwarn_VB bit 33,1
+Var=AB_Anzeige_Fussg unsigned 34,2
+Var=AB_Texte_AKS unsigned 36,2
+Var=AB_PAO_Leuchte_Anf bit 38,1
+Var=AB_MKB_gueltig bit 39,1
+Var=AB_MKB_Anforderung bit 40,1
+Var=AB_Versorgungsspannung bit 41,1
+
+[Airbag_02]
+ID=520h
+DLC=8
+Var=AB_Belegung_VB unsigned 26,2
+Var=AB_Gurtschloss_FA unsigned 40,2
+Var=AB_Gurtschloss_BF unsigned 42,2
+Var=AB_Gurtschloss_Reihe2_FA unsigned 44,2
+Var=AB_Gurtschloss_Reihe2_MI unsigned 46,2
+Var=AB_Gurtschloss_Reihe2_BF unsigned 48,2
+Var=AB_Gurtschloss_Reihe3_FA unsigned 50,2
+Var=AB_Gurtschloss_Reihe3_MI unsigned 52,2
+Var=AB_Gurtschloss_Reihe3_BF unsigned 54,2
+Var=AB_Sitzpos_Sens_FA unsigned 56,2
+Var=AB_Sitzpos_Sens_BF unsigned 58,2
+
+[Airbag_03]
+ID=041h
+DLC=8
+Var=Airbag_03_CRC unsigned 0,8
+Var=Airbag_03_BZ unsigned 8,4
+Var=AB_MKB_Safing bit 63,1
+
+[Anhaenger_01]
+ID=661h
+DLC=8
+Var=AAG_BZ unsigned 0,4
+Var=AAG_Bremsl_durch_ECD bit 5,1
+Var=AAG_Anhaenger_abgesteckt bit 6,1
+Var=AAG_NSL_aktiv bit 7,1
+Var=AAG_Anhaenger_erkannt bit 8,1
+Var=AAG_Blinker_H_aktiv bit 9,1
+Var=AAG_Blinker_HL_def bit 10,1
+Var=AAG_Blinker_HR_def bit 11,1
+Var=AAG_Bremslicht_H_def bit 12,1
+Var=AAG_Schlusslicht_HL_def bit 13,1
+Var=AAG_Schlusslicht_HR_def bit 14,1
+Var=AAG_AVS_Fehler_02 bit 18,1
+Var=AAG_AVS_Stati unsigned 20,4
+
+[BCM_01]
+ID=65Ah
+DLC=8
+Var=BCM_Bremsbelag_Sensor bit 12,1
+Var=BCM_Bremsfluessigkeit_Sensor bit 13,1
+Var=BCM1_Licht_Warn bit 14,1
+Var=BCM_Waschwasser_Sensor bit 15,1
+Var=BCM_Kuehlmittel_Sensor bit 16,1
+Var=BCM1_Kl_15_HW_erkannt bit 17,1
+Var=BCM_Eis_Offroad_Taste bit 18,1
+Var=ZZH_Endlage_oben bit 19,1
+Var=ZZH_Endlage_unten bit 20,1
+Var=ZZH_Endlage_unplausibel bit 21,1
+Var=BCM2_EZS_gedrueckt bit 22,1
+Var=BCM2_SST_gedrueckt bit 23,1
+Var=BCM_Hybrid_StartStopp_Taste bit 24,1
+Var=BCM1_Warnblink_Taster bit 25,1
+Var=BCM1_Valet_Parking_Taster bit 26,1
+Var=BCM_Remotestart_Betrieb bit 27,1
+Var=BCM1_HSK_Taster bit 28,1
+Var=BCM1_Heckrollo_Taster bit 29,1
+Var=BCM1_Rueckfahrlicht_Schalter bit 30,1
+Var=BCM1_MH_Schalter bit 31,1
+Var=BCM1_MH_WIV_Schalter bit 32,1
+Var=BCM_Eco_Charisma_Taste bit 33,1
+Var=BCM_Thermomanagement unsigned 34,2
+Var=BCM_Thermomanagement_Fehler bit 36,1
+Var=BCM_Thermomanagement_gueltig bit 37,1
+Var=BCM1_Lichtwarn_Texte unsigned 38,2
+
+[BEM_05]
+ID=365h
+DLC=8
+Var=BEM_P_Generator unsigned 16,8 /u:Unit_Watt /f:50 /max:12700
+Var=BEM_n_LLA unsigned 24,2
+Var=BEM_01_Abschaltstufen unsigned 26,3
+Var=BEM_Anf_KL bit 29,1
+Var=BEM_StartStopp_Info unsigned 30,2
+Var=BEM_DFM unsigned 32,5 /f:3.225 /o:0.025
+Var=BEM_EMLIN_ungueltig bit 37,1
+Var=BEM_Batt_Ab bit 38,1
+Var=BEM_Segel_Info unsigned 48,2
+Var=BEM_HYB_DC_uSollLV unsigned 50,6 /u:Unit_Volt /f:0.1 /o:10.6 /max:16
+Var=BEM_HYB_DC_uMinLV unsigned 56,8 /u:Unit_Volt /f:0.1 /max:25.3
+
+[BMS_Hybrid_01]
+ID=65Ch
+DLC=8
+Var=BMS_HYB_ASV_hinten_Status bit 13,1
+Var=BMS_HYB_ASV_vorne_Status bit 14,1
+Var=BMS_HYB_KD_Fehler bit 15,1
+Var=BMS_HYB_BattFanSpd unsigned 16,4 /u:Unit_PerCent /f:10 /max:100
+Var=BMS_HYB_VentilationReq bit 20,1
+Var=BMS_HYB_Spuelbetrieb_Status bit 21,1
+Var=BMS_HYB_Kuehlung_Anf unsigned 22,2
+Var=BMS_HYB_Temp_vor_Verd unsigned 24,8 /u:Unit_DegreCelsi /f:0.5 /o:-40 /max:86.5
+Var=BMS_HYB_Temp_nach_Verd unsigned 32,8 /u:Unit_DegreCelsi /f:0.5 /o:-40 /max:86.5
+Var=BMS_Temperatur unsigned 40,8 /u:Unit_DegreCelsi /f:0.5 /o:-40 /max:86.5
+Var=BMS_Temperatur_Ansaugluft unsigned 48,8 /u:Unit_DegreCelsi /f:0.5 /o:-40 /max:86.5
+Var=BMS_IstSpannung_HV unsigned 56,8 /u:Unit_Volt /o:100 /max:350
+
+[Charisma_01]
+ID=385h
+DLC=8
+Var=CHA_Ziel_FahrPr_ALR unsigned 0,4
+Var=CHA_Ziel_FahrPr_ESP unsigned 4,4
+Var=CHA_Ziel_FahrPr_FL unsigned 8,4
+Var=CHA_Fahrer_Umschaltung bit 14,1
+Var=CHA_Ziel_FahrPr_MO unsigned 16,4
+Var=CHA_Ziel_FahrPr_GE unsigned 20,4
+Var=CHA_Ziel_FahrPr_ST unsigned 24,4
+Var=CHA_Ziel_FahrPr_SCU unsigned 28,4
+Var=CHA_Ziel_FahrPr_DR unsigned 32,4
+Var=CHA_Ziel_FahrPr_QS unsigned 36,4
+Var=CHA_Ziel_FahrPr_AFS unsigned 40,4
+Var=CHA_Ziel_FahrPr_RGS unsigned 44,4
+Var=CHA_Ziel_FahrPr_EPS unsigned 48,4
+Var=CHA_Ziel_FahrPr_ACC unsigned 52,4
+Var=CHA_Ziel_FahrPr_SAK unsigned 56,4
+Var=CHA_Ziel_FahrPr_MStSt unsigned 60,4
+
+[DC_Hybrid_01]
+ID=3B1h
+DLC=8
+Var=DC_HYB_iAktLV unsigned 12,10 /u:Unit_Amper /o:-511 /max:510
+Var=DC_HYB_iAktReserveLV unsigned 22,10 /u:Unit_Amper /o:-511 /max:510
+Var=DC_HYB_uAktLV unsigned 32,8 /u:Unit_Volt /f:0.1 /max:25.3
+Var=DC_HYB_LangsRegelung bit 40,1
+Var=DC_HYB_Abregelung_Temperatur bit 41,1
+Var=DC_HYB_Fehler_RedLeistung bit 42,1
+Var=DC_HYB_Fehler_intern bit 43,1
+Var=DC_HYB_Fehler_Spannung bit 44,1
+Var=DC_HYB_Auslastungsgrad unsigned 56,8 /u:Unit_PerCent /f:0.4 /max:100
+
+[Diagnose_01]
+ID=6B2h
+DLC=8
+Var=DGN_Verlernzaehler unsigned 0,8 /max:254
+Var=KBI_Kilometerstand unsigned 8,20 /u:Unit_KiloMeter /max:1048573
+Var=UH_Jahr unsigned 28,7 /u:Unit_Year /o:2000
+Var=UH_Monat unsigned 35,4 /u:Unit_Month /min:1 /max:12
+Var=UH_Tag unsigned 39,5 /u:Unit_Day /min:1
+Var=UH_Stunde unsigned 44,5 /u:Unit_Hours /max:23
+Var=UH_Minute unsigned 49,6 /u:Unit_Minut /max:59
+Var=UH_Sekunde unsigned 55,6 /u:Unit_Secon /max:59
+Var=Kombi_02_alt bit 62,1
+Var=Uhrzeit_01_alt bit 63,1
+
+[Dimmung_01]
+ID=5F0h
+DLC=8
+Var=DI_KL_58xd unsigned 0,8 /max:253
+Var=DI_KL_58xs unsigned 8,7 /u:Unit_PerCent /max:100
+Var=DI_Display_Nachtdesign bit 15,1
+Var=DI_KL_58xt unsigned 16,7 /u:Unit_PerCent /max:100
+Var=DI_Fotosensor unsigned 24,16
+
+[Einheiten_01]
+ID=643h
+DLC=8
+Var=KBI_Einheit_Datum unsigned 0,2
+Var=KBI_Einheit_Druck unsigned 2,2
+Var=KBI_Einheit_Streckenanz bit 4,1
+Var=KBI_MFA_v_Einheit_02 bit 5,1
+Var=KBI_Einheit_Temp bit 6,1
+Var=KBI_Einheit_Uhrzeit bit 7,1
+Var=KBI_Einheit_Verbrauch unsigned 8,2
+Var=KBI_Einheit_Volumen unsigned 10,2
+Var=KBI_Einheit_Sprache unsigned 16,8
+
+[EPB_01]
+ID=104h
+DLC=8
+Var=EPB_01_CRC unsigned 0,8
+Var=EPB_01_BZ unsigned 8,4
+Var=EPB_QBit_Laengsbeschleunigung bit 12,1
+Var=EPB_QBit_Pedalweg_Kuppl bit 13,1
+Var=EPB_BCM2_Motor_Wakeup bit 14,1
+Var=EPB_Freig_Verzoeg_Anf bit 15,1
+Var=EPB_Verzoeg_Anf unsigned 16,8 /u:Unit_MeterPerSec /f:0.048 /o:-7.968 /max:4.224
+Var=EPB_Laengsbeschleunigung unsigned 24,8 /u:Unit_PerCentOfFo /o:-128 /max:126
+Var=EPB_Pedalweg_Kuppl unsigned 32,8 /u:Unit_PerCent /f:0.4 /min:8 /max:92
+Var=EPB_Anfahrwunsch_erkannt bit 48,1
+Var=EPB_DAA_Randbed_erf bit 49,1
+Var=EPB_Fehlerstatus unsigned 50,2
+Var=EPB_Schalterposition unsigned 52,2
+Var=EPB_QBit_Schalterpos bit 54,1
+Var=EPB_Konsistenz_ACC bit 55,1
+Var=EPB_Spannkraft unsigned 56,5 /u:Unit_KiloNewto /max:29
+Var=EPB_Status unsigned 61,2
+
+[ESP_02]
+ID=101h
+DLC=8
+Var=ESP_02_CRC unsigned 0,8
+Var=ESP_02_BZ unsigned 8,4
+Var=ESP_QBit_Gierrate bit 12,1
+Var=ESP_QBit_Laengsbeschl bit 13,1
+Var=ESP_QBit_Querb bit 14,1
+Var=ESP_Stillstandsflag bit 15,1
+Var=ESP_Querbeschleunigung unsigned 16,8 /u:Unit_ForceOfGrav /f:0.01 /o:-1.27 /max:1.27
+Var=ESP_Laengsbeschl unsigned 24,10 /u:Unit_MeterPerSec /f:0.03125 /o:-16 /max:15.90625
+Var=ESP_Verteil_Wankmom unsigned 34,5 /f:0.1 /o:-1 /max:1
+Var=ESP_QBit_Anf_Vert_Wank bit 39,1
+Var=ESP_Gierrate unsigned 40,14 /u:Unit_DegreOfArcP /f:0.01 /max:163.82
+Var=ESP_VZ_Gierrate bit 54,1
+Var=ESP_Notbremsanzeige bit 55,1
+Var=ESP_SpannungsAnf bit 56,1
+Var=ESP_PLA_Abbruch unsigned 57,3
+Var=ESP_Status_ESP_PLA unsigned 60,4
+
+[ESP_05]
+ID=106h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=ESP_QBit_Bremsdruck bit 12,1
+Var=ESP_QBit_Fahrer_bremst bit 13,1
+Var=ESP_Schwelle_Unterdruck unsigned 14,2
+Var=ESP_Bremsdruck unsigned 16,10 /u:Unit_Bar /f:0.3 /o:-30 /max:276.6
+Var=ESP_Fahrer_bremst bit 26,1
+Var=ESP_Verz_TSK_aktiv bit 27,1
+Var=ESP_Lenkeingriff_ADS bit 28,1
+Var=ESP_Konsistenz_TSK bit 29,1
+Var=ESP_Bremsruck_AWV2 bit 30,1
+Var=ESP_Konsistenz_AWV2 bit 31,1
+Var=ECD_Fehler bit 32,1
+Var=ECD_nicht_verfuegbar bit 33,1
+Var=ESP_Status_Bremsentemp bit 34,1
+Var=ESP_Autohold_Standby bit 35,1
+Var=ESP_HDC_Standby bit 36,1
+Var=ESP_HBA_aktiv bit 37,1
+Var=ESP_Prefill_ausgeloest bit 38,1
+Var=ESP_Rueckwaertsfahrt_erkannt bit 39,1
+Var=ESP_Status_Anfahrhilfe bit 40,1
+Var=ESP_HDC_aktiv bit 41,1
+Var=ESP_StartStopp_Info unsigned 42,2
+Var=ESP_Eingr_HL bit 44,1
+Var=ESP_Eingr_HR bit 45,1
+Var=ESP_Eingr_VL bit 46,1
+Var=ESP_Eingr_VR bit 47,1
+Var=ESP_BKV_Unterdruck unsigned 48,8 /u:Unit_MilliBar /f:4 /max:1012
+Var=ESP_Autohold_aktiv bit 56,1
+Var=ESP_FStatus_Anfahrhilfe bit 57,1
+Var=ESP_Verz_EPB_aktiv bit 58,1
+Var=ECD_Bremslicht bit 59,1
+Var=ESP_Verzoeg_EPB_verf bit 60,1
+Var=ESP_Status_Bremsdruck bit 61,1
+Var=ESP_Anforderung_EPB unsigned 62,2
+
+[ESP_07]
+ID=392h
+DLC=8
+Var=ESP_07_CRC unsigned 0,8
+Var=ESP_07_BZ unsigned 8,4
+Var=ESP_ACC_LDE bit 12,1
+Var=ESP_Quattro_Antrieb bit 13,1
+Var=ESP_Codierung_ADS unsigned 14,2
+Var=ESP_RTA_HL unsigned 16,8 /u:Unit_PerCent /f:0.048828125 /o:-6.20117 /max:6.152345625
+Var=ESP_RTA_HR unsigned 24,8 /u:Unit_PerCent /f:0.048828125 /o:-6.20117 /max:6.152345625
+Var=ESP_RTA_VR unsigned 32,8 /u:Unit_PerCent /f:0.048828125 /o:-6.20117 /max:6.152345625
+Var=OBD_Fehler_Radsensor_HL unsigned 40,4
+Var=OBD_Fehler_Radsensor_HR unsigned 44,4
+Var=OBD_Fehler_Radsensor_VL unsigned 48,4
+Var=OBD_Fehler_Radsensor_VR unsigned 52,4
+Var=ESP_Qualifizierung_Antriebsart bit 56,1
+Var=ESP_Offroad_Modus bit 57,1
+Var=ESP_MKB_ausloesbar bit 58,1
+Var=ESP_MKB_Status bit 59,1
+Var=ESP_CM_Variante bit 60,1
+Var=ESP_OBD_Status bit 61,1
+
+[ESP_10]
+ID=116h
+DLC=8
+Var=ESP_10_CRC unsigned 0,8
+Var=ESP_10_BZ unsigned 8,4
+Var=ESP_QBit_Wegimpuls_VL bit 12,1
+Var=ESP_QBit_Wegimpuls_VR bit 13,1
+Var=ESP_QBit_Wegimpuls_HL bit 14,1
+Var=ESP_QBit_Wegimpuls_HR bit 15,1
+Var=ESP_Wegimpuls_VL unsigned 16,10 /max:1000
+Var=ESP_Wegimpuls_VR unsigned 26,10 /max:1000
+Var=ESP_Wegimpuls_HL unsigned 36,10 /max:1000
+Var=ESP_Wegimpuls_HR unsigned 46,10 /max:1000
+Var=ESP_VL_Fahrtrichtung unsigned 56,2
+Var=ESP_VR_Fahrtrichtung unsigned 58,2
+Var=ESP_HL_Fahrtrichtung unsigned 60,2
+Var=ESP_HR_Fahrtrichtung unsigned 62,2
+
+[ESP_19]
+ID=0B2h
+DLC=8
+Var=ESP_HL_Radgeschw_02 unsigned 0,16 /u:Unit_KiloMeterPe /f:0.0075 /max:491.49
+Var=ESP_HR_Radgeschw_02 unsigned 16,16 /u:Unit_KiloMeterPe /f:0.0075 /max:491.49
+Var=ESP_VL_Radgeschw_02 unsigned 32,16 /u:Unit_KiloMeterPe /f:0.0075 /max:491.49
+Var=ESP_VR_Radgeschw_02 unsigned 48,16 /u:Unit_KiloMeterPe /f:0.0075 /max:491.49
+
+[ESP_20]
+ID=65Dh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=BR_Systemart unsigned 12,2
+Var=ESP_Zaehnezahl unsigned 16,8
+Var=ESP_Charisma_FahrPr unsigned 24,4
+Var=ESP_Charisma_Status unsigned 28,2
+Var=BR_QBit_Reifenumfang bit 51,1
+Var=BR_Reifenumfang unsigned 52,12 /u:Unit_MilliMeter
+
+[ESP_21]
+ID=0FDh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=BR_Eingriffsmoment unsigned 12,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=ESP_v_Signal unsigned 32,16 /u:Unit_KiloMeterPe /f:0.01 /max:655.32
+Var=ASR_Tastung_passiv bit 48,1
+Var=ESP_Tastung_passiv bit 49,1
+Var=ESP_Systemstatus bit 50,1
+Var=ASR_Schalteingriff unsigned 51,2
+Var=ESP_Haltebestaetigung bit 53,1
+Var=ESP_QBit_v_Signal bit 55,1
+Var=ABS_Bremsung bit 56,1
+Var=ASR_Anf bit 57,1
+Var=MSR_Anf bit 58,1
+Var=EBV_Eingriff bit 59,1
+Var=EDS_Eingriff bit 60,1
+Var=ESP_Eingriff bit 61,1
+Var=ESP_ASP bit 62,1
+Var=ESP_Anhaltevorgang_ACC_aktiv bit 63,1
+
+[Gateway_72]
+ID=3DBh
+DLC=8
+Var=BCM_01_alt bit 0,1
+Var=SMLS_01_alt bit 1,1
+Var=ZV_02_alt bit 2,1
+Var=Wischer_01_alt bit 3,1
+Var=Anhaenger_01_alt bit 4,1
+Var=Klima_Sensor_02_alt bit 5,1
+Var=VSG_01_alt bit 6,1
+Var=Klima_01_alt bit 7,1
+Var=WFS_01_alt bit 8,1
+Var=Licht_Anf_01_alt bit 9,1
+Var=ZV_HFS_offen bit 20,1
+Var=ZV_HBFS_offen bit 21,1
+Var=VS_VD_offen_ver bit 22,1
+Var=VS_VD_zu_ver bit 23,1
+Var=ZV_BT_offen bit 24,1
+Var=BCM1_Rueckfahrlicht_Schalter bit 25,1
+Var=ZV_FT_offen bit 26,1
+Var=Wischer_vorne_aktiv bit 27,1
+Var=AAG_Anhaenger_erkannt bit 28,1
+Var=BCM1_MH_Schalter bit 29,1
+Var=ZV_HD_offen bit 30,1
+Var=Waschen_vorne_aktiv bit 31,1
+Var=KL_Thermomanagement unsigned 32,2
+Var=WFS_Schluessel_Fahrberecht unsigned 34,4
+Var=BCM1_RFahrlicht_Fzg_Anf bit 38,1
+Var=BCM1_RFahrlicht_Ahg_Anf bit 39,1
+Var=BH_Fernlicht bit 49,1
+Var=BH_Blinker_li bit 50,1
+Var=BH_Blinker_re bit 51,1
+Var=BCM1_OBD_FStatus_ATemp unsigned 52,4
+Var=BCM1_Aussen_Temp_ungef unsigned 56,8 /u:Unit_DegreCelsi /f:0.5 /o:-50 /max:76
+
+[Gateway_74]
+ID=3DDh
+DLC=8
+Var=LH_EPS_01_alt bit 0,1
+Var=Kessy_04_alt bit 1,1
+Var=LIN_2_alt bit 2,1
+Var=MFG_01_alt bit 3,1
+Var=GW_74_va_14 bit 4,1
+Var=Klima_02_alt bit 5,1
+Var=Parkhilfe_01_alt bit 6,1
+Var=ELV_01_alt bit 7,1
+Var=KY_StartStopp_Info unsigned 16,2
+Var=PH_StartStopp_Info unsigned 18,2
+Var=EPS_Lenkerposition unsigned 20,2
+Var=ELV_Anf_Klemme_50 bit 22,1
+Var=MF_StartStopp_Info unsigned 25,2
+Var=KL_Geblaesespannung_Soll unsigned 40,8 /u:Unit_Volt /f:0.05 /o:0.5 /min:2 /max:13
+Var=KL_Umluftklappe_Status unsigned 48,4
+Var=MFL_Tip_Down bit 56,1
+Var=MFL_Tip_Up bit 57,1
+Var=LS_Tiptronic_Fehler bit 58,1
+
+[Getriebe_06]
+ID=128h
+DLC=3
+Var=GE_WH_Sperre bit 0,1
+Var=GE_Ausleuchtungsmode bit 1,1
+Var=GE_Test_Freigabe bit 2,1
+Var=GE_Ist_Fahrstufe unsigned 4,4
+Var=GE_Testparameter_1 unsigned 8,8
+Var=GE_Testparameter_2 unsigned 16,8
+
+[Getriebe_11]
+ID=0ADh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTERXX unsigned 8,4 // Message not renamed to COUNTER because J533 rate-limiting makes it look like messages are being lost
+Var=GE_MMom_Soll_02 unsigned 12,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=GE_MMom_Vorhalt_02 unsigned 22,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=GE_Uefkt unsigned 32,10 /f:0.1 /max:102.2
+Var=GE_Fahrstufe unsigned 42,5 /e:VtSig_GE_Fahrstufe
+Var=GE_Schaltvorgang bit 47,1
+Var=GE_Status_Kupplung unsigned 54,2
+Var=GE_MMom_Status unsigned 56,2
+Var=GE_Freig_MMom_Vorhalt bit 58,1
+Var=GE_Verbot_Ausblendung bit 59,1
+Var=GE_Zielgang unsigned 60,4
+
+[Getriebe_12]
+ID=0AEh
+DLC=8
+Var=Getriebe_12_CRC unsigned 0,8
+Var=Getriebe_12_BZ unsigned 8,4
+Var=GE_Drehzahlmesser_Daempfung bit 12,1
+Var=GE_Schubabschalt_Unt bit 13,1
+Var=GE_Freigabe_Synchro bit 14,1
+Var=GE_Synchro_Wunschdrehz unsigned 15,9 /u:Unit_MinutInver /f:25 /max:12750
+Var=GE_Synchro_Zeit unsigned 24,8 /u:Unit_MilliSecon /f:20 /max:5080
+Var=GE_Mom_Begr_Gradient unsigned 32,8 /u:Unit_NewtoMeterP /f:10 /max:2540
+Var=GE_Anheb_Solldrehz_Leerlauf unsigned 40,8 /u:Unit_MinutInver /f:10 /max:2540
+Var=GE_Aufnahmemoment unsigned 48,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=GE_Anf_Zylabsch unsigned 58,2
+Var=GE_HYB_DZ_Eingriff unsigned 62,2
+
+[Getriebe_13]
+ID=12Dh
+DLC=8
+Var=Getriebe_13_CRC unsigned 0,8
+Var=Getriebe_13_BZ unsigned 8,4
+Var=GE_StartStopp_Info unsigned 12,2
+Var=GE_Langfr_Schutzmom_02 unsigned 14,9 /u:Unit_NewtoMeter /max:509
+Var=GE_Eingangsdrehz unsigned 48,14 /u:Unit_MinutInver /max:16381
+Var=GE_Notlauf bit 62,1
+Var=GE_Freig_Langfr_Schutzmom bit 63,1
+
+[Getriebe_14]
+ID=3C8h
+DLC=8
+Var=GE_OBD_AbsperrVent unsigned 12,4
+Var=GE_amax_moeglich unsigned 16,9 /u:Unit_MeterPerSec /f:0.024 /o:-2.016 /max:10.224
+Var=GE_Charisma_FahrPr unsigned 25,4
+Var=GE_Charisma_Status unsigned 29,2
+Var=GE_Verlustmoment unsigned 32,8 /max:254
+Var=GE_Freigabe_Verfallsinfo_WFS bit 49,1
+Var=GE_Codierung_MSG bit 50,1
+Var=GE_LaunchControl bit 51,1
+Var=GE_Heizwunsch unsigned 52,2
+Var=GE_OBD_Status bit 54,1
+Var=GE_LFR_Adaption bit 55,1
+Var=GE_Sumpftemperatur unsigned 56,8 /u:Unit_DegreCelsi /o:-58 /max:196
+
+[Getriebe_Hybrid_01]
+ID=09Eh
+DLC=8
+Var=Getriebe_Hybrid_01_CRC unsigned 0,8
+Var=Getriebe_Hybrid_01_BZ unsigned 8,4
+Var=GE_HYB_Fehlerstatus unsigned 12,2
+Var=GE_HYB_Freigabe_K0 bit 16,1
+Var=GE_HYB_Freigabe_LL_Reg bit 17,1
+Var=GE_HYB_Freig_sSchl_K0 bit 18,1
+Var=GE_HYB_Freig_VM_EM_Stop bit 19,1
+Var=GE_HYB_Wiederstart bit 20,1
+Var=GE_HYB_Filt_MomAufbau unsigned 21,3
+Var=GE_HYB_nK0 unsigned 24,8 /u:Unit_MinutInver /f:25 /max:6350
+Var=GE_HYB_MomEingriff_EM unsigned 32,6 /u:Unit_NewtoMeter /f:0.5
+Var=GE_HYB_VZ_MomEingriff_EM bit 38,1
+Var=GE_HYB_Sportfaktor unsigned 56,4
+Var=GE_HYB_VM_akt_halten bit 61,1
+Var=GE_HYB_StartAnf bit 62,1
+Var=GE_HYB_VM_Startkontr bit 63,1
+
+[GRA_ACC_01]
+ID=12Bh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=GRA_Hauptschalter bit 12,1
+Var=GRA_Abbrechen bit 13,1
+Var=GRA_Typ_Hauptschalter bit 14,1
+Var=GRA_Limiter bit 15,1
+Var=GRA_Tip_Setzen bit 16,1
+Var=GRA_Tip_Hoch bit 17,1
+Var=GRA_Tip_Runter bit 18,1
+Var=GRA_Tip_Wiederaufnahme bit 19,1
+Var=GRA_Verstellung_Zeitluecke unsigned 20,2
+Var=GRA_Codierung unsigned 22,2
+Var=GRA_Fehler bit 24,1
+Var=GRA_Typ468 unsigned 25,2
+Var=GRA_Tip_Stufe_2 bit 27,1
+Var=GRA_ButtonTypeInfo unsigned 28,2 /max:1
+
+[Klemmen_Status_01]
+ID=3C0h
+DLC=4
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=ZAS_Kl_S bit 16,1
+Var=ZAS_Kl_15 bit 17,1 // Indicates ignition on
+Var=ZAS_Kl_X bit 18,1
+Var=ZAS_Kl_50 bit 19,1
+
+[Klima_11]
+ID=3B5h
+DLC=8
+Var=KL_Drehz_Anh bit 0,1
+Var=KL_Vorwarn_Komp_ein bit 1,1
+Var=KL_AC_Schalter bit 2,1
+Var=KL_Komp_Moment_alt bit 3,1
+Var=KL_Zonen unsigned 4,2
+Var=KL_Vorwarn_Zuheizer_ein bit 6,1
+Var=KL_Zustand bit 7,1
+Var=KL_Comp_rev_rq unsigned 8,8 /u:Unit_MinutInver /f:50 /max:8600
+Var=KL_Charisma_FahrPr unsigned 16,4
+Var=KL_Charisma_Status unsigned 20,2
+Var=KL_Comp_enable bit 23,1
+Var=KL_Last_Kompr unsigned 24,8 /u:Unit_NewtoMeter /f:0.25 /max:63.5
+Var=KL_Spannungs_Anf unsigned 32,2
+Var=KL_Thermomanagement unsigned 34,2
+Var=KL_StartStopp_Info unsigned 36,2
+Var=KL_Anf_KL unsigned 40,8 /u:Unit_PerCent /f:0.4 /max:101.6
+Var=KL_el_Zuheizer_Stufe unsigned 48,3
+
+[Klimakomp_01]
+ID=659h
+DLC=8
+Var=EKL_KD_Fehler bit 15,1
+Var=EKL_Comp_SCI_com_stat unsigned 16,2
+Var=EKL_Comp_output_stat unsigned 18,2
+Var=EKL_Comp_main_stat bit 20,1
+Var=EKL_Comp_ovld_stat unsigned 21,3
+Var=EKL_Comp_Inv_stat unsigned 24,2
+Var=EKL_Comp_photo_temp_stat unsigned 30,2
+Var=EKL_Comp_photo_temp unsigned 32,8 /u:Unit_DegreCelsi /max:254
+Var=EKL_Comp_current unsigned 40,8 /u:Unit_Amper /f:0.1 /max:25.4
+Var=EKL_Comp_rev_stat unsigned 48,8 /u:Unit_MinutInver /f:50 /max:8600
+
+[KN_Airbag_01]
+ID=17F00015h
+Type=Extended
+DLC=8
+Var=Airbag_01_KompSchutz bit 0,1
+Var=Airbag_01_Nachlauftyp unsigned 4,4
+Var=AB_KD_Fehler bit 63,1
+
+[KN_EMotor_01]
+ID=17F0007Ch
+Type=Extended
+DLC=8
+Var=EMotor_KompSchutz bit 0,1
+Var=EMotor_Nachlauftyp unsigned 4,4
+Var=EM_HYB_KD_Fehler bit 63,1
+
+[KN_Getriebe_01]
+ID=17F00077h
+Type=Extended
+DLC=8
+Var=Getriebe_KompSchutz bit 0,1
+Var=Getriebe_Nachlauftyp unsigned 4,4
+Var=GE_KD_Fehler bit 63,1
+
+[KN_Hybrid_01]
+ID=17F0007Bh
+Type=Extended
+DLC=8
+Var=Hybrid_KompSchutz bit 0,1
+Var=Hybrid_Nachlauftyp unsigned 4,4
+Var=BMS_HYB_KD_Fehler bit 63,1
+
+[KN_MO_01]
+ID=17F00076h
+Type=Extended
+DLC=8
+Var=Motor_KompSchutz bit 0,1
+Var=Motor_Nachlauftyp unsigned 4,4
+Var=MO_KD_Fehler bit 63,1
+
+[KN_SAK]
+ID=17F0001Ch
+Type=Extended
+DLC=8
+Var=SAK_KompSchutz bit 0,1
+Var=SAK_Nachlauftyp unsigned 4,4
+Var=SAK_KD_Fehler bit 63,1
+
+[Kombi_01]
+ID=30Bh
+DLC=8
+Var=KBI_ABS_Lampe bit 0,1
+Var=KBI_ESP_Lampe bit 1,1
+Var=KBI_BKL_Lampe bit 2,1
+Var=KBI_Airbag_Lampe bit 3,1
+Var=KBI_SILA_gueltig bit 4,1
+Var=KBI_Lenkung_Lampe bit 5,1
+Var=KBI_Vorglueh_System_Lampe bit 6,1
+Var=KBI_NV_in_Anzeige bit 7,1
+Var=Kombi_01_BZ unsigned 8,4
+Var=KBI_Anzeigestatus_ACC bit 12,1
+Var=KBI_Anzeigestatus_GRA unsigned 13,2
+Var=KBI_Oeldruck_Schalter bit 15,1
+Var=KBI_Tankwarnung bit 16,1
+Var=KBI_MFA_v_Einheit_01 bit 17,1
+Var=KBI_im_Stellgliedtest bit 18,1
+Var=KBI_Anzeigefehler_LDW unsigned 19,2
+Var=KBI_Variante_USA bit 21,1
+Var=KBI_Oeldruckwarnung bit 22,1
+Var=KBI_Handbremse bit 23,1
+Var=KBI_V_Digital unsigned 24,9
+Var=KBI_PLA_in_Anzeige bit 33,1
+Var=KBI_Anzeigefehler_NV bit 34,1
+Var=KBI_Anzeigestatus_LIM unsigned 35,2
+Var=KBI_angez_Geschw unsigned 48,10 /u:Unit_KiloMeterPe /f:0.32 /max:325.12
+Var=KBI_Einheit_Tacho bit 58,1
+Var=KBI_Konsistenz_ACC bit 59,1
+Var=KBI_Fehler_Anzeige_ACC bit 60,1
+Var=KBI_Anzeigefehler_SWA unsigned 61,2
+
+[Kombi_02]
+ID=6B7h
+DLC=8
+Var=KBI_Kilometerstand unsigned 0,20 /u:Unit_KiloMeter /max:1048573
+Var=KBI_Standzeit_02 unsigned 20,17 /u:Unit_Secon /max:131068
+Var=KBI_Inhalt_Tank unsigned 40,7 /u:Unit_Liter /max:125
+Var=KBI_FStatus_Tank bit 47,1
+Var=KBI_QBit_Aussen_Temp_gef bit 55,1
+Var=KBI_Aussen_Temp_gef unsigned 56,8 /u:Unit_DegreCelsi /f:0.5 /o:-50 /max:75
+
+[Licht_hinten_01]
+ID=3D6h
+DLC=8
+Var=Licht_hinten_01_BZ unsigned 0,4
+Var=BCM2_Bremsl_durch_ECD bit 5,1
+Var=LH_Aussenlicht_def bit 7,1
+Var=LH_Standlicht_H_aktiv bit 8,1
+Var=LH_Parklicht_HL_aktiv bit 9,1
+Var=LH_Parklicht_HR_aktiv bit 10,1
+Var=LH_Bremslicht_H_aktiv bit 11,1
+Var=LH_Nebelschluss_aktiv bit 12,1
+Var=LH_Rueckfahrlicht_aktiv bit 13,1
+Var=LH_Blinker_HL_akt bit 14,1
+Var=LH_Blinker_HR_akt bit 15,1
+Var=LH_Blinker_li_def bit 16,1
+Var=LH_Bremsl_li_def bit 17,1
+Var=LH_Schlusslicht_li_def bit 18,1
+Var=LH_Rueckf_li_def bit 19,1
+Var=LH_Nebel_li_def bit 20,1
+Var=LH_Schluss_Brems_Nebel_li_def bit 21,1
+Var=LH_Schluss_Brems_Nebel_re_def bit 22,1
+Var=LH_Schluss_Brems_li_def bit 24,1
+Var=LH_Schluss_Nebel_li_def bit 25,1
+Var=LH_SL_BRL_BLK_li_def bit 26,1
+Var=LH_Brems_Blk_li_def bit 27,1
+Var=LH_Blinker_re_def bit 32,1
+Var=LH_Bremsl_re_def bit 33,1
+Var=LH_Schlusslicht_re_def bit 34,1
+Var=LH_Rueckf_re_def bit 35,1
+Var=LH_Nebel_re_def bit 36,1
+Var=LH_Schluss_Brems_re_def bit 40,1
+Var=LH_Schluss_Nebel_re_def bit 41,1
+Var=LH_SL_BRL_BLK_re_def bit 42,1
+Var=LH_Brems_Blk_re_def bit 43,1
+Var=LH_Kennzl_def bit 48,1
+Var=LH_3_Bremsl_def bit 49,1
+Var=LH_Nebel_mi_def bit 50,1
+Var=LH_Rueckf_mi_def bit 51,1
+Var=LH_Bremsl_li_ges_def bit 54,1
+Var=LH_Bremsl_re_ges_def bit 55,1
+
+[LWI_01]
+ID=086h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=LWI_Sensorstatus bit 12,1
+Var=LWI_QBit_Sub_Daten bit 13,1
+Var=LWI_QBit_Lenkradwinkel bit 15,1
+Var=LWI_Lenkradwinkel unsigned 16,13 /u:Unit_DegreOfArc /f:0.1 /max:800 // Steering angle WITH variable ratio effect included
+Var=LWI_VZ_Lenkradwinkel bit 29,1
+Var=LWI_VZ_Lenkradw_Geschw bit 30,1
+Var=LWI_Lenkradw_Geschw unsigned 31,9 /u:Unit_DegreOfArcP /f:5 /max:2500
+Var=LWI_Sub_Daten unsigned 40,16
+
+[Motor_04]
+ID=107h
+DLC=8
+Var=MO_Istgang unsigned 8,4
+Var=MO_Sollgang unsigned 12,4
+Var=MO_Oeldruck unsigned 16,8 /u:Unit_Bar /f:0.04 /max:10
+Var=MO_Anzeigedrehz unsigned 24,12 /u:Unit_MinutInver /f:3 /max:12282
+Var=MO_Schaltempf_verfbar bit 38,1
+Var=MO_Ladedruck unsigned 39,9 /u:Unit_Bar /f:0.01 /max:5.1
+Var=MO_KVS unsigned 48,15 /u:Unit_MicroLiter
+Var=MO_KVS_Ueberlauf bit 63,1
+
+[Motor_07]
+ID=640h
+DLC=8
+Var=MO_QBit_Ansaugluft_Temp bit 0,1
+Var=MO_QBit_Oel_Temp bit 1,1
+Var=MO_QBit_Kuehlmittel_Temp bit 2,1
+Var=MO_Stellgliedtest_Soundaktuator bit 3,1
+Var=MO_HYB_Fehler_HV_Netz bit 4,1
+Var=MO_aktives_Getriebeheizen bit 5,1
+Var=MO_Absperrventil_oeffnen unsigned 6,2
+Var=MO_Ansaugluft_Temp unsigned 8,8 /u:Unit_DegreCelsi /f:0.75 /o:-48 /max:141.75
+Var=MO_Oel_Temp unsigned 16,8 /u:Unit_DegreCelsi /o:-60 /max:192
+Var=MO_Kuehlmittel_Temp unsigned 24,8 /u:Unit_DegreCelsi /f:0.75 /o:-48 /max:141.75
+Var=MO_Hoeheninfo unsigned 32,8 /f:0.00781 /max:1.98374
+Var=MO_Kennfeldk bit 40,1
+Var=MO_Versionsinfo unsigned 41,6
+Var=MO_Getriebe_kuehlen bit 47,1
+Var=MO_Mom_Traegheit_02 unsigned 48,5 /u:Unit_KiloGramMet /f:0.01
+Var=MO_Heizungspumpenansteuerung unsigned 53,4 /u:Unit_PerCent /f:10 /max:100
+Var=MO_SpannungsAnf bit 57,1
+Var=MO_Nachlaufzeit_Heizungspumpe unsigned 58,6 /u:Unit_Secon /f:15
+
+[Motor_09]
+ID=647h
+DLC=8
+Var=MO_ITM_Kuehlmittel_Temp unsigned 0,8 /u:Unit_DegreCelsi /f:0.75 /o:-48 /min:-45.75
+Var=MO_E85_Sensor unsigned 8,4 /u:Unit_PerCent /f:10 /max:100
+Var=SCR_Anz_Motorstarts unsigned 12,4 /max:8
+Var=SCR_Reichweite unsigned 16,15 /max:32766
+Var=SCR_Warnstufe_1 bit 32,1
+Var=SCR_Warnstufe_2 bit 33,1
+Var=SCR_Text unsigned 34,3
+Var=SCR_Akustik unsigned 37,2
+Var=MO_Kraftstofffilter_Wasser bit 40,1
+Var=SCR_Systemfehler bit 41,1
+Var=SCR_Inducement_Strategie unsigned 42,2
+Var=MO_CO2_Faktor unsigned 44,12 /u:Unit_GramPerLite /min:1 /max:4094
+
+[Motor_11]
+ID=0A7h
+DLC=8
+Var=Motor_11_CRC unsigned 0,8
+Var=Motor_11_BZ unsigned 8,4
+Var=MO_Mom_Soll_Roh unsigned 12,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=MO_Mom_Ist_Summe unsigned 22,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=MO_Mom_Traegheit_Summe unsigned 32,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=MO_Mom_Soll_gefiltert unsigned 42,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=MO_Mom_Schub unsigned 52,9 /u:Unit_NewtoMeter /o:-509 /max:0
+Var=MO_Status_Normalbetrieb_01 bit 61,1
+Var=MO_erste_Ungenauschwelle bit 62,1
+Var=MO_QBit_Motormomente bit 63,1
+
+[Motor_12]
+ID=0A8h
+DLC=8
+Var=Motor_12_CRC unsigned 0,8
+Var=Motor_12_BZ unsigned 8,4
+Var=MO_Mom_neg_verfuegbar unsigned 12,9 /u:Unit_NewtoMeter /o:-509 /max:0
+Var=MO_Mom_Begr_stat unsigned 21,9 /u:Unit_NewtoMeter /max:509
+Var=MO_Mom_Begr_dyn unsigned 30,10 /u:Unit_NewtoMeter /o:-509 /max:509
+Var=MO_Momentenintegral_02 unsigned 40,7 /u:Unit_PerCent /max:100
+Var=MO_QBit_Drehzahl_01 bit 47,1
+Var=MO_Drehzahl_01 unsigned 48,16 /u:Unit_MinutInver /f:0.25 /max:16383
+
+[Motor_14]
+ID=3BEh
+DLC=8
+Var=MO_StartStopp_Status unsigned 12,2
+Var=MO_StartStopp_Wiederstart bit 14,1
+Var=MO_StartStopp_Motorstopp bit 15,1
+Var=MO_Freig_Reku unsigned 16,2
+Var=MO_Kl_75 bit 18,1
+Var=MO_Kl_50 bit 19,1
+Var=MO_Gangposition unsigned 20,4
+Var=MO_StartStopp_Fahrerwunsch unsigned 24,2
+Var=MO_HYB_Fahrbereitschaft bit 26,1
+Var=MO_Ext_E_Fahrt_aktiv bit 27,1
+Var=MO_Fahrer_bremst bit 28,1
+Var=MO_QBit_Fahrer_bremst bit 29,1
+Var=MO_BLS bit 30,1
+Var=MO_Konsistenz_Bremsped bit 31,1
+Var=MO_Timeout_ESP bit 32,1
+Var=MO_Klima_Eingr unsigned 33,2
+Var=MO_Aussp_Anlass bit 35,1
+Var=MO_Freig_Anlass bit 36,1
+Var=MO_Kuppl_schalter bit 37,1
+Var=MO_Interlock bit 38,1
+Var=MO_Motor_laeuft bit 39,1
+Var=MO_Kickdown bit 40,1
+Var=MO_Status_Zylabschalt_01 bit 41,1
+Var=MO_EKlKomLeiRed unsigned 42,2
+Var=MO_Handshake_STH bit 44,1
+Var=MO_BKV_Unterdruckwarnung bit 45,1
+Var=MO_Freigabe_Segeln bit 46,1
+Var=MO_PTC_Status unsigned 47,3
+Var=MO_QBit_Gangposition bit 50,1
+Var=MO_Signalquelle_Gangposition bit 51,1
+Var=MO_Remotestart_Betrieb bit 52,1
+
+[Motor_16]
+ID=65Fh
+DLC=8
+Var=TSK_QBit_Steigung bit 12,1
+Var=TSK_QBit_Fahrzeugmasse bit 13,1
+Var=MO_SpannungsAnf_02 unsigned 14,2
+Var=MO_DPF_reg bit 16,1
+Var=MO_Heizstrom_EKAT unsigned 17,7 /u:Unit_Amper /max:126
+Var=MO_Heizstrom_SCR unsigned 24,6 /u:Unit_Amper /max:62
+Var=TSK_Fahrzeugmasse_02 unsigned 48,8 /u:Unit_KiloGram /f:32 /max:8128
+Var=TSK_Steigung unsigned 56,8 /u:Unit_PerCent /f:0.8 /o:-101.6 /max:101.6
+
+[Motor_17]
+ID=32Ch
+DLC=8
+Var=MO_Prio_MAX_Wunschdrehzahl bit 12,1
+Var=MO_Prio_MIN_Wunschdrehzahl bit 13,1
+Var=MO_Luftpfad_aktiv bit 14,1
+Var=MO_v_Begrenz_Aktivierbar bit 15,1
+Var=MO_Drehzahlbeeinflussung unsigned 16,8 /u:Unit_PerCent /f:0.39
+Var=MO_MIN_Wunschdrehzahl unsigned 24,8 /u:Unit_MinutInver /f:25 /max:6350
+Var=MO_MAX_Wunschdrehzahl unsigned 32,9 /u:Unit_MinutInver /f:25 /max:12750
+Var=MO_Charisma_FahrPr unsigned 41,4
+Var=MO_Charisma_Status unsigned 45,2
+
+[Motor_18]
+ID=670h
+DLC=8
+Var=MO_Hybrid_StartStopp_LED unsigned 43,2
+Var=MO_Eis_Offroad_LED unsigned 45,2
+Var=MO_Anzahl_Abgesch_Zyl unsigned 47,3
+Var=MO_Zylabsch_Texte unsigned 50,2
+Var=MO_E85_BS_Texte unsigned 52,3
+Var=MO_Drehzahl_Warnung bit 55,1
+Var=MO_obere_Drehzahlgrenze unsigned 56,8 /u:Unit_MinutInver /f:50 /min:50
+
+[Motor_20]
+ID=121h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=MO_Fahrpedalrohwert_01 unsigned 12,8 /u:Unit_PerCent /f:0.4 /max:101.6
+Var=MO_QBit_Fahrpedalwerte_01 bit 20,1
+Var=MO_Fahrpedalgradient unsigned 21,8 /u:Unit_PerCentPerS /f:25 /max:6350
+Var=MO_Sig_Fahrpedalgradient bit 29,1
+Var=MO_rel_Saugrohrdruck unsigned 30,6 /u:Unit_MilliBar /f:18 /max:1116
+Var=MO_rel_Saugrohrdruck_gem_err bit 36,1
+Var=MO_Moment_im_Leerlauf bit 37,1
+Var=MO_Schubabschaltung bit 38,1
+Var=MO_Solldrehz_Leerlauf unsigned 40,8 /u:Unit_MinutInver /f:10 /max:2540
+
+[Motor_26]
+ID=3C7h
+DLC=8
+Var=MO_HYB_Status_HV_Ladung unsigned 8,3
+Var=WIV_Anzeige_aktiv bit 12,1
+Var=WIV_Oelmin_Warn bit 13,1
+Var=WIV_Sensorfehler bit 14,1
+Var=WIV_Schieflage bit 15,1
+Var=WIV_Oelstand unsigned 16,4 /u:Unit_PerCent /f:12.5 /max:100
+Var=MO_Zustand_HWP unsigned 20,2
+Var=WIV_Oelsystem_aktiv bit 24,1
+Var=WIV_nicht_betriebswarm bit 25,1
+Var=WIV_Ueberfuell_Warn bit 26,1
+Var=WIV_laufender_Motor bit 27,1
+Var=MO_HYB_Text_1 bit 28,1
+Var=MO_HYB_Text_2 bit 29,1
+Var=MO_HYB_Text_3 bit 30,1
+Var=MO_HYB_Text_4 bit 31,1
+Var=MO_Text_Motorstart unsigned 32,4
+Var=MO_HYB_Text_5 bit 36,1
+Var=MO_HYB_Text_6 bit 37,1
+Var=MO_HYB_Text_7 bit 38,1
+Var=MO_Text_Partikelfil_Reg bit 41,1
+Var=WIV_Oelmenge unsigned 43,5 /u:Unit_MilliLiter /f:125
+Var=MO_Systemlampe bit 48,1
+Var=MO_OBD2_Lampe bit 49,1
+Var=MO_Heissleuchte bit 50,1
+Var=MO_Partikel_Lampe bit 51,1
+Var=MO_Winterfahrprog bit 52,1
+Var=WIV_Oelstand_nicht_vorhanden bit 53,1
+Var=WIV_nachfuellanzeige_ein bit 54,1
+Var=WIV_Ueberfuell_deaktiv bit 55,1
+Var=WIV_Unterfuell_Warn bit 56,1
+Var=MO_Tankdeckel_Lampe bit 57,1
+Var=MO_Text_Tankdeckelwarn bit 58,1
+Var=WIV_Oeldr_Warn_Motor bit 60,1
+
+[Motor_Code_01]
+ID=641h
+DLC=8
+Var=Motor_Code_01_CRC unsigned 0,8
+Var=Motor_Code_01_BZ unsigned 8,4
+Var=MO_Faktor_Momente_02 unsigned 12,2
+Var=MO_Hybridfahrzeug unsigned 14,2
+Var=MO_Code unsigned 16,8
+Var=MO_Getriebe_Code unsigned 24,6
+Var=MO_StartStopp_Codiert bit 30,1
+Var=MO_Anzahl_Zyl unsigned 32,4
+Var=MO_Kraftstoffart unsigned 36,4
+Var=MO_Hubraum unsigned 40,7 /u:Unit_Liter /f:0.1 /max:12.7
+Var=MO_Ansaugsystem bit 47,1
+Var=MO_Leistung unsigned 48,9 /u:Unit_KiloWatt
+Var=MO_Abgastyp_EOBD bit 57,1
+Var=MO_Abgastyp_OBD bit 58,1
+Var=MO_DPF_verbaut bit 59,1
+Var=TSK_Codierung unsigned 60,3
+Var=MO_Einspritzart bit 63,1
+
+[Motor_Hybrid_01]
+ID=09Dh
+DLC=8
+Var=Motor_Hybrid_01_CRC unsigned 0,8
+Var=Motor_Hybrid_01_BZ unsigned 8,4
+Var=MO_HYB_IstStatusK0 unsigned 12,2
+Var=MO_HYB_max_ind_VM_Mom unsigned 16,10 /u:Unit_NewtoMeter /max:1021
+Var=MO_HYB_Zielzustand unsigned 26,3
+Var=MO_HYB_Startmodus unsigned 29,3
+Var=MO_HYB_Startmodus_PQ3x bit 32,1
+Var=MO_HYB_Stoppmodus bit 33,1
+Var=MO_HYB_VM_Mom_oE unsigned 40,10 /u:Unit_NewtoMeter /o:-100 /max:922
+Var=MO_HYB_VM_aktiv bit 50,1
+Var=MO_HYB_Schaltverhinderung bit 51,1
+
+[Motor_Hybrid_02]
+ID=32Bh
+DLC=8
+Var=MO_HYB_E_Faktor unsigned 12,4
+Var=MO_HYB_Drehzahl_VM unsigned 16,16 /u:Unit_MinutInver /f:0.25 /max:16256
+Var=MO_HYB_LowSpeedModus bit 32,1
+
+[NMH_Airbag_01]
+ID=1B000015h
+Type=Extended
+DLC=8
+Var=NM_Airbag_01_SNI unsigned 0,8
+Var=NM_Airbag_01_NM_State unsigned 16,6
+Var=NM_Airbag_01_Car_Wakeup bit 22,1
+Var=NM_Airbag_01_Wakeup unsigned 24,8
+Var=NM_Airbag_01_NM_aktiv_KL15 bit 32,1
+Var=NM_Airbag_01_NM_aktiv_Diagnose bit 33,1
+Var=NM_Airbag_01_NM_aktiv_Tmin bit 34,1
+Var=NM_Airbag_01_UDS_CC bit 63,1
+
+[NMH_EMotor_01]
+ID=1B00007Ch
+Type=Extended
+DLC=8
+Var=NM_EMotor_01_SNI unsigned 0,8
+Var=NM_EMotor_01_NM_State unsigned 16,6
+Var=NM_EMotor_01_Car_Wakeup bit 22,1
+Var=NM_EMotor_01_Wakeup unsigned 24,8
+Var=NM_EMotor_01_NM_aktiv_KL15 bit 32,1
+Var=NM_EMotor_01_NM_aktiv_Diagnose bit 33,1
+Var=NM_EMotor_01_NM_aktiv_Tmin bit 34,1
+Var=NM_EMotor_01_NL_Daten_EEPROM bit 48,1
+Var=NM_EMotor_01_UDS_CC bit 63,1
+
+[NMH_Gateway]
+ID=1B000010h
+Type=Extended
+DLC=8
+Var=NM_Gateway_SNI unsigned 0,8
+Var=NM_Gateway_NM_State unsigned 16,6
+Var=NM_Gateway_Car_Wakeup bit 22,1
+Var=NM_Gateway_Wakeup unsigned 24,8
+Var=NM_Gateway_NM_aktiv_KL15 bit 32,1
+Var=NM_Gateway_NM_aktiv_Diagnose bit 33,1
+Var=NM_Gateway_NM_aktiv_Tmin bit 34,1
+Var=NM_Gateway_ACAN_Aktivitaet bit 35,1
+Var=NM_Gateway_FCAN_Aktivitaet bit 36,1
+Var=NM_Gateway_KCAN_Aktivitaet bit 37,1
+Var=NM_Gateway_ICAN_Aktivitaet bit 38,1
+Var=NM_Gateway_DiagCAN_Aktivitaet bit 39,1
+Var=NM_Gateway_ECAN_Aktivitaet bit 40,1
+Var=NM_Gateway_Energie_LIN_Aktivi000 bit 41,1
+Var=NM_Gateway_Bedien_LIN_Aktivitaet bit 42,1
+Var=NM_Gateway_EM_Aktivitaet bit 43,1
+Var=NM_Gateway_NL_EM bit 48,1
+Var=NM_Gateway_NL_Shutdown bit 49,1
+Var=NM_Gateway_NL_Spg_Messung bit 50,1
+Var=NM_Gateway_NL_Wakeup_Monitor bit 51,1
+Var=NM_Gateway_UDS_CC bit 63,1
+
+[NMH_Getriebe_01]
+ID=1B000077h
+Type=Extended
+DLC=8
+Var=NM_Getriebe_01_SNI unsigned 0,8
+Var=NM_Getriebe_01_NM_State unsigned 16,6
+Var=NM_Getriebe_01_Car_Wakeup bit 22,1
+Var=NM_Getriebe_01_Wakeup unsigned 24,8
+Var=NM_Getriebe_01_NM_aktiv_KL15 bit 32,1
+Var=NM_Getriebe_01_NM_aktiv_Diagnose bit 33,1
+Var=NM_Getriebe_01_NM_aktiv_Tmin bit 34,1
+Var=NM_Getriebe_01_NM_aktiv_v_gr_0 bit 35,1
+Var=NM_Getriebe_01_NM_aktiv_Pos_Erk bit 36,1
+Var=NM_Getriebe_01_NM_aktiv_Umg_Bed bit 37,1
+Var=NM_Getriebe_01_NL_Daten_EEPROM bit 48,1
+Var=NM_Getriebe_01_UDS_CC bit 63,1
+
+[NMH_Hybrid_01]
+ID=1B00007Bh
+Type=Extended
+DLC=8
+Var=NM_Hybrid_01_SNI unsigned 0,8
+Var=NM_Hybrid_01_NM_State unsigned 16,6
+Var=NM_Hybrid_01_Car_Wakeup bit 22,1
+Var=NM_Hybrid_01_Wakeup unsigned 24,8
+Var=NM_Hybrid_01_NM_aktiv_KL15 bit 32,1
+Var=NM_Hybrid_01_NM_aktiv_Diagnose bit 33,1
+Var=NM_Hybrid_01_NM_aktiv_Tmin bit 34,1
+Var=NM_Hybrid_01_NL_Daten_EEPROM bit 48,1
+Var=NM_Hybrid_01_NL_Luefter bit 49,1
+Var=NM_Hybrid_01_UDS_CC bit 63,1
+
+[NMH_MO_01]
+ID=1B000076h
+Type=Extended
+DLC=8
+Var=NM_MO_01_SNI unsigned 0,8
+Var=NM_MO_01_NM_State unsigned 16,6
+Var=NM_MO_01_Car_Wakeup bit 22,1
+Var=NM_MO_01_Wakeup unsigned 24,8
+Var=NM_MO_01_NM_aktiv_KL15 bit 32,1
+Var=NM_MO_01_NM_aktiv_Diagnose bit 33,1
+Var=NM_MO_01_NM_aktiv_Tmin bit 34,1
+Var=NM_MO_01_NM_aktiv_HV_Abschaltung bit 35,1
+Var=NM_MO_01_NM_aktiv_EKP_Vorlauf bit 36,1
+Var=NM_MO_01_NM_aktiv_STH_Betrieb bit 37,1
+Var=NM_MO_01_NL_Kuehlerluefter bit 48,1
+Var=NM_MO_01_NL_Diagnose bit 49,1
+Var=NM_MO_01_NL_WFS bit 50,1
+Var=NM_MO_01_NL_EEPROM bit 51,1
+Var=NM_MO_01_NL_Sonstige bit 52,1
+Var=NM_MO_01_UDS_CC bit 63,1
+
+[OBD_01]
+ID=391h
+DLC=8
+Var=OBD_Calc_Load_Val unsigned 0,8 /u:Unit_PerCent /f:0.39215686275 /max:100
+Var=OBD_Eng_Cool_Temp unsigned 8,8 /u:Unit_DegreCelsi /o:-40
+Var=OBD_Abs_Throttle_Pos unsigned 16,8 /u:Unit_PerCent /f:0.39215686275 /max:100
+Var=OBD_Abs_Load_Val unsigned 24,16 /u:Unit_PerCent /f:0.39215686275 /max:25700
+Var=OBD_Abs_Pedal_Pos unsigned 40,8 /u:Unit_PerCent /f:0.39215686275 /max:100
+Var=OBD_Kaltstart_Denominator bit 59,1
+Var=OBD_Minimum_Trip bit 60,1
+Var=OBD_Driving_Cycle bit 61,1
+Var=OBD_Warm_Up_Cycle bit 62,1
+Var=OBD_Normed_Trip bit 63,1
+
+[OBD_Tankgeber_01]
+ID=65Eh
+DLC=8
+Var=OBD_TG_F_Status_1 unsigned 0,4
+Var=OBD_TG_F_Status_2 unsigned 4,4
+Var=OBD_TG_F_Status_3 unsigned 8,4
+Var=OBD_TG_F_Status_4 unsigned 12,4
+Var=OBD_TG_Sens_Rohwert_1 unsigned 16,12 /u:Unit_Ohm /f:0.5
+Var=OBD_TG_Sens_Rohwert_2 unsigned 28,12 /u:Unit_Ohm /f:0.5
+Var=OBD_TG_Sens_Rohwert_3 unsigned 40,12 /u:Unit_Ohm /f:0.5
+Var=OBD_TG_Sens_Rohwert_4 unsigned 52,12 /u:Unit_Ohm /f:0.5
+
+[Remotestart_FFB]
+ID=59Dh
+DLC=8
+Var=RSF_Tastencode_1 unsigned 0,8
+Var=RSF_Tastencode_2 unsigned 8,8
+Var=RSF_Tastencode_Maske unsigned 16,8
+
+[RGS_VL_01]
+ID=3D8h
+DLC=8
+Var=RGS_VL_Texte unsigned 12,2
+Var=RGS_VL_Charisma_FahrPr unsigned 14,4
+Var=RGS_VL_Charisma_Status unsigned 18,2
+Var=RGS_VL_aktiv bit 21,1
+Var=RGS_VL_PC_Aktuator_Sitz bit 25,1
+Var=RGS_VL_PC_Aktuator_Schiebedach bit 26,1
+Var=RGS_VL_PC_Aktuator_Fenster bit 27,1
+Var=RGS_VL_PC_Aktuator_Warnblinken bit 28,1
+Var=RGS_VL_Precrash_Basis unsigned 32,8
+Var=RGS_VL_Precrash_Front unsigned 40,8
+Var=RGS_VL_Precrash_Rear unsigned 48,8
+
+[SAK_01]
+ID=5F8h
+DLC=8
+Var=SAK_Charisma_FahrPr unsigned 16,4
+Var=SAK_Charisma_Status unsigned 20,2
+
+[STH_01]
+ID=521h
+DLC=8
+Var=STH_Funk_ein bit 0,1
+Var=STH_Funk_aus bit 1,1
+Var=STH_Zusatzheizung bit 2,1
+Var=STH_LED bit 3,1
+Var=STH_Pumpe_ein bit 4,1
+Var=STH_Geblaese bit 5,1
+Var=STH_EKP_Anst bit 6,1
+Var=STH_Start_folgt bit 7,1
+Var=STH_Ventiloeffnungszeit unsigned 8,6 /u:Unit_Minut
+Var=STH_Ventil_Status bit 14,1
+Var=STH_Waermeeintrag unsigned 16,6
+Var=STH_KVS unsigned 24,13 /u:Unit_MilliLiter
+Var=STH_Fehlerstatus unsigned 37,3
+Var=STH_Heizleistung unsigned 40,8
+Var=STH_Wassertemp unsigned 48,8 /u:Unit_DegreCelsi /f:0.75 /o:-40 /max:142.25
+Var=STH_Motorvorwaermung bit 59,1
+Var=STH_Servicemode bit 60,1
+Var=STH_war_aktiv bit 61,1
+Var=STH_KVS_Ueberlauf bit 62,1
+Var=STH_KD_Fehler bit 63,1
+
+[STS_01]
+ID=494h
+DLC=8
+Var=STS_01_CRC unsigned 0,8
+Var=STS_01_BZ unsigned 8,4
+Var=STS_Car_not_under_theft bit 12,1
+Var=STS_Car_under_theft bit 13,1
+Var=STS_Anlassersperre bit 15,1
+Var=STS_Typencodierung unsigned 16,5
+Var=STS_LIN_aktiv bit 23,1
+Var=STS_Standlicht bit 24,1
+Var=STS_Fahrlicht bit 25,1
+Var=STS_Alarm_still bit 26,1
+Var=STS_Texte unsigned 27,4
+Var=STS_Laderelais bit 38,1
+Var=STS_Summer bit 48,1
+Var=STS_Alarm_Blinker bit 50,1
+Var=STS_Notstart bit 51,1
+Var=STS_Signalhorn bit 55,1
+Var=STS_Leerlaufschaltung bit 56,1
+
+[Systeminfo_01]
+ID=585h
+DLC=8
+Var=SI_Sammel_SG_Fehler unsigned 0,6 /max:60
+Var=SI_Rollenmode unsigned 6,2
+Var=SI_QRS_Mode bit 8,1
+Var=SI_T_Mode bit 9,1
+Var=SI_NWDF bit 10,1
+Var=SI_NWDF_gueltig bit 11,1
+Var=SI_Sammelfehler bit 12,1
+Var=GW_KD_Fehler bit 13,1
+Var=SI_BUS_01 bit 16,1
+Var=SI_BUS_02 bit 17,1
+Var=SI_BUS_03 bit 18,1
+Var=SI_BUS_04 bit 19,1
+Var=SI_BUS_05 bit 20,1
+Var=SI_BUS_06 bit 21,1
+Var=SI_BUS_07 bit 22,1
+Var=SI_BUS_08 bit 23,1
+Var=SI_BUS_09 bit 24,1
+Var=SI_BUS_10 bit 25,1
+Var=SI_BUS_11 bit 26,1
+Var=SI_BUS_12 bit 27,1
+Var=SI_BUS_13 bit 28,1
+Var=SI_BUS_14 bit 29,1
+Var=SI_BUS_15 bit 30,1
+
+[TSK_06]
+ID=120h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=TSK_Radbremsmom unsigned 12,12 /u:Unit_NewtoMeter /f:8
+Var=TSK_Status unsigned 24,3 /e:VtSig_TSK_Status
+Var=TSK_v_Begrenzung_aktiv bit 27,1
+Var=TSK_Standby_Anf_ESP bit 28,1
+Var=TSK_Freig_Verzoeg_Anf bit 30,1
+Var=TSK_Limiter_ausgewaehlt bit 31,1
+Var=TSK_ax_Getriebe_02 unsigned 48,9 /u:Unit_MeterPerSec /f:0.024 /o:-2.016 /max:10.224
+Var=TSK_Zwangszusch_ESP bit 57,1
+Var=TSK_zul_Regelabw unsigned 58,6 /u:Unit_MeterPerSec /f:0.024
+
+[TSK_07]
+ID=31Eh
+DLC=8
+Var=TSK_07_CRC unsigned 0,8
+Var=TSK_07_BZ unsigned 8,4
+Var=TSK_Wunschgeschw unsigned 12,10 /u:Unit_KiloMeterPe /f:0.32 /max:326.72
+Var=TSK_Texte_Primaeranz unsigned 48,5
+Var=TSK_Limiter_Anzeige bit 55,1
+Var=TSK_Status_Anzeige unsigned 61,3
+
+[VIN_01]
+ID=6B4h
+DLC=8
+Mux=VIN_01_MUX_0 0,2 0
+Var=KS_Geheimnis_1 unsigned 8,8
+Var=KS_Geheimnis_2 unsigned 16,8
+Var=KS_Geheimnis_3 unsigned 24,8
+Var=KS_Geheimnis_4 unsigned 32,8
+Var=VIN_1 unsigned 40,8
+Var=VIN_2 unsigned 48,8
+Var=VIN_3 unsigned 56,8
+
+[VIN_01]
+DLC=8
+Mux=VIN_01_MUX_1 0,2 1
+Var=VIN_4 unsigned 8,8
+Var=VIN_5 unsigned 16,8
+Var=VIN_6 unsigned 24,8
+Var=VIN_7 unsigned 32,8
+Var=VIN_8 unsigned 40,8
+Var=VIN_9 unsigned 48,8
+Var=VIN_10 unsigned 56,8
+
+[VIN_01]
+DLC=8
+Mux=VIN_01_MUX_2 0,2 2
+Var=VIN_11 unsigned 8,8
+Var=VIN_12 unsigned 16,8
+Var=VIN_13 unsigned 24,8
+Var=VIN_14 unsigned 32,8
+Var=VIN_15 unsigned 40,8
+Var=VIN_16 unsigned 48,8
+Var=VIN_17 unsigned 56,8
+
+[Waehlhebel_03]
+ID=0AFh
+DLC=4
+Var=WH_Status_Sperre unsigned 0,3
+Var=WH_Initialisierung bit 3,1
+Var=WH_SensorPos_roh unsigned 4,4
+Var=WH_03_BZ unsigned 8,4
+Var=WH_SensorPos_roh_inv unsigned 12,4
+Var=WH_Testergebnis unsigned 16,8
+Var=WH_Test_Aktiv bit 24,1
+Var=WH_Status unsigned 25,7
+
+[WBA_03]
+ID=394h
+DLC=8
+Var=WBA_03_CRC unsigned 0,8
+Var=WBA_03_BZ unsigned 8,4
+Var=WBA_Fahrstufe_02 unsigned 12,4
+Var=WBA_ZielFahrstufe unsigned 16,4
+Var=WBA_GE_Warnung_02 unsigned 20,4
+Var=WBA_eing_Gang_02 unsigned 24,4
+Var=WBA_GE_Texte unsigned 28,3
+Var=WBA_Segeln_aktiv bit 31,1
+Var=WBA_Schaltschema unsigned 32,5
+
+[WIV_01]
+ID=642h
+DLC=8
+Var=WIV_Verschleissindex unsigned 0,16 /f:2E-008 /max:0.00131068
+Var=WIV_Russindex unsigned 16,16 /f:2E-008 /max:0.00131068
+Var=WIV_t_min unsigned 32,6 /u:Unit_Month
+Var=WIV_t_max unsigned 40,6 /u:Unit_Month
+Var=WIV_W_min unsigned 48,7 /u:Unit_KiloMeter /f:1000
+Var=WIV_W_max unsigned 56,7 /u:Unit_KiloMeter /f:1000
+
+[HCA_01]
+ID=126h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=HCA_01_Vib_Freq unsigned 12,4 /u:Unit_Hertz /o:15 // Frequenz der Lenkradvibration
+Var=HCA_01_LM_Offset unsigned 16,9 /u:Unit_centiNewtoM // Von HCA angefordertes Lenkmoment (Betrag)
+Var=EA_ACC_Sollstatus unsigned 25,2 /e:VtSig_EA_ACC_Sollstatus // Status-Anforderung ACC von Emergency Alert. Statuswechsel bei Flanke. Solange Wert=1, wird EA_ACC_Wunschgeschwindigkeit übernommen. Wert=2 führt zu Zustand ¿ACC_GRA_passiv¿
+Var=EA_Ruckprofil unsigned 27,3 /e:VtSig_EA_Ruckprofil // Emergency Alert Anforderung an ESP, welcher Ruck verwendet werden soll. Eine Umsetzung der Ruckanforderung im ESP erfolgt nur mit gesetztem Bit 'EA_Ruckfreigabe'.
+Var=HCA_01_Sendestatus bit 30,1 /e:VtSig_HCA_01_Sendestatus // Gibt den Sendestatus der HCA_01 an (notwendig für IL-Unterstützung)
+Var=HCA_01_LM_OffSign bit 31,1 /e:VtSig_HCA_01_LM_OffSign // Vorzeichen des HCA-Lenkmoments
+Var=HCA_01_Status_HCA unsigned 32,4 /e:VtSig_HCA_01_Status_HCA // Statusinformation vom HCA und Manoevrierassistent für Handshakemechanismus mit der Lenkung
+Var=HCA_01_Vib_Amp unsigned 36,4 /u:Unit_NewtoMeter /f:0.2 // Momentenamplitude der Lenkradvibration
+Var=EA_Ruckfreigabe bit 40,1 /e:VtSig_EA_Ruckfreigabe // Emergency Alert Freigabit für die Warnruck-Anforderung an das ESP
+Var=EA_ACC_Wunschgeschwindigkeit unsigned 41,10 /u:Unit_KiloMeterPe /f:0.32 /max:327.04 /e:VtSig_EA_ACC_Wunschgeschwindigke // Emergency Alert Anforderung neue Wunschgeschwindigkeit
+
+[LH_EPS_03]
+ID=09Fh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=EPS_DSR_Status unsigned 12,4
+Var=EPS_Berechneter_LW unsigned 16,12 /u:Unit_DegreOfArc /f:0.15 /max:613.95 // Raw steering angle, degrees
+Var=EPS_BLW_QBit bit 30,1
+Var=EPS_VZ_BLW bit 31,1 // Raw steering angle, direction
+Var=EPS_HCA_Status unsigned 32,4 /e:VtSig_EPS_HCA_Status // Status of Heading Control Assist feature
+Var=EPS_Lenkmoment unsigned 40,10 /u:Unit_centiNewtoM /max:8 // Steering input by driver, torque
+Var=EPS_Lenkmoment_QBit bit 54,1
+Var=EPS_VZ_Lenkmoment bit 55,1 // Steering input by driver, direction
+Var=EPS_Lenkungstyp unsigned 60,4
+
+[VehicleSpeed]
+ID=11Eh
+DLC=8
+Var=VehicleSpeed_CRC unsigned 0,8
+Var=VehicleSpeed_BZ unsigned 8,4
+Var=Speed unsigned 52,12 /f:0.125 /max:1
+
+[LDW_02]
+ID=397h
+DLC=8
+Var=LDW_Gong unsigned 12,2
+Var=LDW_SW_Warnung_links bit 14,1
+Var=LDW_SW_Warnung_rechts bit 15,1
+Var=LDW_Texte unsigned 16,4
+Var=LDW_Seite_DLCTLC bit 20,1
+Var=LDW_Lernmodus unsigned 21,3
+Var=LDW_Anlaufsp_VLR unsigned 24,4
+Var=LDW_Vib_Amp_VLR unsigned 28,4
+Var=LDW_Anlaufzeit_VLR unsigned 32,4
+Var=LDW_Lernmodus_rechts unsigned 36,2
+Var=LDW_Lernmodus_links unsigned 38,2
+Var=LDW_DLC unsigned 40,8 /u:Unit_Meter /f:0.01 /o:-1.25 /max:1.25 // Probable DLC (distance to line crossing)
+Var=LDW_TLC unsigned 48,5 /u:Unit_Secon /f:0.1 /max:3 // Probable TLC (time to line crossing)
+Var=LDW_Warnung_links bit 56,1
+Var=LDW_Warnung_rechts bit 57,1
+Var=LDW_Codierinfo_fuer_VLR unsigned 58,2
+Var=LDW_Frontscheibenheizung_aktiv bit 60,1
+Var=LDW_Status_LED_gelb bit 61,1
+Var=LDW_Status_LED_gruen bit 62,1
+Var=LDW_KD_Fehler bit 63,1
+
+[ACC_02]
+ID=30Ch
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=ACC_Wunschgeschw_02 unsigned 12,10 /u:Unit_KiloMeterPe /f:0.32 /max:327.04 /e:VtSig_ACC_Wunschgeschw_02
+Var=ACC_Status_Prim_Anz unsigned 22,2 /e:VtSig_ACC_Status_Prim_Anz
+Var=ACC_Abstandsindex unsigned 24,10 /min:1 /max:1021 /e:VtSig_ACC_Abstandsindex
+Var=ACC_Akustik_02 unsigned 34,2 /e:VtSig_ACC_Akustik_02
+Var=ACC_Warnung_Verkehrszeichen_1 bit 36,1 /e:VtSig_ACC_Warnung_Verkehrszeiche
+Var=ACC_Gesetzte_Zeitluecke unsigned 37,3 /e:VtSig_ACC_Gesetzte_Zeitluecke
+Var=ACC_Optischer_Fahrerhinweis bit 40,1 /e:VtSig_ACC_Optischer_Fahrerhinwei
+Var=ACC_Typ_Tachokranz bit 41,1 /e:VtSig_ACC_Typ_Tachokranz
+Var=ACC_Anzeige_Zeitluecke bit 42,1 /e:VtSig_ACC_Anzeige_Zeitluecke
+Var=ACC_Tachokranz bit 43,1 /e:VtSig_ACC_Tachokranz
+Var=ACC_Display_Prio unsigned 44,2 /e:VtSig_ACC_Display_Prio
+Var=ACC_Relevantes_Objekt unsigned 46,2 /e:VtSig_ACC_Relevantes_Objekt
+Var=ACC_Texte_Primaeranz unsigned 48,7 /e:VtSig_ACC_Texte_Primaeranz
+Var=ACC_Wunschgeschw_erreicht bit 55,1 /e:VtSig_ACC_Wunschgeschw_erreicht
+Var=ACC_Typ_Tachokranz_unten bit 60,1 /e:VtSig_ACC_Typ_Tachokranz_unten
+Var=ACC_Status_Anzeige unsigned 61,3 /e:VtSig_ACC_Status_Anzeige
+
+[ACC_07]
+ID=12Eh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=ACC_Anhalteweg unsigned 12,11 /u:Unit_Meter /f:0.01 /max:20.45 /e:VtSig_ACC_Sollbeschleunigung_02
+Var=ACC_Anhalten bit 23,1 /e:VtSig_ACC_Anhalten
+Var=ACC_Boost_Anf bit 24,1
+Var=ACC_Freilauf_Anf bit 25,1 /e:VtSig_ACC_Freilauf_Anf
+Var=ACC_Freilauf_Info unsigned 26,2 /e:VtSig_ACC_Freilauf_Info
+Var=ACC_Anforderung_HMS unsigned 28,3 /e:VtSig_ACC_Anforderung_HMS
+Var=ACC_Anfahren bit 31,1 /e:VtSig_ACC_Anfahren
+Var=ACC_Folgebeschl unsigned 32,8 /u:Unit_MeterPerSec /f:0.03 /o:-4.6 /max:2.99 /e:VtSig_ACC_Folgebeschl
+Var=ACC_Sollbeschleunigung_02 unsigned 53,11 /u:Unit_MeterPerSec /f:0.005 /o:-7.22 /max:3.005 /e:VtSig_ACC_Sollbeschleunigung_02
+
+[Fahrwerk_01]
+ID=108h
+DLC=8
+Var=Fahrwerk_01_BZ unsigned 8,4
+Var=Fahrwerk_01_CRC unsigned 0,8
+
+[RCTA_01]
+ID=2B7h
+DLC=8
+Var=RCTA_01_BZ unsigned 8,4
+Var=RCTA_01_CRC unsigned 0,8
+
+[SWA_01]
+ID=30Fh
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=SWA_Anzeigen unsigned 12,4
+Var=SWA_Blindheit_erkannt bit 16,1
+Var=SWA_rel_Nichtverf bit 17,1
+Var=SWA_rel_Fehler bit 18,1
+Var=SWA_Sta_aktiv bit 19,1
+Var=SWA_Sta_passiv bit 20,1
+Var=SWA_Standziele_li bit 24,1
+Var=SWA_Kolonne_li bit 25,1
+Var=SWA_Infostufe_SWA_li bit 26,1
+Var=SWA_Warnung_SWA_li bit 27,1
+Var=SWA_Kolonne_mi bit 33,1
+Var=SWA_Standziele_re bit 40,1
+Var=SWA_Kolonne_re bit 41,1
+Var=SWA_Infostufe_SWA_re bit 42,1
+Var=SWA_Warnung_SWA_re bit 43,1
+Var=SWA_Gischtzaehler unsigned 48,7 /u:Unit_PerCent /max:100
+Var=SWA_KD_Fehler bit 59,1
+
+[ACC_04]
+ID=324h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=ACC_Texte_Sekundaeranz unsigned 12,4 /e:VtSig_ACC_Texte_Sekundaeranz
+Var=ACC_Texte_Zusatzanz unsigned 16,6 /e:VtSig_ACC_Texte_Zusatzanz
+Var=ACC_Status_Zusatzanz unsigned 22,5 /e:VtSig_ACC_Status_Zusatzanz
+Var=ACC_Texte unsigned 27,5 /e:VtSig_ACC_Texte
+Var=ACC_Texte_braking_guard unsigned 32,3 /e:VtSig_ACC_Texte_braking_guard
+Var=ACC_Warnhinweis bit 35,1 /e:VtSig_ACC_Warnhinweis
+Var=ACC_Zeitluecke_Abstandswarner unsigned 36,6 /u:Unit_Secon /f:0.1 /max:6 /e:VtSig_ACC_Zeitluecke_Abstandswar
+Var=ACC_Abstand_Abstandswarner unsigned 42,9 /max:508 /e:VtSig_ACC_Abstand_Abstandswarner
+Var=ACC_Tempolimit unsigned 51,5 /e:VtSig_ACC_Tempolimit
+Var=ACC_Charisma_FahrPr unsigned 56,4 /e:VtSig_ACC_Charisma_FahrPr
+Var=ACC_Charisma_Status unsigned 60,2 /e:VtSig_ACC_Charisma_Status
+Var=ACC_Texte_Abstandswarner unsigned 62,2 /e:VtSig_ACC_Texte_Abstandswarner
+
+[LWR_AFS_01]
+ID=395h
+DLC=8
+
+[Gateway_76]
+ID=3DFh
+DLC=8
+
+[TSG_FT_02]
+ID=3E5h
+DLC=8
+Var=TSG_FT_02_BZ unsigned 8,4
+Var=TSG_FT_02_CRC unsigned 0,8
+
+[Parkhilfe_01]
+ID=497h
+DLC=8
+
+[ESP_33]
+ID=1ABh
+DLC=8
+Var=ESP_33_BZ unsigned 8,4
+Var=ESP_33_CRC unsigned 0,8
+
+[ESP_15]
+ID=1A2h
+DLC=8
+Var=ESP_15_CRC unsigned 0,8
+Var=ESP_15_BZ unsigned 8,4
+
+[PSD_04]
+ID=462h
+DLC=8
+Var=PSD_Object_Index unsigned 0,6
+
+[PSD_05]
+ID=463h
+DLC=8
+Var=PSD_Current_Route_Index unsigned 0,6
+Var=Route_Distance_Remaining unsigned 8,5
+
+[PSD_06]
+ID=464h
+DLC=8
+
+[Gateway_73]
+ID=3DCh
+DLC=8
+
+[Kamera_Status]
+ID=318h
+DLC=8
+
+[Licht_Anf_01]
+ID=3D5h
+DLC=8
+
+[RLS_01]
+ID=5A0h
+DLC=8
+
+[Blinkmodi_02]
+ID=366h
+DLC=8
+Var=Hazard_Switch bit 20,1 // Four-way flashers active
+Var=Comfort_Signal_Left bit 23,1 // Comfort turn signal active, left
+Var=Comfort_Signal_Right bit 24,1 // Comfort turn signal active, right
+Var=Left_Turn_Exterior_Bulb_1 bit 25,1 // Probably front
+Var=Right_Turn_Exterior_Bulb_1 bit 26,1 // Probably front
+Var=Left_Turn_Exterior_Bulb_2 bit 27,1 // Probably rear
+Var=Right_Turn_Exterior_Bulb_2 bit 28,1 // Probably rear
+Var=Fast_Send_Rate_Active bit 37,1 /e:VtSig_Fast_Send_Rate_Active // CAN message send rate
+
+[HVEM_04]
+ID=569h
+DLC=8
+
+[FLA_01]
+ID=645h
+DLC=8
+
+[Licht_vorne_01]
+ID=658h
+DLC=8
+
+[Klima_03]
+ID=66Eh
+DLC=8
+
+[Kombi_03]
+ID=6B8h
+DLC=8
+Var=KBI_Reifenumfang unsigned 0,12 /u:Unit_MilliMeter // Mittlerer Radumfang aus der K-Zahl gerechnet in Millimeter.  Byte 2 Bit 5,4 reserviert, Byte 2 Bit 3..0 und Byte 1 Bit 7..0; Wertebereich 0..4096 mm
+Var=KBI_Variante_USA bit 12,1 /e:VtSig_KBI_Variante_USA // In diesem Signal wird die HW-Variante des Kombis ausgegeben, ACC plausibilisiert auf dieses Signal hin seine US-Codierung
+Var=KBI_Variante bit 13,1 /e:VtSig_KBI_Variante // Zeigt an ob es sich um ein konventionelles Zeiger-Kombiinstrument handelt oder um eine Volldisplay-Kombiinstrument
+Var=KBI_BCmE_aktiv bit 16,1 /e:VtSig_KBI_BCmE_aktiv // Anzeige BCmE aktiv (BCmE-Screen oder Einsparhinweis in der Anzeige)
+Var=KBI_Sparhinweis_quittiert bit 17,1 /e:VtSig_KBI_Sparhinweis_quittiert // angezeigter Sparhinweis ist quittiert. Signal wird nach zwei Sendebotschaften wieder auf '0' gesetzt.
+Var=KBI_Tankfuellstand_Prozent unsigned 18,7 /u:Unit_PerCent /max:100 /e:VtSig_KBI_Tankfuellstand_Prozent // Tankfüllstand in %
+Var=KBI_Nachtanken_erkannt bit 25,1 /e:VtSig_KBI_Nachtanken_erkannt // Statusinformation Nachtankmodus
+Var=KBI_Tankinhalt_hochaufl unsigned 26,14 /u:Unit_Liter /f:0.01 /max:163.81 /e:VtSig_KBI_Tankinhalt_hochaufl // angezeigter Tankinhalt hochauflösend zur Restreichweitenberechnung
+Var=KBI_Max_Tankinhalt unsigned 40,8 /f:0.5 /max:126.5 /e:VtSig_KBI_Max_Tankinhalt // Mitteilung des maximalen Tankinhalts an das Reichweitenmodul
+Var=KBI_Reifenumfang_Sekundaer unsigned 48,12 /u:Unit_MilliMeter // Fahrzeuge mit unterschiedlichen Reifenumfängen Vorderachse / Hinterachse:Primärachse: KBI_ReifenumfangSekundärachse: KBI_Reifenumfang_Sekundaer
+
+[EV_Gearshift]
+ID=187h
+DLC=8
+Var=CHECKSUM unsigned 0,8
+Var=COUNTER unsigned 8,4
+Var=GearPosition unsigned 16,4 /e:VtSig_GearPosition // Traditional PRND plus B-mode aggressive regen, B-mode mapped to Drive
+Var=RegenBrakingMode unsigned 12,2 /e:VtSig_RegenBrakingMode

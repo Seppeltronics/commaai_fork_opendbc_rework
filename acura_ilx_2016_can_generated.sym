@@ -1,0 +1,372 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="acura_ilx_2016_can_generated"
+
+{ENUMS}
+enum VtSig_STATE(5="FAULT_TIMEOUT", 4="FAULT_STARTUP", 3="FAULT_SCE", 2="FAULT_SEND", 1="FAULT_BAD_CHECKSUM",
+  0="NO_FAULT")
+enum VtSig_CRUISE_SPEED(255="no_speed", 252="stopped")
+enum VtSig_HUD_LEAD3(3="no_car", 2="solid_car", 1="dashed_car", 0="no_car")
+enum VtSig_DASHBOARD_ALERT(0="none", 51="acc_problem", 55="cmbs_problem", 75="key_not_detected", 79="fasten_seatbelt",
+  111="lkas_problem", 131="brake_system_problem", 132="brake_hold_problem", 139="tbd", 161="door_open")
+enum VtSig_WIPERS(4="High", 2="Low", 0="Off")
+enum VtSig_CHIME(4="double_chime", 3="single_chime", 2="continuous_chime", 1="repeating_chime", 0="no_chime")
+enum VtSig_FCW(3="fcw", 2="fcw", 1="fcw", 0="no_fcw")
+enum VtSig_AEB_STATUS(3="aeb_prepare", 2="aeb_ready", 1="aeb_braking", 0="no_aeb")
+enum VtSig_BEEP(3="single_beep", 2="triple_beep", 1="repeated_beep", 0="no_beep")
+enum VtSig_STEER_STATUS(6="tmp_fault", 5="fault_1", 4="no_torque_alert_2", 3="low_speed_lockout", 2="no_torque_alert_1",
+  0="normal")
+enum VtSig_GEAR_SHIFTER(10="S", 4="D", 3="N", 2="R", 1="P")
+enum VtSig_CRUISE_BUTTONS(7="tbd", 6="tbd", 5="tbd", 4="accel_res", 3="decel_set", 2="cancel", 1="main", 0="none")
+enum VtSig_LIGHTS_SETTING(3="high_beam", 2="low_beam", 1="position", 0="no_lights")
+enum VtSig_CRUISE_SETTING(3="distance_adj", 2="tbd", 1="lkas_button", 0="none")
+
+{SENDRECEIVE}
+
+[GAS_COMMAND]
+ID=200h
+DLC=6
+Var=GAS_COMMAND unsigned 0,16 -m /f:0.253984064 /o:-83.3 /min:0 /max:1
+Var=GAS_COMMAND2 unsigned 16,16 -m /f:0.126992032 /o:-83.3 /min:0 /max:1
+Var=ENABLE bit 32,1 -m
+Var=COUNTER_PEDAL unsigned 36,4 -m
+Var=CHECKSUM_PEDAL unsigned 40,8 -m
+
+[GAS_SENSOR]
+ID=201h
+DLC=6
+Var=INTERCEPTOR_GAS unsigned 0,16 -m /max:1
+Var=INTERCEPTOR_GAS2 unsigned 16,16 -m /max:1
+Var=STATE unsigned 32,4 -m /e:VtSig_STATE
+Var=COUNTER_PEDAL unsigned 36,4 -m
+Var=CHECKSUM_PEDAL unsigned 40,8 -m
+
+[GAS_PEDAL_2]
+ID=130h
+DLC=8
+Var=ENGINE_TORQUE_ESTIMATE signed 0,16 -m /u:Nm /min:-1000 /max:1000
+Var=ENGINE_TORQUE_REQUEST signed 16,16 -m /u:Nm /min:-1000 /max:1000
+Var=CAR_GAS unsigned 32,8 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[GAS_PEDAL]
+ID=13Ch
+DLC=8
+Var=CAR_GAS unsigned 32,8 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[ENGINE_DATA]
+ID=158h
+DLC=8
+Var=XMISSION_SPEED unsigned 0,16 -m /u:kph /f:0.01 /max:250
+Var=ENGINE_RPM unsigned 16,16 -m /u:rpm /max:15000
+Var=XMISSION_SPEED2 unsigned 32,16 -m /u:kph /f:0.01 /max:250
+Var=ODOMETER unsigned 48,8 -m /u:m /f:10
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[POWERTRAIN_DATA]
+ID=17Ch
+DLC=8
+Var=PEDAL_GAS unsigned 0,8 -m
+Var=ENGINE_RPM unsigned 16,16 -m /u:rpm /max:15000
+Var=GAS_PRESSED bit 32,1 -m
+Var=ACC_STATUS bit 33,1 -m
+Var=BOH_17C unsigned 34,5 -m /max:1
+Var=BRAKE_SWITCH bit 39,1 -m
+Var=BOH2_17C unsigned 40,10 -m /max:1
+Var=BRAKE_PRESSED bit 50,1 -m
+Var=BOH3_17C unsigned 51,5 -m /max:1
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[VSA_STATUS]
+ID=1A4h
+DLC=8
+Var=USER_BRAKE unsigned 0,16 -m /f:0.015625 /o:-1.609375 /min:0 /max:1000
+Var=COMPUTER_BRAKING bit 16,1 -m
+Var=ESP_DISABLED bit 27,1 -m
+Var=BRAKE_HOLD_RELATED bit 51,1 -m // On when Brake Hold engaged
+Var=BRAKE_HOLD_ACTIVE bit 41,1 -m
+Var=BRAKE_HOLD_ENABLED bit 42,1 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[STEER_MOTOR_TORQUE]
+ID=1ABh
+DLC=3
+Var=CONFIG_VALID bit 0,1 -m
+Var=MOTOR_TORQUE unsigned 6,10 -m /max:256
+Var=OUTPUT_DISABLED bit 17,1 -m
+Var=COUNTER unsigned 18,2 -m
+Var=CHECKSUM unsigned 20,4 -m
+
+[WHEEL_SPEEDS]
+ID=1D0h
+DLC=8
+Var=WHEEL_SPEED_FL unsigned 0,15 -m /u:kph /f:0.01 /max:250
+Var=WHEEL_SPEED_FR unsigned 15,15 -m /u:kph /f:0.01 /max:250
+Var=WHEEL_SPEED_RL unsigned 30,15 -m /u:kph /f:0.01 /max:250
+Var=WHEEL_SPEED_RR unsigned 45,15 -m /u:kph /f:0.01 /max:250
+Var=CHECKSUM unsigned 60,4 -m /max:3
+
+[VEHICLE_DYNAMICS]
+ID=1EAh
+DLC=8
+Var=LAT_ACCEL signed 0,16 -m /u:m/s2 /f:0.0015 /min:-20 /max:20
+Var=LONG_ACCEL signed 16,16 -m /u:m/s2 /f:0.0015 /min:-20 /max:20 // wheel speed derivative, noisy and zero snapping
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m /max:3
+
+[SEATBELT_STATUS]
+ID=305h
+DLC=7
+Var=SEATBELT_DRIVER_LAMP bit 0,1 -m
+Var=SEATBELT_PASS_UNLATCHED bit 13,1 -m
+Var=SEATBELT_PASS_LATCHED bit 12,1 -m
+Var=SEATBELT_DRIVER_UNLATCHED bit 11,1 -m
+Var=SEATBELT_DRIVER_LATCHED bit 10,1 -m
+Var=PASS_AIRBAG_OFF bit 9,1 -m // Might just be indicator light
+Var=PASS_AIRBAG_ON bit 8,1 -m // Might just be indicator light
+Var=COUNTER unsigned 50,2 -m
+Var=CHECKSUM unsigned 52,4 -m /max:3
+
+[CAR_SPEED]
+ID=309h
+DLC=8
+Var=ROUGH_CAR_SPEED unsigned 16,8 -m /u:mph
+Var=CAR_SPEED unsigned 0,16 -m /u:kph /f:0.01
+Var=ROUGH_CAR_SPEED_3 unsigned 32,16 -m /u:kph /f:0.01
+Var=ROUGH_CAR_SPEED_2 unsigned 24,8 -m /u:mph
+Var=LOCK_STATUS unsigned 48,2 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+Var=IMPERIAL_UNIT bit 56,1 -m
+
+[ACC_HUD]
+ID=30Ch
+DLC=8
+Var=PCM_SPEED unsigned 0,16 -m /u:kph /f:0.01 /max:250 // Used by Nidec
+Var=PCM_GAS unsigned 16,8 -m /max:127 // Used by Nidec
+Var=CRUISE_SPEED unsigned 24,8 -m /u:kph /e:VtSig_CRUISE_SPEED // 255 = no speed
+Var=DTC_MODE bit 32,1 -m
+Var=BOH bit 33,1 -m
+Var=ACC_PROBLEM bit 34,1 -m
+Var=FCM_OFF bit 36,1 -m
+Var=FCM_OFF_2 bit 35,1 -m
+Var=FCM_PROBLEM bit 37,1 -m
+Var=RADAR_OBSTRUCTED bit 38,1 -m
+Var=ENABLE_MINI_CAR bit 39,1 -m
+Var=HUD_DISTANCE unsigned 40,2 -m
+Var=HUD_LEAD unsigned 42,2 -m /e:VtSig_HUD_LEAD3
+Var=BOH_3 bit 44,1 -m
+Var=BOH_4 bit 45,1 -m
+Var=BOH_5 bit 46,1 -m
+Var=CRUISE_CONTROL_LABEL bit 47,1 -m
+Var=SET_ME_X01_2 bit 48,1 -m
+Var=IMPERIAL_UNIT bit 49,1 -m
+Var=ACC_ON bit 51,1 -m
+Var=CHIME unsigned 52,3 -m /max:1
+Var=SET_ME_X01 bit 55,1 -m
+Var=ICONS unsigned 56,2 -m /max:1
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m /max:3
+
+[CRUISE]
+ID=324h
+DLC=8
+Var=HUD_SPEED_KPH unsigned 0,8 -m /u:kph
+Var=HUD_SPEED_MPH unsigned 8,8 -m /u:mph
+Var=TRIP_FUEL_CONSUMED unsigned 16,16 -m /max:255
+Var=CRUISE_SPEED_PCM unsigned 32,8 -m // 255 = no speed
+Var=BOH2 signed 40,8 -m /min:0
+Var=BOH3 unsigned 48,8 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[STALK_STATUS]
+ID=374h
+DLC=8
+Var=DASHBOARD_ALERT unsigned 32,8 -m /e:VtSig_DASHBOARD_ALERT
+Var=AUTO_HEADLIGHTS bit 41,1 -m
+Var=HIGH_BEAM_HOLD bit 40,1 -m
+Var=HIGH_BEAM_FLASH bit 42,1 -m
+Var=HEADLIGHTS_ON bit 49,1 -m
+Var=WIPER_SWITCH unsigned 50,2 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[STALK_STATUS_2]
+ID=37Bh
+DLC=8
+Var=WIPERS unsigned 22,2 -m /e:VtSig_WIPERS
+Var=LOW_BEAMS bit 36,1 -m
+Var=HIGH_BEAMS bit 37,1 -m
+Var=PARK_LIGHTS bit 35,1 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[DOORS_STATUS]
+ID=405h
+DLC=8
+Var=DOOR_OPEN_FL bit 34,1 -m
+Var=DOOR_OPEN_FR bit 33,1 -m
+Var=DOOR_OPEN_RL bit 32,1 -m
+Var=DOOR_OPEN_RR bit 47,1 -m
+Var=TRUNK_OPEN bit 46,1 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[KINEMATICS]
+ID=091h
+DLC=8
+Var=LAT_ACCEL unsigned 0,10 -m /u:m/s2 /f:0.02 /o:-512 /min:-20
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m /max:3
+
+[KINEMATICS_ALT]
+ID=094h
+DLC=8
+Var=LAT_ACCEL unsigned 0,10 -m /u:m/s2 /f:0.02 /o:-512 /min:-20
+Var=LONG_ACCEL signed 31,9 -m /u:m/s2 /f:-0.02
+Var=CHECKSUM unsigned 60,4 -m /max:3
+Var=COUNTER unsigned 58,2 -m
+
+[STANDSTILL]
+ID=1B0h
+DLC=7
+Var=CONTROLLED_STANDSTILL bit 7,1 -m
+Var=WHEELS_MOVING bit 11,1 -m
+Var=BRAKE_ERROR_1 bit 12,1 -m
+Var=BRAKE_ERROR_2 bit 14,1 -m
+Var=COUNTER unsigned 50,2 -m
+Var=CHECKSUM unsigned 52,4 -m /max:3
+
+[BRAKE_PRESSURE]
+ID=1E7h
+DLC=4
+Var=BRAKE_PRESSURE1 unsigned 0,10 -m /f:0.015625 /o:-103 /min:0
+Var=BRAKE_PRESSURE2 unsigned 14,10 -m /f:0.015625 /o:-103 /min:0
+Var=CHECKSUM unsigned 28,4 -m
+Var=COUNTER unsigned 26,2 -m
+
+[BRAKE_COMMAND]
+ID=1FAh
+DLC=8
+Var=COMPUTER_BRAKE unsigned 0,10 -m /max:1
+Var=BRAKE_PUMP_REQUEST bit 15,1 -m
+Var=BRAKE_PUMP_REQUEST_ALT bit 12,1 -m // Used by dual-can Nidec
+Var=SET_ME_X00 unsigned 16,3 -m /max:1
+Var=CRUISE_OVERRIDE bit 19,1 -m
+Var=SET_ME_X00_2 bit 20,1 -m
+Var=CRUISE_FAULT_CMD bit 21,1 -m
+Var=CRUISE_CANCEL_CMD bit 22,1 -m
+Var=COMPUTER_BRAKE_REQUEST bit 23,1 -m
+Var=SET_ME_1 bit 24,1 -m
+Var=AEB_REQ_1 bit 26,1 -m // set for duration of suspected AEB event
+Var=AEB_REQ_2 unsigned 29,3 -m
+Var=BRAKE_LIGHTS bit 32,1 -m
+Var=CRUISE_STATES unsigned 33,7 -m /max:1
+Var=CHIME unsigned 40,3 -m /e:VtSig_CHIME
+Var=SET_ME_X00_3 bit 43,1 -m
+Var=FCW unsigned 44,2 -m /e:VtSig_FCW
+Var=AEB_STATUS unsigned 46,2 -m /e:VtSig_AEB_STATUS
+Var=COMPUTER_BRAKE_ALT unsigned 48,10 -m // Used by dual-can Nidec
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[ROUGH_WHEEL_SPEED]
+ID=255h
+DLC=8
+Var=WHEEL_SPEED_FL unsigned 0,8 -m /u:mph
+Var=WHEEL_SPEED_FR unsigned 8,8 -m /u:mph
+Var=WHEEL_SPEED_RL unsigned 16,8 -m /u:mph
+Var=WHEEL_SPEED_RR unsigned 24,8 -m /u:mph
+Var=SET_TO_X55 unsigned 32,8 -m
+Var=SET_TO_X55_2 unsigned 40,8 -m
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m
+
+[LKAS_HUD]
+ID=33Dh
+DLC=5
+Var=CAM_TEMP_HIGH bit 0,1 -m
+Var=SET_ME_X41 unsigned 1,7 -m
+Var=BOH unsigned 1,7 -m
+Var=DASHED_LANES bit 9,1 -m
+Var=DTC bit 10,1 -m
+Var=LKAS_PROBLEM bit 11,1 -m
+Var=LKAS_OFF bit 12,1 -m
+Var=SOLID_LANES bit 13,1 -m
+Var=LDW_RIGHT bit 14,1 -m
+Var=STEERING_REQUIRED bit 15,1 -m
+Var=BOH_2 unsigned 16,2 -m
+Var=LDW_PROBLEM bit 18,1 -m
+Var=BEEP unsigned 22,2 -m /max:1 /e:VtSig_BEEP // beeps are pleasant, chimes are for warnngs etc...
+Var=LDW_ON bit 27,1 -m
+Var=LDW_OFF bit 28,1 -m
+Var=CLEAN_WINDSHIELD bit 29,1 -m
+Var=SET_ME_X48 unsigned 24,8 -m
+Var=COUNTER unsigned 34,2 -m
+Var=CHECKSUM unsigned 36,4 -m
+
+[CRUISE_PARAMS]
+ID=37Ch
+DLC=8
+Var=CRUISE_SPEED_OFFSET signed 24,8 -m /u:kph /f:0.1
+Var=CHECKSUM unsigned 60,4 -m /max:3
+Var=COUNTER unsigned 58,2 -m
+
+[STEERING_SENSORS]
+ID=156h
+DLC=6
+Var=STEER_ANGLE signed 0,16 -m /u:deg /f:-0.1 /min:-500 /max:500
+Var=STEER_ANGLE_RATE signed 16,16 -m /u:deg/s /f:-1 /min:-3000 /max:3000
+Var=COUNTER unsigned 42,2 -m
+Var=CHECKSUM unsigned 44,4 -m
+
+[STEERING_CONTROL]
+ID=0E4h
+DLC=5
+Var=STEER_TORQUE signed 0,16 -m /min:-3840 /max:3840
+Var=STEER_TORQUE_REQUEST bit 16,1 -m
+Var=SET_ME_X00 unsigned 24,8 -m
+Var=COUNTER unsigned 34,2 -m
+Var=CHECKSUM unsigned 36,4 -m /max:3
+
+[STEER_STATUS]
+ID=18Fh
+DLC=7
+Var=STEER_TORQUE_SENSOR signed 0,16 -m /u:tbd /f:-1 /min:-31000 /max:31000
+Var=STEER_ANGLE_RATE signed 16,16 -m /u:deg/s /f:-0.1
+Var=STEER_STATUS unsigned 32,4 -m /e:VtSig_STEER_STATUS
+Var=STEER_CONTROL_ACTIVE bit 36,1 -m
+Var=STEER_CONFIG_INDEX unsigned 44,4 -m
+Var=COUNTER unsigned 50,2 -m
+Var=CHECKSUM unsigned 52,4 -m /max:3
+
+[GEARBOX]
+ID=1A3h
+DLC=8
+Var=GEAR unsigned 0,8 -m // 10 = reverse, 11 = transition
+Var=GEAR_SHIFTER unsigned 36,4 -m /e:VtSig_GEAR_SHIFTER
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m /max:3
+
+[SCM_BUTTONS]
+ID=1A6h
+DLC=8
+Var=CRUISE_BUTTONS unsigned 0,3 -m /e:VtSig_CRUISE_BUTTONS
+Var=LIGHTS_SETTING unsigned 6,2 -m /e:VtSig_LIGHTS_SETTING
+Var=MAIN_ON bit 40,1 -m
+Var=CRUISE_SETTING unsigned 44,2 -m /e:VtSig_CRUISE_SETTING
+Var=COUNTER unsigned 58,2 -m
+Var=CHECKSUM unsigned 60,4 -m /max:3
+
+[SCM_FEEDBACK]
+ID=294h
+DLC=8
+Var=RIGHT_BLINKER bit 1,1 -m
+Var=LEFT_BLINKER bit 2,1 -m
+Var=WIPERS_SPEED unsigned 3,2 -m

@@ -1,0 +1,1481 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="bmw_e9x_e8x"
+
+{ENUMS}
+enum VtSig_ShifterPosition(1="D", 2="S", 3="N", 4="R", 5="P")
+enum VtSig_CTR_SLCK(3="signal invalid", 2="requirement Shiftlock", 1="no requirement Shiftlock", 0="not allowed")
+enum VtSig_ST_SW_WAUP(3="signal invalid", 2="EGS forced switching active", 1="engine warm", 0="warming up")
+enum VtSig_ST_ENG_RUN(3="signal invalid", 2="engine running", 1="engine starting", 0="engine off")
+enum VtSig_ShiftLeverMode(0="Normal", 1="Sport", 2="Manual")
+enum VtSig_ShiftLeverPosition(0="Off", 1="P", 2="R", 4="N", 8="D")
+
+{SENDRECEIVE}
+
+[AccPedal]
+ID=0AAh
+DLC=8
+Var=KickDownPressed bit 50,1 -m
+Var=CruisePedalActive bit 49,1 -m
+Var=CruisePedalInactive bit 48,1 -m
+Var=ThrottlelPressed bit 53,1 -m // Active when accelerator pedal pressed or cruise control: drives
+Var=AcceleratorPedalPressed bit 51,1 -m // Active only when driver actually presses the pedal
+Var=AcceleratorPedalPercentage unsigned 16,16 /f:0.04 /max:100 // ToDo Factor to be adjusted
+Var=Counter_170 unsigned 8,4
+Var=EngineSpeed unsigned 32,16 /u:rpm /f:0.25 /max:8000
+Var=Checksum_170 signed 0,8 /min:0
+
+[CruiseControl]
+ID=194h
+DLC=4
+Var=plus1mph_request bit 23,1 -m // Appears when +1mph/kph stalk is depressed
+Var=minus1mph_request bit 21,1 -m // Appears when -1mph/kph stalk is depressed
+Var=Cancel_request_up_stalk bit 16,1 -m // Appears when cancel stalk (up) is depressed
+Var=Cancel_request_up_or_down_stalk bit 19,1 -m // Appears when cancel stalk (up or down) is depressed
+Var=Resume_request bit 17,1 -m // It appears when resume stalk button is depressed
+Var=setMe_0xFC unsigned 24,8 -m
+Var=plus5mph_request bit 22,1 -m
+Var=minus5mph_request bit 20,1 -m
+Var=requests_0xF unsigned 8,4 -m
+Var=Counter_404 unsigned 12,4 -m // Message is sent at higher rate when cruise stalk is pressed
+Var=Checksum_404 unsigned 0,8 -m /max:15
+
+[CruiseControlStatus]
+ID=200h
+DLC=8
+Var=CruiseControlInactiveFlag bit 11,1 -m
+Var=CruiseCoontrolActiveFlag bit 10,1 -m
+Var=CruiseControlSetpointSpeed unsigned 0,8 -m /u:mph /f:0.25
+
+[EngineAndBrake]
+ID=0A8h
+DLC=8
+Var=Checksum_EngineAndBrake unsigned 0,8
+Var=BrakePressed bit 58,1 -m // Brake when driver presses the brake or hill hold
+Var=Brake_active2 bit 57,1 -m
+Var=ST_RCPT_ENG_DSC unsigned 52,2
+Var=ST_RCPT_ENG_ARS unsigned 50,2
+Var=ST_RCPT_ENG_ACC unsigned 48,2
+Var=ST_RCPT_ENG_EGS unsigned 54,2
+Var=ST_DMEA_SWO unsigned 44,2
+Var=EngineTorque signed 12,12 /f:0.03125 // Engine torque without inertia - combustion torque
+Var=ALIV_TORQ_1_DME unsigned 8,4 // Counter TORQ_1
+Var=EngineTorqueWoInterv signed 24,16 /f:0.03125 // Engine torque without inertia and without shift intervention
+
+[SteeringButtons]
+ID=1D6h
+DLC=2
+Var=Volume_DOWN bit 5,1 -m
+Var=Volume_UP bit 4,1 -m
+Var=VoiceControl bit 15,1 -m
+Var=Telephone bit 7,1 -m
+Var=Next_up bit 2,1 -m
+Var=Previous_down bit 3,1 -m
+
+[DynamicCruiseControlStatus]
+ID=193h
+DLC=8
+Var=Counter_403 unsigned 0,8 -m
+Var=CruiseActive bit 44,1 -m
+Var=CruiseSpeedChangeRequest bit 55,1 -m
+Var=CruiseControlSetpointSpeed unsigned 8,8 -m /u:kph/mph /o:-2 /min:0 // Speed target - unit depends on locale
+
+[SteeringWheelAngle_DSC]
+ID=0C9h
+DLC=8
+Var=Counter_201 unsigned 20,4
+Var=SteeringPositionComplementLow signed 24,11 /min:0 /max:1
+Var=SteeringPosition signed 0,16 /u:deg /f:0.0428316886 /min:-600 /max:600
+
+[WheelSpeeds]
+ID=0CEh
+DLC=8
+Var=Wheel_FL signed 0,16 /u:kph /f:0.0625 /min:0 /max:255
+Var=Wheel_FR signed 16,16 /u:kph /f:0.0625 /min:0 /max:255
+Var=Wheel_RL signed 32,16 /u:kph /f:0.0625 /min:0 /max:255
+Var=Wheel_RR signed 48,16 /u:kph /f:0.0625 /min:0 /max:255
+
+[WheelToleranceAdjustment]
+ID=374h
+DLC=8
+
+[WiperSwitch]
+ID=2A6h
+DLC=8
+Var=AutoWipersOn bit 0,1
+
+[TerminalStatus]
+ID=130h
+DLC=8
+Var=AccOn bit 23,1
+Var=IgnitionOff bit 22,1
+Var=Counter_304 unsigned 32,4
+Var=Checksum_304 unsigned 36,4
+
+[Torque2]
+ID=0A9h
+DLC=8
+Var=TORQ_AVL_SPAR_POS signed 52,12 /u:Nm /f:0.5 /min:-1023.5
+Var=TORQ_AVL_SPAR_NEG signed 40,12 /u:Nm /f:0.5 /min:-1023.5
+Var=TORQ_AVL_MAX signed 28,12 /u:Nm /f:0.5 /min:-1023.5
+Var=TORQ_AVL_MIN signed 16,12 /u:Nm /f:0.5 /min:-1023.5
+Var=ST_INFS unsigned 14,2
+Var=ST_SW_LEV_RPM unsigned 12,2
+Var=ALIV_TORQ_2_DME unsigned 8,4 // Counter TORQ_2
+Var=CHKSM_TORQ_2_DME unsigned 0,8
+
+[TorqueTransmisionRequest]
+ID=0B8h
+DLC=8
+Var=Checksum_184 unsigned 0,8 /max:15
+Var=Counter_184 unsigned 8,4
+
+[SteeringWheelAngle]
+ID=0C4h
+DLC=7
+Var=SteeringSpeed signed 24,16 /u:degree/s /f:0.0428316886 /min:0 /max:255
+Var=SteeringPosition signed 0,16 /u:degree /f:0.0428316886 /min:-600 /max:600
+
+[WheelTorqueDriveTrain1]
+ID=0B4h
+DLC=8
+
+[DynamicCruiseControlTorqueDemand]
+ID=0B6h
+DLC=8
+Var=TORQ_TAR_DSC signed 12,12 /f:0.5 /min:0 /max:1000 // torque target DSC
+Var=Counter_182 unsigned 8,4 /max:14
+Var=Checksum_182 unsigned 0,8 /max:15
+
+[TransmissionData]
+ID=0BAh
+DLC=8
+Var=Counter_186 unsigned 48,4 /max:14
+Var=Shifting bit 4,1
+Var=OutputShaftSpeed signed 24,16 /u:rpm /f:0.125 /min:0 /max:255
+Var=GearRatio unsigned 8,8 /f:0.05
+Var=GearTar unsigned 0,4 /o:-4 /min:0 // Values corresponds to forward gears. TBD Add enums for park, reverse
+Var=Checksum_186 unsigned 40,8 /max:15
+
+[RequestedWheelTorqueDriveTrain]
+ID=0BFh
+DLC=8
+Var=Checksum_191 unsigned 0,8 /max:19
+Var=Counter_191 signed 8,4 /min:0
+Var=TorqueReq signed 16,12 /f:0.5 /o:350 /max:1023.96875
+
+[StatusDSC_KCAN]
+ID=19Eh
+DLC=8
+Var=BrakePressure signed 48,8 /min:0
+Var=BrakeStates unsigned 40,8
+Var=Checksum_414 unsigned 56,8 /max:15
+Var=Counter_414 unsigned 20,4
+Var=DTC_on bit 12,1
+Var=DSC_full_off unsigned 8,4 // 0x4 enabling, 0xA enabled. TBD
+
+[Speed]
+ID=1A0h
+DLC=8
+Var=AccX signed 28,12 /min:0 /max:15
+Var=YawRate signed 40,12 /min:0 /max:255 // Lateral Acceleration
+Var=VehicleSpeed signed 0,12 /u:kph /f:0.103 /min:0
+Var=MovingReverse bit 13,1
+Var=AccY signed 16,12 /min:0 /max:255
+Var=Counter_416 unsigned 52,4 /max:14
+Var=Checksum_416 unsigned 56,8 /max:15
+Var=MovingForward bit 12,1
+
+[TransimissionData2]
+ID=1A2h
+DLC=8
+Var=ManualMode bit 53,1 -m
+Var=Counter_418 unsigned 28,4 /max:14
+Var=Checksum_418 unsigned 56,8 /max:15
+
+[WheelPressure_KCAN]
+ID=2B2h
+DLC=8
+
+[AccelerationData]
+ID=2B3h
+DLC=8
+
+[GearSelectorSwitch_1]
+ID=192h
+DLC=4
+Var=Counter_402 unsigned 24,4 /max:14
+
+[GearSelectorSwitch]
+ID=198h
+DLC=8
+Var=ParkButtonSecond unsigned 26,2 // Redundant buton. 0x1 = pressed;
+Var=SideButton unsigned 28,2 // 0x1 = pressed;
+Var=SportButtonPressed unsigned 34,2 // 0x1 = pressed;
+Var=M3_button unsigned 36,2 // M3 POWER (?)
+Var=SideButtonXOR11 unsigned 30,2 // Complement value
+Var=param1XOR11 unsigned 22,2
+Var=m3ShifterPositionXOR1111 unsigned 8,4
+Var=always11 unsigned 38,2
+Var=m3ShifterPosition unsigned 4,4
+Var=param1 unsigned 20,2 // can not be 0x03. Always 0 in 135i.
+Var=param5 unsigned 32,2 // Always 0 in 135i.
+Var=Counter_408 unsigned 0,4 /max:14
+Var=ParkButtonFirst unsigned 24,2 // 0x1 = pressed
+Var=ShifterPositionXOR1111 unsigned 16,4
+Var=ShifterPosition unsigned 12,4 /e:VtSig_ShifterPosition // 0001 = N|R, 0010 = R, 0011 = N|D, 0100 = D, 0101 = -1, 0110 = +1, 0111 = ManualMode, 1000 = inBetween,
+
+[DistanceRoute]
+ID=1A6h
+DLC=8
+
+[InstrumentClusterStatus_KOMBI]
+ID=1B4h
+DLC=8
+Var=HandbrakeActive bit 41,1
+
+[EngineData]
+ID=1D0h
+DLC=8
+Var=RPM_IDLG_TAR unsigned 56,8 /u:1/min /f:5 /max:1270
+Var=CTR_SLCK unsigned 48,2 /e:VtSig_CTR_SLCK
+Var=IJV_FU unsigned 32,16 /u:C /o:-48
+Var=AIP_ENG unsigned 24,8 /u:hPa /f:2 /o:598 /min:600 /max:1106
+Var=ST_SW_WAUP unsigned 22,2 /e:VtSig_ST_SW_WAUP
+Var=ST_ENG_RUN unsigned 20,2 /e:VtSig_ST_ENG_RUN
+Var=Counter_464 unsigned 16,4 /max:14
+Var=TEMP_EOI unsigned 8,8 /u:C /o:-48
+Var=TEMP_ENG unsigned 0,8 /u:C /o:-48
+
+[TransmissionData3]
+ID=3B1h
+DLC=8
+Var=Checksum_946 unsigned 0,8 /max:19
+Var=Counter_945 unsigned 8,4 /max:14
+
+[SteeringWheelAngle_slow]
+ID=0C8h
+DLC=6
+Var=SteeringPosition signed 0,16 /u:degree /f:0.0428316886 /min:-600 /max:600
+Var=SteeringSpeed signed 24,16 /u:degree/s /f:0.0428316886
+Var=Counter_200 unsigned 20,4
+
+[TransmissionDataDisplay]
+ID=1D2h
+DLC=8
+Var=ShiftLeverMode unsigned 32,2 /e:VtSig_ShiftLeverMode // On the dashboard, there are displayed:  D1...D7 in Normal. S1...S6 in Sport.  M1..M7 in Manual
+Var=GearAct unsigned 12,4 /o:-4 /min:0 // TransmissionDataDisplay
+Var=Counter_466 unsigned 28,4 /max:14
+Var=ShiftLeverPosition unsigned 0,4 /max:8 /e:VtSig_ShiftLeverPosition
+Var=xFF unsigned 40,8
+Var=ShiftLeverPositionXOR unsigned 4,4
+Var=SportButtonState bit 26,1
+
+[HeatFlow_LoadTorqueClimate]
+ID=1B5h
+DLC=8
+
+[NetworkManagment1]
+ID=480h
+DLC=8
+
+[NetworkManagment2]
+ID=492h
+DLC=8
+
+[NetworkManagment3]
+ID=497h
+DLC=8
+
+[NetworkManagment4]
+ID=498h
+DLC=8
+
+[NetworkManagment5]
+ID=4A9h
+DLC=8
+
+[GWS_ShiftLeverHeartbeat]
+ID=4DEh
+DLC=8
+Var=IgnOff bit 11,1 -m
+
+[HeatFlowEngine]
+ID=1B6h
+DLC=8
+
+[AmbientTemperature_RelativeTime]
+ID=310h
+DLC=8
+
+[ElectricFuelPumpStatus]
+ID=335h
+DLC=8
+
+[EngineOBD_data]
+ID=3EFh
+DLC=8
+
+[ServicesDKG]
+ID=598h
+DLC=8
+
+[CrashDisconnectControl]
+ID=135h
+DLC=8
+
+[TurnSignals]
+ID=1F6h
+DLC=2
+Var=TurnSignalIdle bit 14,1 -m // Turn signal off
+Var=TurnSignalActive bit 15,1 -m // Turn signal on or transitioning
+Var=RightTurn bit 2,1 -m // Indicates right blinker or when steering returning right clears left blinker
+Var=LeftTurn bit 4,1 // Indicates left blinker or when steering returning left clears right blinker
+Var=HoldActivated bit 0,1 // Spikes down if blinker cleared with timeout or turn. Stays off if blinker cleared with stalk
+
+[Dimming]
+ID=202h
+DLC=8
+
+[LampStatus]
+ID=21Ah
+DLC=8
+
+[RainSensorWiperSpeed]
+ID=226h
+DLC=8
+
+[ClimateFrontStatus]
+ID=242h
+DLC=8
+
+[LCD_lighting]
+ID=2C0h
+DLC=8
+
+[LightControl]
+ID=2F6h
+DLC=8
+
+[Time_Date]
+ID=2F8h
+DLC=8
+
+[OccupancySeatBeltContact]
+ID=2FAh
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 8,8
+Var=NEW_SIGNAL_2 unsigned 0,8 /max:15
+
+[TrunkStatus]
+ID=2FCh
+DLC=8
+
+[TirePressureStatus]
+ID=31Dh
+DLC=8
+
+[Range_Mileage]
+ID=330h
+DLC=8
+
+[StatusFuelControl]
+ID=337h
+DLC=8
+
+[EngineOilLevel]
+ID=381h
+DLC=8
+
+[RunOnTimeTerminal30]
+ID=3ACh
+DLC=8
+
+[PowerManagmentConsumptionControl]
+ID=3B3h
+DLC=8
+
+[PowerBatteryVoltage]
+ID=3B4h
+DLC=8
+Var=BatteryVoltage unsigned 0,24 -m /f:0.001
+
+[PowerRunningTime]
+ID=3BEh
+DLC=8
+
+[ServicesKGM]
+ID=580h
+DLC=8
+
+[ServicesDME]
+ID=592h
+DLC=8
+
+[ServicesDSC]
+ID=5A9h
+DLC=8
+
+[ServicesKOMBI]
+ID=5E0h
+DLC=8
+
+[ServicesKBM]
+ID=5F2h
+DLC=8
+
+[Accelerometer1]
+ID=0D1h
+DLC=8
+Var=Counter_209 unsigned 52,4
+Var=Unknown signed 16,16 /min:0
+Var=YawRate signed 0,16 /min:0 /max:7
+Var=PitchRate signed 32,16 /min:0
+Var=CRC8_209 unsigned 56,8
+
+[WheelTorqueDrivetrain2]
+ID=0ACh
+DLC=8
+
+[SYNC]
+ID=080h
+DLC=5
+Var=State2 unsigned 24,4
+Var=State1 unsigned 16,8
+Var=Counter_128 unsigned 28,4
+
+[Unknown140]
+ID=140h
+DLC=2
+Var=State unsigned 0,8 -m
+
+[Unknown_d4]
+ID=0D4h
+DLC=8
+Var=State1 unsigned 40,8
+Var=Counter_212 unsigned 52,4
+Var=Checksum_212 unsigned 56,8
+
+[Accelerometer2]
+ID=0CDh
+DLC=8
+Var=Counter_205 unsigned 52,4
+Var=LateralAcceleration signed 32,16 /min:0 /max:255
+Var=YawRate signed 0,16 /min:0 /max:255
+Var=CRC8_205 signed 16,16 /min:0
+
+[OperationPushButtonDTC]
+ID=316h
+DLC=2
+Var=setMe_0x3FFF unsigned 2,14 /max:63 // All ones
+Var=DTC_pressed bit 0,1 // Traction control off. Message transmitted when pressed. Few presses may be required followed by off.
+
+[Unknown_629]
+ID=629h
+DLC=8
+
+[Synchronization_SC_VDA]
+ID=085h
+DLC=8
+
+[Delay_request_ACC]
+ID=0ADh
+DLC=8
+
+[Torque_request_steering]
+ID=0B1h
+DLC=8
+
+[Torque_request_EGS]
+ID=0B5h
+DLC=8
+Var=Checksum_Torque_request_EGS unsigned 0,8
+Var=Gearbox_temperature unsigned 56,8 /u:C
+
+[Torque_request_ACC]
+ID=0B7h
+DLC=8
+
+[Target_torque_request]
+ID=0BBh
+DLC=8
+
+[Status_target_torque_conversion]
+ID=0BCh
+DLC=8
+
+[Alive_Counter]
+ID=0BEh
+DLC=8
+
+[Alive_Central_Gateway]
+ID=0C0h
+DLC=8
+
+[Alive_counter_telephone]
+ID=0C1h
+DLC=8
+
+[Request_wheel_torque_brake]
+ID=0D5h
+DLC=8
+
+[Alive_Counter_Security]
+ID=0D7h
+DLC=8
+
+[CLU1_VDA]
+ID=0D8h
+DLC=8
+
+[Wheel_torque_brake]
+ID=0E1h
+DLC=8
+
+[Status_central_locking_BFT]
+ID=0E2h
+DLC=8
+
+[CLU2_VDA]
+ID=0E3h
+DLC=8
+
+[Status_central_locking_BFTH]
+ID=0E6h
+DLC=8
+
+[Status_central_locking_FAT]
+ID=0EAh
+DLC=8
+
+[Central_locking_status_FATH]
+ID=0EEh
+DLC=8
+
+[Status_central_locking_HK]
+ID=0F2h
+DLC=8
+
+[CLU3_VDA]
+ID=0F4h
+DLC=8
+
+[lateral_dynamics_ARS_VDM]
+ID=0F7h
+DLC=8
+
+[Vertical_dynamics_VDM_ARS]
+ID=0F9h
+DLC=8
+
+[Control_window_lifter_FAT]
+ID=0FAh
+DLC=8
+
+[Control_window_lifter_BFT]
+ID=0FBh
+DLC=8
+
+[Control_window_lifter_FATH]
+ID=0FCh
+DLC=8
+
+[Control_window_lifter_BFTH]
+ID=0FDh
+DLC=8
+
+[Voltage_level_sensors]
+ID=0FEh
+DLC=8
+
+[Exchange_AFS_DSC]
+ID=118h
+DLC=8
+
+[Control_interventions_DSC_AFS]
+ID=11Eh
+DLC=8
+
+[Status_partial_setpoints_AFS_DSC]
+ID=120h
+DLC=8
+
+[Sensor_data_ROSE]
+ID=12Ah
+DLC=8
+
+[input_data_ROSE]
+ID=12Ch
+DLC=8
+
+[Request_1_ACC]
+ID=150h
+DLC=8
+
+[Request_2_ACC]
+ID=153h
+DLC=8
+
+[Object_data_ACC]
+ID=159h
+DLC=8
+
+[Status_ACC]
+ID=15Ch
+DLC=8
+
+[Requirement_angle_FFP]
+ID=15Fh
+DLC=8
+
+[CLU_Status_VDA]
+ID=165h
+DLC=8
+
+[Acknowledgment_request_Kombinati]
+ID=172h
+DLC=8
+
+[Display_motor_data]
+ID=175h
+DLC=8
+
+[display_ACC]
+ID=190h
+DLC=8
+
+[Operation_push_button_MSA]
+ID=195h
+DLC=8
+
+[Raw_data_longitudinal_accelerati]
+ID=1A3h
+DLC=8
+
+[actuation_request_EMF]
+ID=1A7h
+DLC=8
+
+[Effect_ErgoCommander]
+ID=1AAh
+DLC=8
+
+[Status_ARS_module]
+ID=1ACh
+DLC=8
+
+[Operation_ErgoCommander]
+ID=1B8h
+DLC=8
+
+[Distance_message_PDC]
+ID=1C2h
+DLC=8
+
+[Distance_message_2_PDC]
+ID=1C3h
+DLC=8
+
+[Acoustic_message_PDC]
+ID=1C6h
+DLC=8
+
+[Operation_air_conditioning_air_d]
+ID=1D8h
+DLC=8
+
+[Operation_pushbutton_MDrive]
+ID=1D9h
+DLC=8
+
+[Climate_control_remote_control]
+ID=1DAh
+DLC=8
+
+[Operation_stratification_seat_he]
+ID=1DCh
+DLC=8
+
+[Air_conditioning_controls_rear]
+ID=1DEh
+DLC=8
+
+[Operation_air_conditioning_air_d]
+ID=1E0h
+DLC=8
+
+[Operation_air_conditioning_front]
+ID=1E2h
+DLC=8
+
+[Operation_pushbutton_interior_li]
+ID=1E3h
+DLC=8
+
+[Operation_seat_heating_seat_clim]
+ID=1E7h
+DLC=8
+
+[Operation_seat_heating_seat_clim]
+ID=1E8h
+DLC=8
+
+[Steering_column_adjustment_contr]
+ID=1EAh
+DLC=8
+
+[Operation_active_seat_FA]
+ID=1EBh
+DLC=8
+
+[Operation_active_seat_BF]
+ID=1ECh
+DLC=8
+
+[Steering_column_switch_operation]
+ID=1EEh
+DLC=8
+
+[Operation_seat_memory_FA]
+ID=1F3h
+DLC=8
+
+[Operation_SHD_MDS]
+ID=1F8h
+DLC=8
+
+[Status_EPS]
+ID=1FBh
+DLC=8
+
+[Status_AFS]
+ID=1FCh
+DLC=8
+
+[Status_request_EMF_KCAN]
+ID=1FDh
+DLC=8
+
+[Crash]
+ID=1FEh
+DLC=8
+
+[Status_EMF_KCAN]
+ID=201h
+DLC=8
+
+[Acoustic_request_Kombi]
+ID=205h
+DLC=8
+
+[Control_Display_Shiftlights]
+ID=206h
+DLC=8
+
+[Memory_adjustment]
+ID=20Bh
+DLC=8
+
+[Steering_column_control]
+ID=20Ch
+DLC=8
+
+[Position_steering_column]
+ID=20Dh
+DLC=8
+
+[Operation_HUD]
+ID=210h
+DLC=8
+
+[Status_HUD]
+ID=211h
+DLC=8
+
+[Height_levels_air_spring]
+ID=212h
+DLC=8
+
+[Operation_NightVision]
+ID=21Ch
+DLC=8
+
+[Status_NightVision]
+ID=21Eh
+DLC=8
+
+[Operation_push_button_NSW]
+ID=224h
+DLC=8
+
+[Operation_special_function]
+ID=228h
+DLC=8
+
+[Status_BFS]
+ID=22Ah
+DLC=8
+
+[Operation_push_button_NSL]
+ID=22Ch
+DLC=8
+
+[Status_BFSH]
+ID=22Eh
+DLC=8
+
+[Status_FAS]
+ID=232h
+DLC=8
+
+[Status_FASH]
+ID=236h
+DLC=8
+
+[Status_radio_key]
+ID=23Ah
+DLC=8
+
+[Status_climate_front_extended]
+ID=23Bh
+DLC=8
+
+[Request_display_climate]
+ID=23Dh
+DLC=8
+
+[Status_Klima_Fond]
+ID=23Eh
+DLC=8
+
+[Status_air_conditioning_front_co]
+ID=246h
+DLC=8
+
+[Status_rear_view_camera]
+ID=248h
+DLC=8
+
+[Control_rear_view_camera]
+ID=249h
+DLC=8
+
+[Status_PDC]
+ID=24Ah
+DLC=8
+
+[Status_door_sensors]
+ID=24Bh
+DLC=8
+
+[Wiper_status]
+ID=252h
+DLC=8
+
+[Challenge_Passive_Access]
+ID=256h
+DLC=8
+
+[Status_Transmission_Passive_Acce]
+ID=258h
+DLC=8
+
+[Operation_of_climate_additional_]
+ID=25Ch
+DLC=8
+
+[Operation_blinds_MK]
+ID=26Dh
+DLC=8
+
+[Control_FH_SHD_central_comfort]
+ID=26Eh
+DLC=8
+
+[Status_Shiftlights]
+ID=27Bh
+DLC=8
+
+[Status_convertible_top_manual_co]
+ID=27Dh
+DLC=8
+
+[Status_convertible_top_convertib]
+ID=27Eh
+DLC=8
+
+[Status_central_locking_convertib]
+ID=27Fh
+DLC=8
+
+[Control_security_vehicle_2]
+ID=282h
+DLC=8
+
+[Control_remote_start_safety_vehi]
+ID=284h
+DLC=8
+
+[Electrochromic_control]
+ID=286h
+DLC=8
+
+[Pushbutton_vertical_dynamics]
+ID=28Ch
+DLC=8
+
+[Operation_pushbutton_sport]
+ID=28Dh
+DLC=8
+
+[Control_response_hydrogen_vehicl]
+ID=290h
+DLC=8
+
+[Control_high_beam_assistant]
+ID=292h
+DLC=8
+
+[Central_locking_control_for_secu]
+ID=29Eh
+DLC=8
+
+[Remote_control_FondCommander]
+ID=29Fh
+DLC=8
+
+[Central_locking_control]
+ID=2A0h
+DLC=8
+
+[Operation_of_climate_stand_funct]
+ID=2A2h
+DLC=8
+
+[Operation_personalization]
+ID=2A4h
+DLC=8
+
+[DWA_Alarm]
+ID=2B4h
+DLC=8
+
+[Control_horn_DWA]
+ID=2B6h
+DLC=8
+
+[Operation_onboard_computer]
+ID=2B8h
+DLC=8
+
+[Operation_RSE]
+ID=2B9h
+DLC=8
+
+[Stopwatch]
+ID=2BAh
+DLC=8
+
+[Request_switching_display]
+ID=2BDh
+DLC=8
+
+[Switch_status_display]
+ID=2BEh
+DLC=8
+
+[Water_valve_control]
+ID=2BFh
+DLC=8
+
+[Temperatur_Ist_Fond]
+ID=2C2h
+DLC=8
+
+[Display_Kombination_extended]
+ID=2C7h
+DLC=8
+
+[Outside_temperature]
+ID=2CAh
+DLC=8
+
+[Control_monitor_rear]
+ID=2CCh
+DLC=8
+
+[Control_monitor]
+ID=2CEh
+DLC=8
+
+[Status_of_auxiliary_water_pump]
+ID=2CFh
+DLC=8
+
+[Status_Sensor_AUC]
+ID=2D0h
+DLC=8
+
+[Status_fitting_window_V]
+ID=2D1h
+DLC=8
+
+[Status_pressure_refrigeration_ci]
+ID=2D2h
+DLC=8
+
+[Status_stratification_rear]
+ID=2D3h
+DLC=8
+
+[Status_heating_rear_window]
+ID=2D5h
+DLC=8
+
+[Status_valve_air_conditioning_co]
+ID=2D6h
+DLC=8
+
+[Status_tailgate_lift]
+ID=2DAh
+DLC=8
+
+[Switch_control_display]
+ID=2DEh
+DLC=8
+
+[Status_setting_video_night_visio]
+ID=2E2h
+DLC=8
+
+[Status_setting_video_rear_view_c]
+ID=2E3h
+DLC=8
+
+[Status_trailer]
+ID=2E4h
+DLC=8
+
+[Status_of_air_distribution_FA]
+ID=2E6h
+DLC=8
+
+[Status_air_distribution_BF]
+ID=2EAh
+DLC=8
+
+[Status_climate_additional_progra]
+ID=2EEh
+DLC=8
+
+[Status_air_condition_functions]
+ID=2F0h
+DLC=8
+
+[Status_driver_detection]
+ID=2F1h
+DLC=8
+
+[Display_switching_instruction]
+ID=2F3h
+DLC=8
+
+[Air_conditioning_control_SH_ZH_a]
+ID=2F4h
+DLC=8
+
+[Units]
+ID=2F7h
+DLC=8
+
+[Status_RSE]
+ID=300h
+DLC=8
+
+[Status_Gang]
+ID=304h
+DLC=8
+
+[Operation_button_convertible_top]
+ID=305h
+DLC=8
+
+[Vehicle_tilt]
+ID=306h
+DLC=8
+
+[Operation_button_flap_convertibl]
+ID=307h
+DLC=8
+
+[Status_MSA]
+ID=308h
+DLC=8
+
+[Refill_quantity]
+ID=311h
+DLC=8
+
+[Service_Call_Teleservice]
+ID=312h
+DLC=8
+
+[Status_Service_Call_Teleservice]
+ID=313h
+DLC=8
+
+[Status_driving_light]
+ID=314h
+DLC=8
+
+[Vehicle_mode]
+ID=315h
+DLC=8
+
+[Operation_button_parking_aids]
+ID=317h
+DLC=8
+
+[Status_antennas_Passive_Access]
+ID=318h
+DLC=8
+
+[Operation_push_button_RDC]
+ID=319h
+DLC=8
+
+[Operation_button_HDC]
+ID=31Ah
+DLC=8
+
+[Operation_of_tailgate_interior_b]
+ID=31Bh
+DLC=8
+
+[Status_tire_pressure]
+ID=31Ch
+DLC=8
+
+[Operation_button_camera_BF]
+ID=321h
+DLC=8
+
+[Damper_current]
+ID=322h
+DLC=8
+
+[Status_damper_program]
+ID=326h
+DLC=8
+
+[Relativzeit]
+ID=328h
+DLC=8
+
+[Display_HDC]
+ID=32Dh
+DLC=8
+
+[Status_climate_internal_control_]
+ID=32Eh
+DLC=8
+
+[Programming_of_step_cruise_contr]
+ID=331h
+DLC=8
+
+[Driver_display_speed_range]
+ID=332h
+DLC=8
+
+[Display_check_control_message_ro]
+ID=336h
+DLC=8
+
+[Control_display_check_control_me]
+ID=338h
+DLC=8
+
+[Status_display_climate]
+ID=339h
+DLC=8
+
+[Status_Monitor_Front]
+ID=33Ah
+DLC=8
+
+[Status_Monitor_Fond_1]
+ID=33Ch
+DLC=8
+
+[Status_Monitor_Fond_2]
+ID=33Eh
+DLC=8
+
+[Raw_data_level_tank]
+ID=349h
+DLC=8
+
+[Seat_back_lock_status_FA]
+ID=34Bh
+DLC=8
+
+[Status_seat_back_lock_BF]
+ID=34Dh
+DLC=8
+
+[Status_contact_handbrake]
+ID=34Fh
+DLC=8
+Var=Handbrake_push unsigned 0,2
+
+[Appointment_Condition_Based_Serv]
+ID=35Ah
+DLC=8
+
+[Status_onboard_computer]
+ID=35Ch
+DLC=8
+
+[Onboard_computer_data_trip_data]
+ID=35Eh
+DLC=8
+
+[Data_onboard_computer_start_of_j]
+ID=360h
+DLC=8
+
+[Data_onboard_computer_average_va]
+ID=362h
+DLC=8
+
+[Data_onboard_computer_arrival]
+ID=364h
+DLC=8
+
+[Status_terminal_request]
+ID=365h
+DLC=8
+
+[Display_Kombination_external_dis]
+ID=366h
+DLC=8
+
+[Control_display_of_demand_orient]
+ID=367h
+DLC=8
+
+[Setting_the_driving_dynamics_swi]
+ID=36Dh
+DLC=8
+
+[Status_wear_lamella]
+ID=376h
+DLC=8
+
+[Status_DKG]
+ID=37Dh
+DLC=8
+
+[Temperatur_Bremse]
+ID=37Eh
+DLC=8
+
+[Range_of_diesel_exhaust_gas_addi]
+ID=37Fh
+DLC=8
+
+[chassis_number]
+ID=380h
+DLC=8
+
+[Electronic_engine_oil_dipstick_M]
+ID=382h
+DLC=8
+
+[Motor_data_2]
+ID=383h
+DLC=8
+
+[Vehicle_type]
+ID=388h
+DLC=8
+
+[Status_battery]
+ID=38Bh
+DLC=8
+
+[Start_speed]
+ID=38Eh
+DLC=8
+
+[Status_System_AFS]
+ID=392h
+DLC=8
+
+[RDA_request_data_storage]
+ID=394h
+DLC=8
+
+[Coding_power_management]
+ID=395h
+DLC=8
+
+[Operation_chassis]
+ID=398h
+DLC=8
+
+[Status_MDrive]
+ID=399h
+DLC=6
+
+[Operation_time_date]
+ID=39Eh
+DLC=8
+
+[Vehicle_state]
+ID=3A0h
+DLC=8
+
+[Request_Remote_Services]
+ID=3A3h
+DLC=8
+
+[Status_motor_control_CKM]
+ID=3A9h
+DLC=8
+
+[Status_Shiftlights_CKM]
+ID=3ABh
+DLC=8
+
+[Status_gear_reverse]
+ID=3B0h
+DLC=8
+
+[Status_water_valve]
+ID=3B5h
+DLC=8
+
+[Position_window_lifter_FAT]
+ID=3B6h
+DLC=8
+
+[Position_window_lifter_FATH]
+ID=3B7h
+DLC=8
+
+[Position_window_regulator_BFT]
+ID=3B8h
+DLC=8
+
+[Position_window_regulator_BFTH]
+ID=3B9h
+DLC=8
+
+[Position_SHD]
+ID=3BAh
+DLC=8
+
+[Position_window_lifter_security_]
+ID=3BCh
+DLC=8
+
+[Status_consumer_shutdown]
+ID=3BDh
+DLC=8
+
+[Position_window_rear_window]
+ID=3BFh
+DLC=8
+
+[Configuration_FAS]
+ID=3C0h
+DLC=8
+
+[Configuration_BFS]
+ID=3C1h
+DLC=8
+
+[Status_EDCK_CKM]
+ID=3C4h
+DLC=8
+
+[Access_radio]
+ID=3C7h
+DLC=8
+
+[Operation_push_button_radio]
+ID=3C8h
+DLC=8
+
+[Radio_audio_control_interface_di]
+ID=3CEh
+DLC=8
+
+[Acknowledgment_access_radio_audi]
+ID=3CFh
+DLC=8
+
+[Status_solar_sensor]
+ID=3D3h
+DLC=8
+
+[Configuration_of_central_locking]
+ID=3D4h
+DLC=8
+
+[Status_central_locking_CKM]
+ID=3D5h
+DLC=8
+
+[Configuration_DWA_CKM]
+ID=3D6h
+DLC=8
+
+[Status_DWA_CKM]
+ID=3D7h
+DLC=8
+
+[Configuration_RLS_CKM]
+ID=3D8h
+DLC=8
+
+[Status_RLS_CKM]
+ID=3D9h
+DLC=8
+
+[Configuration_of_memory_position]
+ID=3DAh
+DLC=8
+
+[Status_memory_positions_CKM]
+ID=3DBh
+DLC=8
+
+[Configuration_light_CKM]
+ID=3DCh
+DLC=8
+
+[Status_light_CKM]
+ID=3DDh
+DLC=8
+
+[Configuration_Climate_CKM]
+ID=3DEh
+DLC=8
+
+[Status_Klima_CKM]
+ID=3DFh
+DLC=8
+
+[Configuration_of_tailgate_CKM]
+ID=3E2h
+DLC=8
+
+[Status_tailgate_CKM]
+ID=3E3h
+DLC=8
+
+[Configuration_rear_view_camera_C]
+ID=3E4h
+DLC=8

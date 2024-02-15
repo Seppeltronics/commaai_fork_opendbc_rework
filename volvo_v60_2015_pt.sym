@@ -1,0 +1,233 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="volvo_v60_2015_pt"
+
+{SENDRECEIVE}
+
+[SAS0]
+ID=010h
+DLC=8
+Var=Counter0 unsigned 4,8 -m
+Var=RateOfChangeOrTorque unsigned 32,16 -m /o:-32768 /min:0 // Rate of change? Torque?
+Var=NEW_SIGNAL_1 unsigned 17,15 -m
+Var=SteeringDirection bit 1,1 -m // 0 = CCW, 1=CW (turning left or right of center)
+Var=SteeringAngle unsigned 50,14 -m /u:degrees /f:0.0445
+
+[AccPedal]
+ID=020h
+DLC=8
+Var=AccPedal unsigned 22,10 -m /u:% /f:0.1
+
+[FSM0]
+ID=051h
+DLC=8
+Var=ACCStatus unsigned 21,3 -m // 0=Acc Unavailable, 1=???, 2=Acc Ready, 3,4=???, 6= Acc Active, 7=Acc active tracking object (probably)
+
+[NEW_MSG_7]
+ID=115h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 32,16 -m
+
+[CCButtons]
+ID=127h
+DLC=8
+Var=ACCMinusBtn bit 55,1 -m // ACC Minus (-) button pressed
+Var=ACCSetBtn bit 56,1 -m // Acc Set button (+) pressed
+Var=ACCOnOffBtn bit 60,1 -m // Cruise control on/off button pressed
+Var=ACCResumeBtn bit 58,1 -m // ACC Resume button pressed
+Var=TimeGapDecreaseBtnInv bit 37,1 -m // Active zero when button pressed.
+Var=ACCOnOffBtnInv bit 44,1 -m // Active zero when button pressed.
+Var=ACCResumeBtnInv bit 42,1 -m // Active zero when button pressed.
+Var=ACCSetBtnInv bit 40,1 -m // Active zero when button pressed.
+Var=TimeGapIncreaseBtn bit 54,1 -m // Increase the time gap on ACC
+Var=TimeGapDecreaseBtn bit 53,1 -m // Decrease the time gap on ACC
+Var=ACCMinusBtnInv bit 39,1 -m // Active zero when button pressed.
+Var=TimeGapIncreaseBtnInv bit 38,1 -m // Active zero when button pressed.
+
+[NEW_MSG_5]
+ID=12Ah
+DLC=8
+Var=EngineRpm unsigned 51,13 -m /max:8000 // Might be engine rpm. But behaves abit weird.
+
+[NEW_MSG_8]
+ID=150h
+DLC=8
+
+[VehicleSpeed1]
+ID=148h
+DLC=8
+Var=VehicleSpeed unsigned 48,16 -m /f:0.01
+
+[NEW_MSG_4]
+ID=1D1h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 48,16 -m /max:4095
+
+[wheelspeed1]
+ID=220h
+DLC=8
+Var=WhlSpdRR unsigned 32,16 -m /f:0.01 /o:-327.68 /min:0
+Var=WhlSpdLR unsigned 48,16 -m /f:0.01 /o:-327.68 /min:0
+
+[wheelspeed0]
+ID=235h
+DLC=8
+Var=WhlSpdLF unsigned 48,16 -m /f:0.01 /o:-327.68 /min:0
+Var=WhlSpdRF unsigned 32,16 -m /f:0.01 /o:-327.68 /min:0
+
+[PSCM1]
+ID=246h
+DLC=8
+Var=byte4 unsigned 32,4 -m // High nibble
+Var=LKATorque unsigned 36,12 -m /o:-2000 /min:0
+Var=SteeringAngleServo unsigned 16,16 -m /u:deg /f:0.0447 /o:-1468 /min:0
+Var=SteeringWheelRateOfChange unsigned 8,8 -m // Some rate of change for steering wheel? Torque?
+Var=byte7 unsigned 56,8 -m
+Var=byte0 unsigned 0,8 -m // 0=CCW, 1=CW, bit 2,
+Var=LKAActive unsigned 48,8 -m // Bit 1, 1 When LKA Active, Bit 3, 1 When denying?
+
+[FSM1]
+ID=260h
+DLC=8
+Var=ACC_Tracking unsigned 0,8 -m // Seems to track distance, or speed of vehicle in front.
+
+[fromWhere]
+ID=261h
+DLC=8
+Var=SteeringAngle unsigned 18,14 -m /u:deg /f:0.1 /o:-1021 /min:0
+
+[FSM2]
+ID=262h
+DLC=8
+Var=TrqLim unsigned 16,8 -m /o:-128 /min:0
+Var=Checksum unsigned 48,8 -m
+Var=LKAAngleReq unsigned 26,14 -m /f:0.04 /o:-327.68 /min:0
+Var=SET_X_02 unsigned 24,2 -m
+Var=SET_X_10 unsigned 40,6 -m
+Var=SET_X_A4 unsigned 56,8 -m
+Var=SET_X_22 unsigned 8,8 -m // 0x20 Heartbeat, VEgo <58kph = 0x03, VEgo >65kph = 0x04, 0x05
+Var=LKASteerDirection unsigned 46,2 -m
+
+[FSM3]
+ID=270h
+DLC=8
+Var=ACC_SOMETHING unsigned 8,8 -m // Might be some acc speed, moved abit after activating acc
+Var=ACC_Some unsigned 22,10 -m /max:255 // Jumps to life after activating ACC, 0 when not active
+Var=NEW_SIGNAL_3 unsigned 40,8 -m
+
+[BrakePedal]
+ID=288h
+DLC=8
+Var=Counter unsigned 0,3
+Var=BrakePedal unsigned 24,8 /o:4 /max:255
+
+[FSM4]
+ID=31Ah
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 40,16 -m /o:-46090 /min:0 /max:16383
+Var=NEW_SIGNAL_2 unsigned 32,4
+
+[PSCM0]
+ID=333h
+DLC=8
+
+[NEW_MSG_1]
+ID=39Bh
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 8,16 -m
+
+[FSM5]
+ID=3FDh
+DLC=8
+
+[MiscCarInfo]
+ID=40Fh
+DLC=8
+Var=TurnSignal unsigned 38,2 -m // 0 = Nothing, 1= Left, 3=Right
+
+[PSCM3]
+ID=4FFh
+DLC=8
+
+[diagCEMReq]
+ID=726h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagCEMResp]
+ID=72Eh
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagPSCMReq]
+ID=730h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagPSCMResp]
+ID=738h
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagFSMReq]
+ID=764h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagFSMResp]
+ID=76Ch
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagCVMReq]
+ID=793h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagCVMResp]
+ID=79Bh
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagGlobalReq]
+ID=7DFh
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m

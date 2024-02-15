@@ -1,0 +1,220 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="acura_ilx_2016_nidec"
+
+{ENUMS}
+enum VtSig_RADAR_STATE(121="ok", 110="faulted", 105="wrong_config")
+
+{SENDRECEIVE}
+
+[VEHICLE_STATE]
+ID=300h
+DLC=8
+Var=SET_ME_XF9 unsigned 0,8 -m
+Var=VEHICLE_SPEED unsigned 8,8 -m /u:kph
+
+[VEHICLE_STATE2]
+ID=301h
+DLC=8
+Var=SET_ME_0F18510 unsigned 0,28 -m
+Var=SET_ME_25A0000 unsigned 28,28 -m
+
+[RADAR_DIAGNOSTIC]
+ID=400h
+DLC=8
+Var=RADAR_STATE unsigned 0,8 -m /e:VtSig_RADAR_STATE // need to find out more diagnostic values
+
+[XXX_101]
+ID=410h
+DLC=8
+
+[XXX_102]
+ID=411h
+DLC=8
+
+[XXX_103]
+ID=412h
+DLC=8
+
+[XXX_104]
+ID=413h
+DLC=8
+
+[XXX_105]
+ID=414h
+DLC=8
+
+[XXX_106]
+ID=415h
+DLC=8
+
+[XXX_107]
+ID=416h
+DLC=8
+
+[XXX_108]
+ID=417h
+DLC=8
+
+[XXX_109]
+ID=420h
+DLC=8
+
+[XXX_110]
+ID=421h
+DLC=8
+
+[XXX_111]
+ID=422h
+DLC=8
+
+[XXX_112]
+ID=423h
+DLC=8
+
+[XXX_113]
+ID=424h
+DLC=8
+
+[TRACK_0]
+ID=430h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_1]
+ID=431h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_2]
+ID=432h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_3]
+ID=433h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_4]
+ID=434h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_5]
+ID=435h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_6]
+ID=436h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_7]
+ID=437h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_8]
+ID=438h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_9]
+ID=439h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_10]
+ID=440h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_11]
+ID=441h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_12]
+ID=442h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_13]
+ID=443h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_14]
+ID=444h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[TRACK_15]
+ID=445h
+DLC=8
+Var=LONG_DIST unsigned 0,12 -m /u:m /f:0.0625 /max:255.5
+Var=NEW_TRACK bit 12,1 -m
+Var=LAT_DIST signed 14,10 -m /u:m /f:0.0625 /min:0
+Var=REL_SPEED signed 24,12 -m /u:m/s /f:0.03125 /min:0
+
+[XXX_114]
+ID=4FFh
+DLC=8
+
+[XXX_115]
+ID=500h
+DLC=8
+
+[XXX_116]
+ID=510h
+DLC=8
+
+[XXX_117]
+ID=511h
+DLC=8

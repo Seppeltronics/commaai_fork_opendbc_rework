@@ -1,0 +1,376 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="volvo_v40_2017_pt"
+
+{ENUMS}
+enum VtSig_GearShifter(0="P", 1="R", 2="N", 3="D")
+
+{SENDRECEIVE}
+
+[SAS0]
+ID=008h
+DLC=8
+Var=SteeringDirection bit 45,1 -m // 1=Right turn, 0=Left turn. Steering wheel pointing left or right from center (0 deg).
+Var=RelativeTurnDirection bit 44,1 -m // 1=Right turn, 0=Left turn. Steering wheel currently turning the way.
+Var=SteeringAngle unsigned 50,14 -m /u:degrees /f:0.04395
+Var=NEW_SIGNAL_1 unsigned 40,4 -m
+Var=NEW_SIGNAL_2 unsigned 32,4 -m
+Var=AngleRate unsigned 18,14 -m /u:deg/S /f:0.075
+
+[CCButtons]
+ID=010h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte6 unsigned 48,5 -m
+Var=B7b0 bit 63,1 -m
+Var=B7b1 bit 62,1 -m
+Var=B7b6 bit 57,1 -m
+Var=ACCOnOffBtn bit 61,1 -m // Cruise control on/off button pressed
+Var=ACCSetBtn bit 56,1 -m // Acc Set button (+) pressed
+Var=ACCStopBtn bit 59,1 -m // ACC Stop button pressed
+Var=ACCResumeBtn bit 58,1 -m // ACC Resume button pressed
+Var=ACCMinusBtn bit 55,1 -m // ACC Minus (-) button pressed
+Var=TimeGapIncreaseBtn bit 54,1 -m // Increase the time gap on ACC
+Var=TimeGapDecreaseBtn bit 53,1 -m // Decrease the time gap on ACC
+Var=byte5 unsigned 40,8 -m
+Var=B7b3 bit 60,1 -m
+
+[FSM0]
+ID=030h
+DLC=8
+Var=ACCStatusTracking bit 63,1 -m // ACC Tracking vehicle, distance control.
+Var=ACCStatusOnOff bit 62,1 -m // Turns one after pressing on/off button on steering wheeel
+Var=ACCStatusActive bit 61,1 -m // ACC Active
+Var=FCWSomething unsigned 30,3 -m /max:3 // All bit set during fcw
+Var=StatusSomething unsigned 48,8 -m // Some status changes when zeroing DTCs
+
+[TCM0]
+ID=040h
+DLC=8
+Var=RPMSomething unsigned 45,11 -m // TransmissionOutput?
+Var=GearShifter unsigned 41,2 -m /e:VtSig_GearShifter // P=0, R=1, N=2, D=3
+
+[PedalandBrake]
+ID=055h
+DLC=8
+Var=AccPedal unsigned 14,10 -m /u:% /f:0.1
+Var=BrakePedalActive2 bit 31,1 -m // Active during braking
+Var=NEW_SIGNAL_1 unsigned 36,12 -m // Not yet figured out.
+Var=BrakePedalActive bit 33,1 -m // Brake pedal pushed
+Var=NEW_SIGNAL_3 unsigned 48,8 -m
+Var=NEW_SIGNAL_2 unsigned 56,8 -m
+
+[EngineInfo]
+ID=065h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 22,10 -m /o:-512 /min:0 // Rate of something?
+Var=EngineSpeed unsigned 51,13 -m /max:1023
+
+[NEW_MSG_4]
+ID=070h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 32,8 -m
+
+[ECM1]
+ID=072h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 16,8 -m // Jumped from 0 -> 120 during start. Makes triangle from time to time
+Var=ECM_ACC_ONOFF_INV bit 44,1 -m
+Var=ECM_ACC_RESUME_INV bit 42,1 -m
+Var=ECM_ACC_SET_INV bit 40,1 -m
+Var=ECM_ACC_TIMEGAP_INC_INV bit 38,1 -m
+Var=ECM_ACC_DEC_INV bit 39,1 -m
+Var=ECM_ACC_TIMEGAP_DEC_INV bit 37,1 -m
+
+[ECM1_2]
+ID=075h
+DLC=8
+
+[NEW_MSG_5]
+ID=080h
+DLC=8
+Var=NEW_SIGNAL_2 unsigned 29,11 -m
+Var=NEW_SIGNAL_1 unsigned 51,13 -m
+
+[ECM2]
+ID=0B0h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 53,11 -m
+Var=NEW_SIGNAL_2 unsigned 40,8 -m /max:63
+
+[Gear]
+ID=0C0h
+DLC=8
+Var=TransmissionGear unsigned 35,3 -m /o:1 /max:7 // 0 = 1st gear, 1= 2nd gear...
+
+[FSM1]
+ID=0D0h
+DLC=8
+Var=SET_X_E3 unsigned 0,8 -m
+Var=SET_X_B4 unsigned 8,8 -m
+Var=SET_X_08 unsigned 16,8 -m
+Var=TrqLim unsigned 24,8 -m /o:-128 /min:0 // Used in checksum calculation, Limit directional torque based on the number.
+Var=Checksum unsigned 48,8 -m // Checksum calculated as a one-complement addition of LKAAngleRequest+LKADirection+Unkown, Zeros used to pad missing bits.
+Var=LKASteerDirection unsigned 62,2 -m /max:2
+Var=SET_X_25 unsigned 56,6 -m
+Var=LKAAngleReq unsigned 34,14 -m /u:degrees /f:0.04395 /o:-360.0384 /max:359.99445
+Var=SET_X_02 unsigned 32,2 -m // Bit 0 = Vibrate steering wheel., Bit 1 = Heartbeat
+
+[PSCM0]
+ID=0E0h
+DLC=8
+Var=NEW_SIGNAL_2 unsigned 11,5 -m
+Var=counter_07 unsigned 8,3 -m
+Var=counter2_07 unsigned 34,3 -m
+Var=rate_of_something unsigned 41,7 -m /max:62 // Seems to be some kind of torque rather than rate.
+Var=OneDuringDriving bit 54,1 -m // Set to 1 when vehicle is rolling.
+Var=NEW_SIGNAL_1 bit 56,1 -m
+
+[wheelspeed0]
+ID=0F5h
+DLC=8
+Var=counter1 unsigned 18,6 -m
+Var=counter0 unsigned 0,16 -m // Speed based counter
+Var=WhlSpdLF unsigned 32,16 -m // Wheel speed left front
+Var=WhlSpdRF unsigned 48,16 -m // Wheel speed right front
+
+[SpeedSignal0]
+ID=110h
+DLC=8
+Var=VehicleSpeedSignal unsigned 48,16 -m /f:0.01 // km/h
+
+[wheel_speed1]
+ID=120h
+DLC=8
+Var=WhlSpdLR unsigned 32,16 -m // Wheel speed left rear
+Var=WhlSpdRR unsigned 48,16 -m // Wheel speed right rear
+
+[PSCM1]
+ID=125h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte7 unsigned 56,8 -m // Bit0=0 when gearshift in park, else 1
+Var=LKATorque unsigned 12,12 -m /o:-2000 /min:0
+Var=SteeringAngleServo unsigned 40,16 -m /u:deg /f:0.04395 /o:-1440.1536 /min:0
+Var=LKAActive unsigned 8,4 -m // Bit0=0 when gear in park otherwise =1, Bit1=1 when LKA Active, 0 when not active. Bit2=? Bit3=?
+
+[VehicleSpeed0]
+ID=130h
+DLC=8
+Var=NEW_SIGNAL_2 unsigned 8,16 -m
+Var=VehicleSpeed unsigned 24,16 -m /u:km/h /f:0.01
+Var=NEW_SIGNAL_1 unsigned 48,16 -m
+
+[ECM3]
+ID=145h
+DLC=8
+
+[VehicleSpeed1]
+ID=150h
+DLC=8
+Var=NEW_SIGNAL_2 unsigned 24,16 -m
+Var=NEW_SIGNAL_1 unsigned 8,16 -m
+Var=VehicleSpeed unsigned 48,16 -m /f:0.01
+
+[FSM2]
+ID=160h
+DLC=8
+Var=LkaDimLine unsigned 51,2 // Not true, but follows lka steer direction.
+Var=NEW_SIGNAL_2 unsigned 56,7
+Var=NEW_SIGNAL_1 bit 48,1 -m // Turned one. Got LKA service needed can this be the one?
+Var=NEW_SIGNAL_3 unsigned 0,24 -m
+Var=NEW_SIGNAL_4 unsigned 35,5 -m
+
+[BrakeMessages]
+ID=1B0h
+DLC=8
+Var=BrakePress0 unsigned 6,10 -m // Brake being pressed
+Var=BrakePress1 unsigned 38,10 -m // Brake being pressed
+Var=BrakeStatus unsigned 21,3 -m // ACC brake?
+
+[DIM0]
+ID=1D0h
+DLC=8
+
+[BCM0]
+ID=1E0h
+DLC=8
+
+[CEM0]
+ID=210h
+DLC=8
+
+[CVM0]
+ID=260h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 0,8 -m // Status?
+Var=NEW_SIGNAL_2 unsigned 8,5 -m // Classification of object?
+Var=Distance unsigned 13,11 -m // Distance to object in front.
+
+[FSM3]
+ID=270h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 16,8 -m
+
+[FSM4]
+ID=280h
+DLC=8
+Var=SpeedTarget unsigned 40,8 -m // SpeedTarget ACC (noisy bf starting acc Jumps from 0->252->0)
+Var=NEW_SIGNAL_1 unsigned 54,10 -m /max:255
+
+[SRS0]
+ID=288h
+DLC=8
+
+[ECM4]
+ID=28Ch
+DLC=8
+
+[ECM5]
+ID=290h
+DLC=8
+
+[ECM6]
+ID=291h
+DLC=8
+
+[MiscCarInfo]
+ID=2A9h
+DLC=8
+Var=TurnSignal unsigned 6,2 -m // 0 = Nothing, 1= Left, 3=Right
+Var=HighBeamOn bit 51,1 -m // 1=HighBeam On, 0=HighBeam Off
+
+[ECM7]
+ID=2B5h
+DLC=8
+
+[ACC]
+ID=2C5h
+DLC=8
+Var=SpeedTargetACC unsigned 7,9 -m /f:0.5 // SpeedTargetACC
+
+[FSM5]
+ID=355h
+DLC=8
+Var=TargetSpeedOdo unsigned 16,8 -m /u:kph /max:63 // Probably target speed odo
+Var=SpeedSign unsigned 35,5 -m /f:5 /max:32
+Var=TextUnderSign bit 34,1 -m
+Var=NEW_SIGNAL_6 unsigned 32,3 -m /max:3
+Var=NEW_SIGNAL_5 unsigned 40,8 -m
+Var=NEW_SIGNAL_3 unsigned 24,8 -m
+Var=LaneMarkingsOdo unsigned 8,4 -m /max:7 // Bit 3=Left lane, Bit 2=Right lane, Bit 1=LKA on?, Bit 0=?
+Var=NEW_SIGNAL_2 unsigned 12,4 -m
+Var=NEW_SIGNAL_1 unsigned 0,8 -m
+Var=NEW_SIGNAL_4 unsigned 48,16 -m
+
+[CEM1]
+ID=360h
+DLC=8
+
+[DIM1]
+ID=390h
+DLC=8
+
+[SRS1]
+ID=3C8h
+DLC=8
+Var=PassengerSeatBelt bit 17,1 -m // 1 = Seatbalt latched
+Var=DriverSeatBelt bit 20,1 -m // 1=Seatbelt latched
+
+[CEMBCM0]
+ID=405h
+DLC=8
+
+[NEW_MSG_1]
+ID=540h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 3,13 -m
+
+[diagCEMReq]
+ID=726h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagCEMResp]
+ID=72Eh
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagPSCMReq]
+ID=730h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagPSCMResp]
+ID=738h
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagFSMReq]
+ID=764h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagFSMResp]
+ID=76Ch
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagCVMReq]
+ID=793h
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
+
+[diagCVMResp]
+ID=79Bh
+DLC=8
+Var=byte03 unsigned 0,32 -m
+Var=byte47 unsigned 32,32 -m
+
+[diagGlobalReq]
+ID=7DFh
+DLC=8
+Var=byte0 unsigned 0,8 -m
+Var=byte1 unsigned 8,8 -m
+Var=byte2 unsigned 16,8 -m
+Var=byte3 unsigned 24,8 -m
+Var=byte4 unsigned 32,8 -m
+Var=byte5 unsigned 40,8 -m
+Var=byte6 unsigned 48,8 -m
+Var=byte7 unsigned 56,8 -m
