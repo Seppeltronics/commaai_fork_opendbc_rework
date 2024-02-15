@@ -1,0 +1,556 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="toyota_new_mc_pt_generated"
+
+{ENUMS}
+enum VtSig_STATE(5="FAULT_TIMEOUT", 4="FAULT_STARTUP", 3="FAULT_SCE", 2="FAULT_SEND", 1="FAULT_BAD_CHECKSUM",
+  0="NO_FAULT")
+enum VtSig_GEAR(0="P", 1="R", 2="N", 3="D", 4="B")
+enum VtSig_CRUISE_STATE(11="timer_3sec", 10="adaptive click down", 9="adaptive click up", 8="adaptive engaged",
+  7="standstill", 6="non-adaptive click up", 5="non-adaptive click down", 4="non-adaptive hold down",
+  3="non-adaptive hold up", 2="non-adaptive being engaged", 1="non-adaptive engaged", 0="off")
+enum VtSig_PCM_FOLLOW_DISTANCE(1="far", 2="medium", 3="close")
+enum VtSig_LOW_SPEED_LOCKOUT(2="low speed locked", 1="ok")
+enum VtSig_STATE1(3="enabled", 1="disabled")
+enum VtSig_DIRECTION_CMD(3="right", 2="center", 1="left")
+enum VtSig_STATE2(0="normal", 1="adaptive_cruise_control", 3="emergency_braking")
+enum VtSig_ALLOW_LONG_PRESS(2="set speed increase by 5 speed units regardless",
+  1="set speed increase by 1 speed unit on short press, 5 speed units on long press")
+enum VtSig_ACC_MALFUNCTION(1="faulted", 0="ok")
+enum VtSig_ACC_TYPE(2="permanent low speed lockout", 1="ok")
+enum VtSig_ACC_CUT_IN(1="CUT-IN Detected", 0="clear")
+enum VtSig_CLUTCH_RELEASED(0="clutch pressed any amount", 1="clutch released", 2="disabled", 11="hold",
+  10="hold_waiting_user_cmd", 6="enabled", 5="faulted")
+enum VtSig_SPORT_ON(0="off", 1="on")
+enum VtSig_GEAR3(0="D", 1="S", 8="N", 16="R", 32="P")
+enum VtSig_SPORT_GEAR(1="S1", 2="S2", 3="S3", 4="S4", 5="S5", 6="S6")
+enum VtSig_REVERSE_CAMERA_GUIDELINES(3="No guidelines", 2="Static guidelines", 1="Active guidelines")
+enum VtSig_PCS_INDICATOR(2="PCS Faulted", 1="PCS Turned Off By User", 0="PCS Enabled")
+enum VtSig_PCS_SENSITIVITY(64="high sensitivity", 128="mid sensitivity", 192="low sensitivity", 0="off")
+enum VtSig_BARRIERS(3="left", 2="right", 1="both", 0="none")
+enum VtSig_RIGHT_LINE(3="orange", 2="faded", 1="solid", 0="none")
+enum VtSig_LKAS_STATUS(1="on", 0="off")
+enum VtSig_LDA_ALERT(3="hold with continuous beep", 2="LDA unavailable", 1="hold", 0="none")
+enum VtSig_LDA_SENSITIVITY(2="standard", 1="high", 0="undefined")
+enum VtSig_LDA_SA_TOGGLE(2="steering assist off", 1="steering assist on")
+enum VtSig_LDA_MESSAGES(4="lda unavailable at this speed", 1="lda unavailable below approx 50km/h", 0="ok")
+enum VtSig_LDA_ON_MESSAGE(2="Lane Departure Alert Turned ON, Steering Assist Inactive",
+  1="Lane Departure Alert Turned ON, Steering Assist Active", 0="clear")
+enum VtSig_TAKE_CONTROL(1="take control", 0="ok")
+enum VtSig_LDA_FRONT_CAMERA_BLOCKED(1="lda unavailable", 0="ok")
+enum VtSig_LANE_SWAY_BUZZER(3="ok", 2="beep twice", 1="beep twice", 0="ok")
+enum VtSig_LANE_SWAY_WARNING(3="ok", 2="orange please take a break", 1="prompt would you like to take a break", 0="ok")
+enum VtSig_TSGN1(1="speed sign", 0="none")
+enum VtSig_SPLSGN2(15="conditional blank", 4="wet road", 5="rain", 0="none")
+enum VtSig_TSGN3(0="none", 1="speed sign", 2="0 unlimited", 7="unlimited", 16="highway", 17="no highway", 18="motorway",
+  19="no motorway", 20="in city", 21="outside city", 22="pedestrian area", 23="no pedestrian area",
+  65="no overtaking left", 66="no overtaking right", 67="overtaking allowed again", 81="no right turn", 97="stop",
+  105="yield", 113="stop", 114="yield us", 129="no entry", 138="no entry tss2", 145="do not enter")
+enum VtSig_METER_SLIDER_LOW_BRIGHTNES(1="Low brightness mode, footwell lights off", 0="Normal mode, footwell lights on")
+enum VtSig_METER_SLIDER_DIMMED(1="Dimmed", 0="Not Dimmed")
+enum VtSig_UNITS(1="km (km/L)", 2="km (L/100km)", 3="miles (MPG US)", 4="miles (MPG Imperial)")
+enum VtSig_UNITS5(1="km", 2="miles")
+enum VtSig_TURN_SIGNALS(3="none", 2="right", 1="left")
+enum VtSig_LOCK_STATUS(0="locked", 1="unlocked")
+enum VtSig_IPAS_STATE(5="override", 3="enabled", 1="disabled")
+enum VtSig_LKA_STATE(25="temporary_fault", 9="temporary_fault2", 5="active", 1="standby")
+
+{SENDRECEIVE}
+
+[STEERING_IPAS_COMMA]
+ID=167h
+DLC=8
+Var=STATE unsigned 0,4 -m
+Var=ANGLE signed 4,12 -m /u:deg /f:1.5 /min:-510 /max:510
+Var=SET_ME_X10 unsigned 16,8 -m
+Var=SET_ME_X00 unsigned 24,8 -m
+Var=DIRECTION_CMD unsigned 33,2 -m
+Var=SET_ME_X40 unsigned 40,8 -m
+Var=SET_ME_X00_1 unsigned 48,8 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[GAS_COMMAND]
+ID=200h
+DLC=6
+Var=GAS_COMMAND unsigned 0,16 -m /f:0.159375 /o:-75.555 /min:0 /max:1
+Var=GAS_COMMAND2 unsigned 16,16 -m /f:0.159375 /o:-151.111 /min:0 /max:1
+Var=ENABLE bit 32,1 -m
+Var=COUNTER_PEDAL unsigned 36,4 -m
+Var=CHECKSUM_PEDAL unsigned 40,8 -m
+
+[GAS_SENSOR]
+ID=201h
+DLC=6
+Var=INTERCEPTOR_GAS unsigned 0,16 -m /max:1
+Var=INTERCEPTOR_GAS2 unsigned 16,16 -m /max:1
+Var=STATE unsigned 32,4 -m /e:VtSig_STATE
+Var=COUNTER_PEDAL unsigned 36,4 -m
+Var=CHECKSUM_PEDAL unsigned 40,8 -m
+
+[SECONDARY_STEER_ANGLE]
+ID=023h
+DLC=8
+Var=ZORRO_STEER signed 0,24 -m /f:0.004901594652 /min:-500 /max:500
+
+[SDSU]
+ID=2FFh
+DLC=8
+Var=FD_BUTTON bit 0,1 -m // The follow distance button signal as forwarded by the sdsu
+
+[KINEMATICS]
+ID=024h
+DLC=8
+Var=ACCEL_Y unsigned 38,10 -m /u:m/s^2 /f:0.03589 /o:-18.375 /min:0
+Var=YAW_RATE unsigned 6,10 -m /u:deg/s /f:0.244 /o:-125 /min:0 // verify
+Var=ACCEL_X unsigned 22,10 -m /u:m/s^2 /f:0.03589 /o:-18.375 /min:0 // x-axis accel
+
+[STEER_ANGLE_SENSOR]
+ID=025h
+DLC=8
+Var=STEER_ANGLE signed 4,12 -m /u:deg /f:1.5 /min:-500 /max:500
+Var=STEER_FRACTION signed 32,4 -m /u:deg /f:0.1 /min:-0.7 /max:0.7 // 1/15th of the signal STEER_ANGLE, which is 1.5 deg; note that 0x8 is never set
+Var=STEER_RATE signed 36,12 -m /u:deg/s /min:-2000 /max:2000 // factor is tbd
+
+[BRAKE]
+ID=0A6h
+DLC=8
+Var=BRAKE_AMOUNT unsigned 0,8 -m
+Var=BRAKE_PEDAL unsigned 16,8 -m
+
+[WHEEL_SPEEDS]
+ID=0AAh
+DLC=8
+Var=WHEEL_SPEED_FR unsigned 0,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0 /max:250
+Var=WHEEL_SPEED_FL unsigned 16,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0 /max:250
+Var=WHEEL_SPEED_RR unsigned 32,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0 /max:250
+Var=WHEEL_SPEED_RL unsigned 48,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0 /max:250
+
+[SPEED]
+ID=0B4h
+DLC=8
+Var=ENCODER unsigned 32,8 -m
+Var=SPEED unsigned 40,16 -m /u:km/h /f:0.01 /max:250
+Var=CHECKSUM unsigned 56,8 -m
+
+[GEAR_PACKET_HYBRID]
+ID=127h
+DLC=8
+Var=CAR_MOVEMENT signed 30,10 -m /min:0 /max:255
+Var=COUNTER unsigned 48,8 -m
+Var=CHECKSUM unsigned 56,8 -m
+Var=GEAR unsigned 40,4 -m /e:VtSig_GEAR
+
+[DSU_SPEED]
+ID=161h
+DLC=7
+Var=FORWARD_SPEED signed 8,16 -m /u:km/h /f:0.00390625 /o:-30 /min:0
+
+[ENGINE_RPM]
+ID=1C4h
+DLC=8
+Var=RPM signed 0,16 -m /u:rpm /f:0.78125
+
+[PCM_CRUISE]
+ID=1D2h
+DLC=8
+Var=GAS_RELEASED bit 3,1 -m
+Var=CRUISE_ACTIVE bit 2,1 -m
+Var=ACC_BRAKING bit 11,1 -m // whether brakes are being actuated from ACC command
+Var=ACCEL_NET signed 16,16 -m /u:m/s^2 /f:0.0009765625 /min:-20 /max:20 // net acceleration produced by the system, given ACCEL_CMD, road grade and other factors
+Var=NEUTRAL_FORCE signed 32,16 -m /u:N /f:2 // force in newtons the engine/electric motors are applying without any acceleration commands or user input
+Var=CRUISE_STATE unsigned 48,4 -m /e:VtSig_CRUISE_STATE // Active state is 8, if standstill is requested will switch to state 11(3 sec timer), after timer is elapsed will switch into state 7(standstill). If plus button was pressed - status 9, minus button pressed - status 10
+Var=CANCEL_REQ bit 49,1
+Var=CHECKSUM unsigned 56,8 -m
+
+[PCM_CRUISE_2]
+ID=1D3h
+DLC=8
+Var=BRAKE_PRESSED bit 4,1 -m
+Var=PCM_FOLLOW_DISTANCE unsigned 11,2 -m /e:VtSig_PCM_FOLLOW_DISTANCE
+Var=LOW_SPEED_LOCKOUT unsigned 9,2 -m /e:VtSig_LOW_SPEED_LOCKOUT // in low speed lockout, system would always disengage below 28mph
+Var=MAIN_ON bit 8,1 -m
+Var=SET_SPEED unsigned 16,8 -m /u:km/h // 43 km/h are shown as 28 mph, so conversion isn't perfect
+Var=ACC_FAULTED bit 40,1 -m // 1 when ACC is faulted and the PCM disallows engagement
+Var=CHECKSUM unsigned 56,8 -m
+
+[ACCELEROMETER]
+ID=228h
+DLC=8
+Var=ACCEL_Z signed 17,15 -m /u:m/s^2 /min:0
+Var=ACCEL_X signed 1,15 -m /u:m/s^2 /f:0.001
+
+[BRAKE_2]
+ID=230h
+DLC=7
+Var=BRAKE_PRESSED bit 29,1 -m // another brake pressed?
+
+[GAS_PEDAL_HYBRID]
+ID=245h
+DLC=8
+Var=GAS_PEDAL unsigned 16,8 -m /f:0.005 /max:1 // it seems slightly filtered
+
+[STEER_TORQUE_SENSOR]
+ID=260h
+DLC=8
+Var=STEER_TORQUE_EPS signed 40,16 -m
+Var=STEER_TORQUE_DRIVER signed 8,16 -m // driver torque
+Var=STEER_ANGLE signed 24,16 -m /f:0.0573 /min:-500 /max:500
+Var=STEER_ANGLE_INITIALIZING bit 4,1 -m
+Var=STEER_OVERRIDE bit 7,1 -m // set when driver torque exceeds a certain value
+Var=CHECKSUM unsigned 56,8 -m
+
+[STEERING_IPAS]
+ID=266h
+DLC=8
+Var=STATE unsigned 0,4 -m /e:VtSig_STATE1
+Var=ANGLE signed 4,12 -m /u:deg /f:1.5 /min:-510 /max:510 // set to measured angle when ipas control isn't active
+Var=SET_ME_X10 unsigned 16,8 -m
+Var=SET_ME_X00 unsigned 24,8 -m
+Var=DIRECTION_CMD unsigned 33,2 -m /e:VtSig_DIRECTION_CMD
+Var=SET_ME_X40 unsigned 40,8 -m
+Var=SET_ME_X00_1 unsigned 48,8 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[PRE_COLLISION]
+ID=283h
+DLC=7
+Var=_COUNTER unsigned 0,8 -m // only used on cars that use this msg for cruise control
+Var=SET_ME_X00 unsigned 8,8 -m
+Var=FORCE signed 16,16 -m /u:N /f:2 /min:0 /max:255
+Var=SET_ME_X002 unsigned 38,8 -m /max:3
+Var=BRAKE_STATUS unsigned 32,3 -m // only used on cars that use this msg for cruise control
+Var=STATE unsigned 35,3 -m /e:VtSig_STATE2
+Var=SET_ME_X003 bit 47,1 -m
+Var=PRECOLLISION_ACTIVE bit 46,1 -m // set 0.5s before any braking
+Var=CHECKSUM unsigned 48,8 -m
+
+[GAS_PEDAL]
+ID=2C1h
+DLC=8
+Var=GAS_RELEASED bit 4,1 -m
+Var=GAS_PEDAL unsigned 48,8 -m /f:0.005 /max:1
+
+[STEERING_LKA]
+ID=2E4h
+DLC=5
+Var=LKA_STATE unsigned 24,8 -m
+Var=STEER_REQUEST bit 7,1 -m
+Var=COUNTER unsigned 1,6 -m
+Var=SET_ME_1 bit 0,1 -m
+Var=STEER_TORQUE_CMD signed 8,16 -m /min:0
+Var=CHECKSUM unsigned 32,8 -m
+
+[LEAD_INFO]
+ID=2E6h
+DLC=8
+Var=CHECKSUM unsigned 56,8 -m
+Var=LEAD_REL_SPEED signed 16,12 -m /u:m/s /f:0.025
+Var=LEAD_LONG_DIST unsigned 0,13 -m /u:m /f:0.05 /max:300
+
+[ACC_CONTROL]
+ID=343h
+DLC=8
+Var=ACCEL_CMD signed 0,16 -m /u:m/s^2 /f:0.001 /min:-20 /max:20
+Var=ALLOW_LONG_PRESS unsigned 22,2 -m /max:2 /e:VtSig_ALLOW_LONG_PRESS // Enable Toyota's factory set speed increment behaviour, available on both metrics cars and imperial unit cars
+Var=ACC_MALFUNCTION bit 21,1 -m /e:VtSig_ACC_MALFUNCTION // display ACC fault on dash if set to 1
+Var=RADAR_DIRTY bit 20,1 -m // Display Clean Radar Sensor message on HUD
+Var=DISTANCE bit 19,1 -m // Cycle through ACC following distance from long, mid, short when set to 1
+Var=MINI_CAR bit 18,1 -m
+Var=ACC_TYPE unsigned 16,2 -m /e:VtSig_ACC_TYPE // if 2, car is likely to have a permanent low speed lockout. 1 is ok
+Var=CANCEL_REQ bit 31,1 -m
+Var=ACC_CUT_IN bit 30,1 -m /e:VtSig_ACC_CUT_IN // Display blinking yellow lead if set to 1
+Var=PERMIT_BRAKING bit 25,1 -m // Original ACC has this going high when a car in front is detected. In openpilot and before the PERMIT_BRAKING name, this was 'SET_ME_1' and is hardcoded to be high. Unsure if only informational or has an effect though existing usage in openpilot is to alwa
+Var=RELEASE_STANDSTILL bit 24,1 -m
+Var=ITS_CONNECT_LEAD unsigned 32,8 -m /max:1 // Displayed when lead car is capable of ITS Connect
+Var=ACCEL_CMD_ALT signed 40,8 -m /u:m/s^2 /f:0.05 // Copy of main ACCEL_CMD, but across 8 bits instead of 16 bits like ACCEL_CMD. Unsure if only informational or has an effect. Likely informational as existing openpilot sets this to 0 and no loss of functionality observed. Originally 'AT_RAW' in leaked toyo
+Var=CHECKSUM unsigned 56,8 -m
+
+[PRE_COLLISION_2]
+ID=344h
+DLC=8
+Var=CHECKSUM unsigned 56,8 -m
+
+[CLUTCH]
+ID=361h
+DLC=8
+Var=ACC_FAULTED bit 39,1 -m // 1 when ACC is faulted and the PCM disallows engagement. Also describes a lockout when the ACC_CONTROL->ACC_MALFUNCTION bit is set.
+Var=GAS_PEDAL_ALT unsigned 16,8 -m /f:0.005 /max:1 // copy of main GAS_PEDAL. Both use 8 bits. Might indicate that this message is for pedals.
+Var=CLUTCH_RELEASED bit 33,1 -m /e:VtSig_CLUTCH_RELEASED // boolean of clutch for 6MT.
+
+[DSU_CRUISE]
+ID=365h
+DLC=7
+Var=RES_BTN bit 4,1 -m
+Var=SET_BTN bit 5,1 -m
+Var=CANCEL_BTN bit 6,1 -m
+Var=MAIN_ON bit 7,1 -m
+Var=SET_SPEED unsigned 8,8 -m /u:km/h
+Var=CRUISE_REQUEST unsigned 24,8 -m /u:N /f:100 /o:-12800
+Var=LEAD_DISTANCE unsigned 32,8 -m /u:m
+
+[PCM_CRUISE_SM]
+ID=399h
+DLC=8
+Var=MAIN_ON bit 3,1 -m
+Var=CRUISE_CONTROL_STATE unsigned 12,4 -m
+Var=DISTANCE_LINES unsigned 9,2 -m
+Var=TEMP_ACC_FAULTED bit 8,1 -m // 1 when the UI is displaying or playing fault-related alerts or sounds. Also 1 when pressing main on.
+Var=UI_SET_SPEED unsigned 24,8 -m // set speed shown in the vehicle's UI with the vehicle's unit
+
+[ESP_CONTROL]
+ID=3B7h
+DLC=8
+Var=TC_DISABLED bit 10,1 -m
+Var=VSC_DISABLED unsigned 11,2 -m /max:1
+Var=BRAKE_LIGHTS_ACC bit 21,1 -m // brake lights when ACC commands decel
+Var=BRAKE_HOLD_ENABLED bit 33,1
+Var=BRAKE_HOLD_ACTIVE bit 35,1 -m
+
+[GEAR_PACKET]
+ID=3BCh
+DLC=8
+Var=SPORT_ON bit 5,1 -m /e:VtSig_SPORT_ON
+Var=GEAR unsigned 10,6 -m /e:VtSig_GEAR3 // on 6MT, only R shows.
+Var=SPORT_GEAR_ON bit 38,1 -m /e:VtSig_SPORT_ON
+Var=SPORT_GEAR unsigned 33,3 -m /e:VtSig_SPORT_GEAR
+Var=ECON_ON bit 47,1 -m /e:VtSig_SPORT_ON
+Var=B_GEAR_ENGAGED bit 46,1 -m /e:VtSig_SPORT_ON
+Var=DRIVE_ENGAGED bit 40,1 -m /e:VtSig_SPORT_ON
+
+[REVERSE_CAMERA_STATE]
+ID=3EDh
+DLC=2
+Var=REVERSE_CAMERA_GUIDELINES unsigned 14,2 -m /min:1 /e:VtSig_REVERSE_CAMERA_GUIDELINES
+
+[PCM_CRUISE_ALT]
+ID=3F1h
+DLC=8
+Var=PCM_FOLLOW_DISTANCE unsigned 4,2 /e:VtSig_PCM_FOLLOW_DISTANCE
+Var=MAIN_ON bit 10,1 -m
+Var=CRUISE_STATE bit 13,1 -m
+Var=UI_SET_SPEED unsigned 16,8 -m /u:mph // units seem to be whatever the car is set to
+
+[SOLAR_SENSOR]
+ID=3FCh
+DLC=8
+Var=LUX_SENSOR unsigned 48,13 -m
+
+[PCS_HUD]
+ID=411h
+DLC=8
+Var=PCS_INDICATOR unsigned 0,2 -m /e:VtSig_PCS_INDICATOR // Pre-Collision System Indicator
+Var=FCW bit 3,1 -m
+Var=SET_ME_X20 unsigned 8,8 -m /max:1
+Var=PCS_DUST bit 37,1 -m // alert: Front Camera Low Visibility Unavailable See Owner's Manual
+Var=PCS_TEMP bit 36,1 -m // alert: Front Camera Out of Temperature Range Unavailable Wait until Normal Temperature
+Var=PCS_DUST2 bit 46,1 -m // alert: Pre-Collision System Radar Sensor Blocked Unavailable Clean Radar Sensor
+Var=PCS_TEMP2 bit 45,1 -m // alert: Pre-Collision System Out of Temperature Range Unavailable See Owner's Manual
+Var=SET_ME_X10 unsigned 32,8 -m /max:1
+Var=PCS_OFF bit 47,1 -m
+Var=FRD_ADJ unsigned 50,3 -m // alert: ERROR ADJUSTING FRONT RADAR BEAM
+Var=PCS_SENSITIVITY unsigned 48,8 -m /max:1 /e:VtSig_PCS_SENSITIVITY // Pre-Collision System Sensitivity
+
+[LKAS_HUD]
+ID=412h
+DLC=8
+Var=BARRIERS unsigned 6,2 -m /e:VtSig_BARRIERS
+Var=RIGHT_LINE unsigned 4,2 -m /e:VtSig_RIGHT_LINE
+Var=LEFT_LINE unsigned 2,2 -m /e:VtSig_RIGHT_LINE
+Var=LKAS_STATUS unsigned 0,2 -m /e:VtSig_LKAS_STATUS
+Var=LDA_ALERT unsigned 14,2 -m /e:VtSig_LDA_ALERT
+Var=LDW_EXIST bit 13,1 -m // Unclear what this is, it's usually set to 0
+Var=TWO_BEEPS bit 11,1 -m
+Var=ADJUSTING_CAMERA bit 10,1 -m
+Var=LDA_UNAVAILABLE_QUIET bit 9,1 -m // LDA toggles and sensitivity settings are greyed out if set to 1
+Var=LDA_MALFUNCTION bit 8,1 -m
+Var=LDA_UNAVAILABLE bit 23,1 -m
+Var=LDA_SENSITIVITY unsigned 21,2 -m /e:VtSig_LDA_SENSITIVITY // LDA Sensitivity
+Var=LDA_SA_TOGGLE unsigned 19,2 -m /e:VtSig_LDA_SA_TOGGLE // LDA Steering Assist Toggle
+Var=LDA_MESSAGES unsigned 16,3 -m /max:1 /e:VtSig_LDA_MESSAGES // Various LDA Messages
+Var=LDA_ON_MESSAGE unsigned 24,2 -m /e:VtSig_LDA_ON_MESSAGE // Display LDA Turned ON message
+Var=REPEATED_BEEPS bit 39,1 -m // LDA audible warning
+Var=LANE_SWAY_TOGGLE bit 44,1 -m // Lane Sway Warning System SWS Switch
+Var=LANE_SWAY_SENSITIVITY unsigned 42,2 -m
+Var=TAKE_CONTROL bit 41,1 -m /e:VtSig_TAKE_CONTROL // Please Control Steering Wheel warning
+Var=LDA_FRONT_CAMERA_BLOCKED bit 40,1 -m /e:VtSig_LDA_FRONT_CAMERA_BLOCKED // originally LDAFCVB, LDA related settings are greyed out if set to 1
+Var=LANE_SWAY_BUZZER unsigned 53,2 -m /e:VtSig_LANE_SWAY_BUZZER // Similar to TWO_BEEPS
+Var=LANE_SWAY_FLD unsigned 50,3 -m // Unknown signal for Lane Sway Warning System, set to 7 on stock system when SWS is enabled, 0 when SWS is disabled
+Var=LANE_SWAY_WARNING unsigned 48,2 -m /e:VtSig_LANE_SWAY_WARNING // Lane Sway Warning System Triggered
+Var=SET_ME_X01 bit 45,1 -m // empty bit on leaked dbc, always set to 1 during normal operations
+Var=SET_ME_X02 unsigned 56,8 -m /max:1 // empty bit on leaked dbc, always set to 2 during normal operations
+
+[TIME]
+ID=413h
+DLC=8
+Var=YEAR unsigned 0,8 -m /u:year
+Var=MONTH unsigned 8,8 -m /u:month
+Var=DAY unsigned 16,8 -m /u:day
+Var=HOUR unsigned 24,8 -m /u:hour
+Var=MINUTE unsigned 32,8 -m /u:minute
+Var=GMT_DIFF bit 48,1 -m
+Var=GMTDIFF_HOURS unsigned 49,4 -m /u:hours
+Var=GMTDIFF_MINUTES unsigned 53,6 -m /u:minutes
+Var=SUMMER bit 59,1 -m
+
+[AUTO_HIGH_BEAM]
+ID=414h
+DLC=8
+Var=AHB_DUTY unsigned 40,8 -m /u:% /f:0.5
+Var=F_AHB unsigned 48,4 -m
+Var=C_AHB unsigned 52,4 -m
+
+[AUTOPARK_STATUS]
+ID=43Bh
+DLC=8
+Var=STATE unsigned 0,4 -m // when the dashboard button is pressed, the value changes from zero to non-zero
+
+[RSA1]
+ID=489h
+DLC=8
+Var=TSGN1 unsigned 0,8 -m /e:VtSig_TSGN1
+Var=TSGNGRY1 unsigned 11,3 -m
+Var=TSGNHLT1 unsigned 14,2 -m
+Var=SPDVAL1 unsigned 16,8 -m /u:km/h // Numbers 0-199 is displayed, 200-254 displays circle without number and 255 is for no limit.
+Var=SPLSGN1 unsigned 24,4 -m
+Var=SPLSGN2 unsigned 28,4 -m /e:VtSig_SPLSGN2
+Var=TSGN2 unsigned 32,8 -m /e:VtSig_TSGN1
+Var=TSGNGRY2 unsigned 43,3 -m
+Var=TSGNHLT2 unsigned 46,2 -m
+Var=SPDVAL2 unsigned 48,8 -m // conditional speed value 70
+Var=BZRRQ_P unsigned 56,2 -m
+Var=BZRRQ_A unsigned 58,2 -m
+Var=SYNCID1 unsigned 60,4 -m // counter from 1 to f at 1 Hz
+
+[RSA2]
+ID=48Ah
+DLC=8
+Var=TSGN3 unsigned 0,8 -m /e:VtSig_TSGN3
+Var=TSGNGRY3 unsigned 11,3 -m
+Var=TSGNHLT3 unsigned 14,2 -m
+Var=SPLSGN3 unsigned 24,4 -m /e:VtSig_SPLSGN2
+Var=SPLSGN4 unsigned 28,4 -m
+Var=TSGN4 unsigned 32,8 -m
+Var=TSGNGRY4 unsigned 43,3 -m
+Var=TSGNHLT4 unsigned 46,2 -m
+Var=DPSGNREQ bit 49,1 -m
+Var=SGNNUMP unsigned 50,3 -m // 1 if SPDVAL1 is set, otherwise 0
+Var=SGNNUMA unsigned 53,3 -m
+Var=SPDUNT unsigned 56,2 -m
+Var=TSRWMSG unsigned 58,2 -m
+Var=SYNCID2 unsigned 60,4 -m // counter from 1 to f at 1 Hz
+
+[RSA3]
+ID=48Bh
+DLC=8
+Var=TSREQPD bit 0,1 -m // always 1
+Var=TSRMSW bit 1,1 -m // always 1
+Var=OTSGNNTM unsigned 2,2 -m // always 3
+Var=NTLVLSPD unsigned 4,2 -m // always 3
+Var=OVSPNTM unsigned 6,2 -m // always 3
+Var=OVSPVALL unsigned 12,4 -m /o:-5 // -5 at start then 2 after 2 seconds
+Var=OVSPVALM unsigned 20,4 -m /o:-5 // -5 at start then 5 after 2 seconds
+Var=OVSPVALH unsigned 28,4 -m /o:-5 // -5 at start then 10 after 2 seconds
+Var=TSRSPU unsigned 38,2 -m // always 1
+
+[VIN_PART_1]
+ID=580h
+DLC=8
+Var=VIN_1 unsigned 0,8 -m
+Var=VIN_2 unsigned 8,8 -m
+Var=VIN_3 unsigned 16,8 -m
+Var=VIN_4 unsigned 24,8 -m
+Var=VIN_5 unsigned 32,8 -m
+Var=VIN_6 unsigned 40,8 -m
+Var=VIN_7 unsigned 48,8 -m
+Var=VIN_8 unsigned 56,8 -m
+
+[VIN_PART_2]
+ID=581h
+DLC=8
+Var=VIN_9 unsigned 0,8 -m
+Var=VIN_10 unsigned 8,8 -m
+Var=VIN_11 unsigned 16,8 -m
+Var=VIN_12 unsigned 24,8 -m
+Var=VIN_13 unsigned 32,8 -m
+Var=VIN_14 unsigned 40,8 -m
+Var=VIN_15 unsigned 48,8 -m
+Var=VIN_16 unsigned 56,8 -m
+
+[VIN_PART_3]
+ID=582h
+DLC=8
+Var=VIN_17 unsigned 0,8 -m
+
+[BODY_CONTROL_STATE_2]
+ID=610h
+DLC=8
+Var=UI_SPEED unsigned 16,8 -m // Does not appear to match dash
+Var=METER_SLIDER_BRIGHTNESS_PCT unsigned 25,7 -m /u:% /min:12 /max:100 // Combination display brightness setting, scales from 12 per cent to 100 per cent, reflects combination meter settings only, not linked with headlight state
+Var=METER_SLIDER_LOW_BRIGHTNESS bit 34,1 -m /e:VtSig_METER_SLIDER_LOW_BRIGHTNES // Combination display low brightness mode, also controls footwell lighting
+Var=METER_SLIDER_DIMMED bit 33,1 -m /e:VtSig_METER_SLIDER_DIMMED // Combination display slider not at max, reflects combination meter settings only, not linked with headlight state
+Var=UNITS unsigned 56,3 -m /min:1 /max:4 /e:VtSig_UNITS
+
+[UI_SETTING]
+ID=611h
+DLC=8
+Var=UNITS unsigned 29,2 -m /e:VtSig_UNITS5
+Var=ODOMETER unsigned 32,32 -m /max:1048575 // Unit is dependent upon units signal
+
+[BLINKERS_STATE]
+ID=614h
+DLC=8
+Var=TURN_SIGNALS unsigned 26,2 -m /e:VtSig_TURN_SIGNALS
+Var=HAZARD_LIGHT bit 28,1 -m
+
+[BODY_CONTROL_STATE]
+ID=620h
+DLC=8
+Var=METER_DIMMED bit 33,1 -m
+Var=PARKING_BRAKE bit 59,1 -m
+Var=SEATBELT_DRIVER_UNLATCHED bit 57,1 -m
+Var=DOOR_OPEN_FL bit 42,1 -m
+Var=DOOR_OPEN_RL bit 45,1 -m
+Var=DOOR_OPEN_RR bit 44,1 -m
+Var=DOOR_OPEN_FR bit 43,1 -m
+
+[LIGHT_STALK]
+ID=622h
+DLC=8
+Var=AUTO_HIGH_BEAM bit 34,1 -m
+Var=FRONT_FOG bit 28,1 -m
+Var=PARKING_LIGHT bit 27,1 -m
+Var=LOW_BEAM bit 26,1 -m
+Var=HIGH_BEAM bit 25,1 -m
+Var=DAYTIME_RUNNING_LIGHT bit 24,1 -m
+
+[CERTIFICATION_ECU]
+ID=623h
+DLC=8
+Var=DOOR_LOCK_FEEDBACK_LIGHT bit 8,1 -m
+Var=KEYFOB_LOCKING_FEEDBACK_LIGHT bit 58,1 -m
+Var=KEYFOB_UNLOCKING_FEEDBACK_LIGHT bit 57,1 -m
+
+[DOOR_LOCKS]
+ID=638h
+DLC=8
+Var=LOCK_STATUS_CHANGED bit 8,1 -m // 1 on rising edge of lock/unlocking
+Var=LOCK_STATUS bit 19,1 -m /e:VtSig_LOCK_STATUS // The next 3 bits always seem to follow this signal.
+Var=LOCKED_VIA_KEYFOB bit 16,1 -m // 1 for as long as car is locked with key fob or door handle touch
+
+[BRAKE_MODULE]
+ID=224h
+DLC=8
+Var=BRAKE_PRESSURE unsigned 44,12 -m /max:4047 // seems prop to pedal force
+Var=BRAKE_PRESSED bit 2,1 -m
+
+[EPS_STATUS]
+ID=262h
+DLC=5
+Var=IPAS_STATE unsigned 4,4 -m /e:VtSig_IPAS_STATE
+Var=LKA_STATE unsigned 24,7 -m /e:VtSig_LKA_STATE
+Var=TYPE bit 31,1 -m // seems 1 on Corolla, 0 on all others
+Var=CHECKSUM unsigned 32,8 -m
+
+[BRAKE_RELATED]
+ID=49Ah
+DLC=8
+Var=BRAKE_PRESSED bit 55,1 -m

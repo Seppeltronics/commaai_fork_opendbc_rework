@@ -1,0 +1,124 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="toyota_radar_dsu_tssp"
+
+{SENDRECEIVE}
+
+[BUTTONS]
+ID=300h
+DLC=8
+Var=LKAS_PRESS bit 5,1 -m
+Var=DISTANCE_PRESS bit 2,1 -m
+
+[OBJECT_0]
+ID=301h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_1]
+ID=303h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_2]
+ID=305h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_3]
+ID=307h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_4]
+ID=309h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_5]
+ID=30Bh
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_6]
+ID=30Dh
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_7]
+ID=30Fh
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_8]
+ID=311h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_9]
+ID=313h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_10]
+ID=315h
+DLC=8
+Var=ID unsigned 2,6 -m
+Var=LONG_DIST unsigned 7,13 /u:m /f:0.03
+Var=LAT_DIST signed 20,11 /f:0.018 /min:0 /max:15
+Var=SPEED signed 31,10 /u:m/s /f:0.06944444444 /min:0
+Var=LAT_SPEED signed 48,7 /u:m/s /f:0.1 /min:0
+Var=RCS unsigned 56,8 -m
+
+[OBJECT_11]
+ID=317h
+DLC=8

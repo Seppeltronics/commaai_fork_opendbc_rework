@@ -1,0 +1,115 @@
+VERSION ""
+
+
+NS_ :
+  CM_
+  BA_DEF_
+  BA_
+  VAL_
+  BA_DEF_DEF_
+  SIG_VALTYPE_
+
+BS_:
+
+BU_: Vector__XXX
+
+
+BO_ 768 BUTTONS: 8 Vector__XXX
+SG_ LKAS_PRESS : 2|1@0+ (1,0) [0|1] "" Vector__XXX
+SG_ DISTANCE_PRESS : 5|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 769 OBJECT_0: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 771 OBJECT_1: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 773 OBJECT_2: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 775 OBJECT_3: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 777 OBJECT_4: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 779 OBJECT_5: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 781 OBJECT_6: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 783 OBJECT_7: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 785 OBJECT_8: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 787 OBJECT_9: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 789 OBJECT_10: 8 Vector__XXX
+SG_ ID : 5|6@0+ (1,0) [0|63] "" Vector__XXX
+SG_ LONG_DIST : 7|13@1+ (0.03,0) [0|245.73] "m" Vector__XXX
+SG_ LAT_DIST : 20|11@1- (0.018,0) [0|15] "" Vector__XXX
+SG_ SPEED : 31|10@1- (0.06944444444,0) [0|35.48611110884] "m/s" Vector__XXX
+SG_ LAT_SPEED : 48|7@1- (0.1,0) [0|6.3] "m/s" Vector__XXX
+SG_ RCS : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 791 OBJECT_11: 8 Vector__XXX
+
+BA_DEF_  "BusType" STRING ;
+
+BA_DEF_DEF_  "BusType" "CAN";
+
+BA_ "BusType" "CAN";

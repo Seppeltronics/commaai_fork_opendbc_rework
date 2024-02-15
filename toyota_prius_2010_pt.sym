@@ -1,0 +1,202 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="toyota_prius_2010_pt"
+
+{ENUMS}
+enum VtSig_GEAR(0="P", 1="R", 2="N", 3="D", 4="B")
+enum VtSig_CRUISE_STATE(11="timer_3sec", 10="setspeeddown", 9="setspeedup", 8="active", 7="standstill", 1="off",
+  0="off")
+enum VtSig_STATE(5="override", 3="enabled", 1="disabled")
+enum VtSig_LKA_STATE(50="temporary_fault")
+enum VtSig_STATE1(3="enabled", 1="disabled")
+enum VtSig_DIRECTION_CMD(3="right", 2="center", 1="left")
+enum VtSig_TURN_SIGNALS(3="none", 2="right", 1="left")
+enum VtSig_LOW_SPEED_LOCKOUT(2="low speed locked", 1="ok")
+enum VtSig_CRUISE_CONTROL_STATE(2="disabled", 11="hold", 10="hold_waiting_user_cmd", 6="enabled", 5="faulted")
+enum VtSig_BARRIERS(3="both", 2="right", 1="left", 0="none")
+enum VtSig_RIGHT_LINE(3="orange", 2="double", 1="solid", 0="none")
+enum VtSig_LDA_ALERT(3="hold with continuous beep", 2="LDA unavailable", 1="hold", 0="none")
+enum VtSig_UNITS(1="km", 2="miles")
+
+{SENDRECEIVE}
+
+[KINEMATICS]
+ID=024h
+DLC=8
+Var=ACCEL_Y unsigned 38,10 -m /o:-512 /min:0 // unit is tbd
+Var=STEERING_TORQUE unsigned 22,10 -m /o:-512 /min:0 // does not seem the steer torque, tbd
+Var=YAW_RATE unsigned 6,10 -m /o:-512 /min:0 // verify
+
+[BRAKE]
+ID=0A6h
+DLC=8
+Var=BRAKE_AMOUNT unsigned 0,8 -m
+Var=BRAKE_PEDAL unsigned 16,8 -m
+
+[WHEEL_SPEEDS]
+ID=0AAh
+DLC=8
+Var=WHEEL_SPEED_FR unsigned 0,16 -m /u:mph /f:0.0062 /o:-67.67 /min:0 /max:250
+Var=WHEEL_SPEED_FL unsigned 16,16 -m /u:mph /f:0.0062 /o:-67.67 /min:0 /max:250
+Var=WHEEL_SPEED_RR unsigned 32,16 -m /u:mph /f:0.0062 /o:-67.67 /min:0 /max:250
+Var=WHEEL_SPEED_RL unsigned 48,16 -m /u:mph /f:0.0062 /o:-67.67 /min:0 /max:250
+
+[SPEED]
+ID=0B4h
+DLC=8
+Var=CHECKSUM unsigned 56,8 -m
+Var=SPEED unsigned 40,16 -m /u:mph /f:0.0062 /max:115
+Var=ENCODER unsigned 32,8 -m
+
+[GEAR_PACKET]
+ID=127h
+DLC=8
+Var=CAR_MOVEMENT signed 32,8 -m /min:0
+Var=COUNTER unsigned 48,8 -m
+Var=CHECKSUM unsigned 56,8 -m
+Var=GEAR unsigned 40,4 -m /e:VtSig_GEAR
+
+[PCM_CRUISE]
+ID=1D2h
+DLC=8
+Var=GAS_RELEASED bit 3,1 -m
+Var=ACCEL_NET signed 16,16 -m /u:m/s2 /f:0.001 /min:-20 /max:20 // net acceleration produced by the system, given ACCEL_CMD, road grade and other factors
+Var=CRUISE_STATE unsigned 48,4 -m /e:VtSig_CRUISE_STATE // Active state is 8, if standstill is requested will switch to state 11(3 sec timer), after timer is elapsed will switch into state 7(standstill). If plus button was pressed - status 9, minus button pressed - status 10
+Var=CHECKSUM unsigned 56,8 -m
+
+[BRAKE_MODULE]
+ID=226h
+DLC=8
+Var=BRAKE_PRESSURE unsigned 7,9 -m // seems prop to pedal force
+Var=BRAKE_POSITION unsigned 23,9 -m // seems proportional to pedal displacement, unclear the max value of 0x1c8
+Var=BRAKE_PRESSED bit 34,1 -m
+
+[ACCELEROMETER]
+ID=228h
+DLC=8
+Var=ACCEL_Z signed 17,15 -m /min:0
+Var=ACCEL_X signed 1,15 -m /u:m/s2 /f:0.001
+
+[BRAKE_MODULE2]
+ID=230h
+DLC=8
+Var=BRAKE_LIGHTS bit 29,1 -m // double check
+
+[GAS_PEDAL]
+ID=245h
+DLC=8
+Var=GAS_PEDAL unsigned 16,8 -m /f:0.005 /max:1 // it seems slightly filtered
+
+[STEER_TORQUE_SENSOR]
+ID=260h
+DLC=8
+Var=STEER_TORQUE_EPS signed 40,16 -m /f:0.66 /min:-20000 /max:20000
+Var=STEER_TORQUE_DRIVER signed 8,16 -m // driver torque
+Var=STEER_OVERRIDE bit 7,1 -m // set when driver torque exceeds a certain value
+Var=CHECKSUM unsigned 56,8 -m
+
+[EPS_STATUS]
+ID=262h
+DLC=5
+Var=STATE unsigned 4,4 -m /e:VtSig_STATE
+Var=LKA_STATE unsigned 24,8 -m /e:VtSig_LKA_STATE
+Var=CHECKSUM unsigned 32,8 -m
+
+[STEERING_IPAS]
+ID=266h
+DLC=8
+Var=STATE unsigned 0,4 -m /e:VtSig_STATE1
+Var=ANGLE signed 4,12 -m /min:0 // set to measured angle when ipas control isn't active
+Var=SET_ME_X10 unsigned 16,8 -m
+Var=SET_ME_X00_1 unsigned 48,8 -m
+Var=DIRECTION_CMD unsigned 33,2 -m /e:VtSig_DIRECTION_CMD
+Var=CHECKSUM unsigned 56,8 -m
+
+[PRE_COLLISION]
+ID=283h
+DLC=8
+
+[STEERING_LKA]
+ID=2E4h
+DLC=8
+Var=LKA_STATE unsigned 24,8 -m
+Var=CHECKSUM unsigned 32,8 -m
+Var=STEER_REQUEST bit 7,1 -m
+Var=COUNTER unsigned 1,6 -m
+Var=SET_ME_1 bit 0,1 -m
+Var=STEER_TORQUE_CMD signed 8,16 -m /min:0
+
+[LEAD_INFO]
+ID=2E6h
+DLC=8
+Var=CHECKSUM unsigned 56,8 -m
+Var=LEAD_REL_SPEED signed 16,12 -m /u:m/s /f:0.025
+Var=LEAD_LONG_DIST unsigned 0,13 -m /u:m /f:0.05 /max:300
+
+[ACC_CONTROL]
+ID=343h
+DLC=8
+Var=ACCEL_CMD signed 0,16 -m /u:m/s2 /f:0.001 /min:-20 /max:20
+
+[STEERING_LEVERS]
+ID=614h
+DLC=8
+Var=TURN_SIGNALS unsigned 26,2 -m /e:VtSig_TURN_SIGNALS
+
+[STEER_ANGLE_SENSOR]
+ID=025h
+DLC=8
+Var=STEER_ANGLE signed 4,12 -m /u:deg /f:1.5 /min:-500 /max:500
+Var=STEER_FRACTION signed 32,4 -m /u:deg /f:0.1 /min:-0.7 /max:0.7 // 1/15th of the signal STEER_ANGLE, which is 1.5 deg; note that 0x8 is never set
+Var=STEER_RATE signed 36,12 -m /u:deg/s /min:-2000 /max:2000 // factor is tbd
+
+[PCM_CRUISE_2]
+ID=1D3h
+DLC=8
+Var=MAIN_ON bit 8,1 -m
+Var=LOW_SPEED_LOCKOUT unsigned 9,2 -m /u:kph /e:VtSig_LOW_SPEED_LOCKOUT // in low speed lockout, system would always disengage below 28mph
+Var=SET_SPEED unsigned 16,8 -m /u:kph // 43 kph are shown as 28mph, so conversion isn't perfect
+Var=CHECKSUM unsigned 56,8 -m
+
+[PCM_CRUISE_SM]
+ID=399h
+DLC=8
+Var=MAIN_ON bit 3,1 -m
+Var=CRUISE_CONTROL_STATE unsigned 12,4 -m /e:VtSig_CRUISE_CONTROL_STATE
+Var=UI_SET_SPEED unsigned 24,8 -m // set speed shown in UI with user set unit
+
+[ESP_CONTROL]
+ID=3B7h
+DLC=8
+Var=TC_DISABLED bit 10,1 -m
+
+[LKAS_HUD]
+ID=412h
+DLC=8
+Var=BARRIERS unsigned 6,2 -m /e:VtSig_BARRIERS
+Var=RIGHT_LINE unsigned 4,2 -m /e:VtSig_RIGHT_LINE
+Var=LEFT_LINE unsigned 2,2 -m /e:VtSig_RIGHT_LINE
+Var=SET_ME_1 unsigned 0,2 -m // unclear what this is, nut it's always 1 in drive traces
+Var=LDA_ALERT unsigned 14,2 -m /e:VtSig_LDA_ALERT
+Var=TWO_BEEPS bit 11,1 -m
+Var=ADJUSTING_CAMERA bit 10,1 -m
+Var=LDA_MALFUNCTION bit 8,1 -m
+
+[UI_SEETING]
+ID=611h
+DLC=8
+Var=UNITS unsigned 29,2 -m /e:VtSig_UNITS
+
+[SEATS_DOORS]
+ID=620h
+DLC=8
+Var=SEATBELT_DRIVER_UNLATCHED bit 57,1 -m
+Var=DOOR_OPEN_FL bit 42,1 -m
+Var=DOOR_OPEN_RL bit 45,1 -m
+Var=DOOR_OPEN_RR bit 44,1 -m
+Var=DOOR_OPEN_FR bit 43,1 -m
+
+[POWERTRAIN]
+ID=1C4h
+DLC=8
+Var=ENGINE_RPM unsigned 0,16 -m /u:rpm
+Var=CHECKSUM unsigned 56,8 -m

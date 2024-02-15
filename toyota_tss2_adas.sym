@@ -1,0 +1,320 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="toyota_tss2_adas"
+
+{SENDRECEIVE}
+
+[TRACK_A_0]
+ID=180h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_1]
+ID=181h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_2]
+ID=182h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_3]
+ID=183h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_4]
+ID=184h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_5]
+ID=185h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_6]
+ID=186h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_7]
+ID=187h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_8]
+ID=188h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_9]
+ID=189h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_10]
+ID=18Ah
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_11]
+ID=18Bh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_12]
+ID=18Ch
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_13]
+ID=18Dh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_14]
+ID=18Eh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_A_15]
+ID=18Fh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=LAT_DIST signed 24,11 -m /u:m /f:0.04
+Var=LONG_DIST unsigned 8,13 -m /u:m /f:0.04 /max:300
+Var=NEW_TRACK bit 35,1 -m
+Var=REL_SPEED signed 40,12 -m /u:m/s /f:0.025
+Var=VALID bit 55,1 -m
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_0]
+ID=190h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_1]
+ID=191h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_2]
+ID=192h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_3]
+ID=193h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_4]
+ID=194h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_5]
+ID=195h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_6]
+ID=196h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_7]
+ID=197h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_8]
+ID=198h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_9]
+ID=199h
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_10]
+ID=19Ah
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_11]
+ID=19Bh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_12]
+ID=19Ch
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_13]
+ID=19Dh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_14]
+ID=19Eh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[TRACK_B_15]
+ID=19Fh
+DLC=8
+Var=COUNTER unsigned 0,8 -m
+Var=REL_ACCEL signed 8,7 -m
+Var=SCORE unsigned 16,8 -m /max:100
+Var=CHECKSUM unsigned 56,8 -m
+
+[NEW_MSG_1]
+ID=240h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 8,7 -m
+Var=NEW_SIGNAL_2 unsigned 16,8 -m
+
+[NEW_MSG_2]
+ID=241h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 8,7 -m
+Var=NEW_SIGNAL_2 unsigned 16,8 -m

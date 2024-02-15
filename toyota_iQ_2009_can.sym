@@ -1,0 +1,180 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="toyota_iQ_2009_can"
+
+{SENDRECEIVE}
+
+[CONTAINS_LRES_SPEED]
+ID=610h
+DLC=8
+Var=SPEED_LOWRES unsigned 16,8 /u:km/h? // Negative values to check
+Var=NEW_SIGNAL_1 unsigned 0,8 -m
+
+[ENGINE]
+ID=1C4h
+DLC=8
+Var=ENGINE_RPM unsigned 0,16 -m /u:rpm
+Var=CHECKSUM unsigned 56,8 -m // Follows path of RPMs but more precise & 1 byte only
+Var=DIFFERENT_EACH_RIDE unsigned 16,8 -m
+Var=A_DECREASING_VALUE unsigned 32,8 -m // stabilizes to 62 after ~10 mins
+
+[STEERING]
+ID=025h
+DLC=8
+Var=STEER_DIRECTION bit 4,1 -m // Could be intended as 12 bit steering angle
+Var=NEW_SIGNAL_1 unsigned 32,8 -m
+Var=NEW_SIGNAL_4 signed 45,2 -m /min:0
+Var=NEW_SIGNAL_2 signed 43,2 -m /min:0
+Var=NEW_SIGNAL_3 signed 41,2 -m /min:0
+Var=STEER_ANGLE signed 5,11 -m /min:-350 /max:350 // can convert to degrees (imprecise) or percentage of max amplitude
+
+[ACCELERATIONS]
+ID=024h
+DLC=8
+Var=ACC_LAT_CLEAN signed 5,11 -m /min:0 /max:255
+Var=ACC_LATERAL signed 56,8 -m /min:0
+Var=ACC_FRONT_BACK_1 signed 24,8 -m /min:0 // more likely up-down
+Var=ACC_FRONT_BACK_2 signed 40,8 -m /min:0 // more likely front-back
+
+[LOW_RES_INDICATORS]
+ID=3B3h
+DLC=8
+Var=LOW_RES_ACC_PEDAL unsigned 16,7 -m /max:63 // Follows rather closely other acceleration commands
+Var=LOW_RES_RPM unsigned 0,16 -m /u:rpm /max:255 // Maybe used for onboard display?
+
+[BRAKING_PLUS_OTHER]
+ID=3BBh
+DLC=8
+Var=IS_BRAKING_2 bit 7,1 -m
+Var=ENGINE_TEMPERATURE unsigned 16,8 -m
+Var=MAYBE_CLUTCH bit 10,1 -m // might be related to shifting gears
+
+[CONTAINS_TIME]
+ID=63Bh
+DLC=8
+Var=TIME_ON unsigned 48,16 -m /u:s /f:0.1 // Time since last ignition, tenth of seconds
+Var=BETWEEN_RIDES unsigned 0,32 -m // the fourth byte (at least) changes between rides
+
+[WHEELS_SPEEDS]
+ID=0AAh
+DLC=8
+Var=FRONT_LEFT_WHEEL_SPEED unsigned 16,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0
+Var=REAR_RIGHT_WHEEL_SPEED unsigned 32,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0
+Var=REAR_LEFT_WHEEL_SPEED unsigned 48,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0
+Var=FRONT_RIGHT_WHEEL_SPEED unsigned 0,16 -m /u:km/h /f:0.01 /o:-67.67 /min:0
+
+[VEHICLE_DYNAMICS]
+ID=0B4h
+DLC=8
+Var=WIERD_STUFF unsigned 8,2 // Might be a signed value on the whole two bytes (sometimes all set)
+Var=VEHICLE_SPEED unsigned 40,16 -m /u:km/h /f:0.01 /max:255 // Roughly 2 seconds before wheel speeds
+Var=SPEED_MOD_256 signed 56,8 -m /min:0 // One byte speed, a bit before vehicle speed
+Var=MAYBE_DISTANCE_MOD_256 unsigned 32,8 -m // Looks like measure for distance or wheel angle
+
+[NEW_MSG_9]
+ID=0BAh
+DLC=8
+Var=NEW_SIGNAL_2 unsigned 24,8 -m
+
+[NEW_MSG_5]
+ID=1AAh
+DLC=8
+Var=CONSTANT unsigned 40,8 -m
+
+[BOOLS]
+ID=38Ah
+DLC=8
+Var=MAY_CONTAIN_LIGHTS unsigned 0,4 -m
+Var=NEW_SIGNAL_1 bit 4,1 -m
+Var=NEW_SIGNAL_2 bit 5,1 -m
+Var=NEW_SIGNAL_3 bit 6,1 -m
+Var=MOVEMENT_START_TRIGGER bit 7,1 -m // trigger of when speed becomes != 0
+
+[LOW_RES_ACCELERATOR]
+ID=3D3h
+DLC=8
+Var=VERY_LRES_ACC unsigned 0,16 -m // Power used by engine? moves alongside speed, very low res, goes from 0 to 9 max?
+
+[SLOW_VARIABLE_INFOS]
+ID=640h
+DLC=8
+Var=CHANGES_EACH_RIDE unsigned 24,8 -m // Small decrementation during some rides, possibly long term fuel
+Var=INCREASING_VALUE_FUEL unsigned 40,8 -m // Fuel/distance? Average fuel consumption?
+
+[DOORS]
+ID=620h
+DLC=8
+Var=KEY_ACC bit 35,1 -m
+Var=KEY_ON bit 34,1 -m
+Var=KEY_INSERT bit 41,1 -m
+Var=NOT_ON bit 56,1 -m
+Var=DOOR_RIGHT bit 43,1 -m
+Var=DOOR_TRUNK bit 41,1
+Var=DOOR_LEFT bit 42,1 -m
+Var=HANDBRAKE bit 59,1 -m
+Var=NEW_SIGNAL_1 bit 3,1 -m
+Var=DRIVER_SEATBELT bit 57,1 -m
+Var=TRIGGER_BOOL bit 8,1 -m
+
+[COMMAND]
+ID=2C1h
+DLC=8
+Var=NOT_ACCELERATING_PEDAL bit 3,1 // Looks like opposite of accelerating bit
+Var=ACC_PEDAL_SENSOR unsigned 48,16 -m // similar to pedal sensor maybe checksum.
+Var=ACC_COMMAND signed 24,16 -m /min:0 /max:7 // Similar to other pedal indicator., cleaner, must be sent back to engine
+Var=ACC_PEDAL_MEAN signed 8,16 -m /min:0 /max:255 // Actual sensor for pedal (works when engine off)
+Var=NEGATIVE_COMMAND_OFFSET signed 40,8 -m /min:0 // Mysterious for now
+
+[STEER2_MAYBE]
+ID=3A0h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 10,6 -m // Very slow changing noisy value, 45-49 in 10 min
+Var=NEW_SIGNAL_2 unsigned 59,5 -m // Other very slow changing 24-26 in 10 min
+Var=NEW_SIGNAL_4 unsigned 2,6 -m // Inconsistent across rides
+Var=NEW_SIGNAL_3 unsigned 41,7 -m /max:15
+
+[LONG_TERM_2]
+ID=380h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 48,8 -m // there is a difference at the beginning of 2017-10-31--12-04-05
+
+[LONG_TERM_MSG]
+ID=3B0h
+DLC=8
+Var=LONG_TERM_SIGN unsigned 24,8 -m
+
+[TOTAL_DIST]
+ID=611h
+DLC=8
+Var=TOTAL_DISTANCE unsigned 48,16 -m // Probably also contains the previous/two previous bytes but can't confirm
+
+[WHY_THESE_VALUES]
+ID=624h
+DLC=8
+
+[BETWEEN_RIDES_CHANGE_1]
+ID=613h
+DLC=8
+Var=BETWEEN_RIDES bit 16,1 -m
+
+[ASYNC_MSG_ACK]
+ID=442h
+DLC=8
+Var=NEW_SIGNAL_1 unsigned 10,2 -m /max:1
+Var=NEW_SIGNAL_2 bit 16,1 -m
+
+[NEW_MSG_14]
+ID=638h
+DLC=8
+Var=DOORS_LOCKED2 bit 19,1 -m
+Var=DOORS_LOCKED1 bit 23,1 -m
+
+[NEW_MSG_6]
+ID=260h
+DLC=8
+Var=VERY_SMALL_SIGNAL2 bit 63,1 -m
+Var=VERY_SMALL_SIGNAL1 bit 7,1 -m
+
+[BETWEEN_RIDES_CHANGES_2]
+ID=3B1h
+DLC=8
+Var=BETWEEN_RIDES bit 31,1 -m // Might be others in the same message. at least this one

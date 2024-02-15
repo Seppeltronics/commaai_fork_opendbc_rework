@@ -1,0 +1,1488 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="toyota_2017_ref_pt"
+
+{SENDRECEIVE}
+
+[ABG1D50]
+ID=4ACh
+DLC=8
+Var=DRABG01 unsigned 0,8 -m
+Var=DRABG02 unsigned 8,8 -m
+Var=DRABG03 unsigned 16,8 -m
+Var=DRABG04 unsigned 24,8 -m
+Var=DRABG05 unsigned 32,8 -m
+Var=DRABG06 unsigned 40,8 -m
+Var=DRABG07 unsigned 48,8 -m
+Var=DRABG08 unsigned 56,8 -m
+
+[ABG1D51]
+ID=4BCh
+DLC=8
+Var=DRABG09 unsigned 0,8 -m
+Var=DRABG10 unsigned 8,8 -m
+Var=DRABG11 unsigned 16,8 -m
+Var=DRABG12 unsigned 24,8 -m
+Var=DRABG13 unsigned 32,8 -m
+Var=DRABG14 unsigned 40,8 -m
+Var=DRABG15 unsigned 48,8 -m
+Var=DRABG16 unsigned 56,8 -m
+
+[ABG1S01]
+ID=3B1h
+DLC=8
+Var=CDT unsigned 17,3 -m
+Var=AB unsigned 20,2 -m
+Var=DBKLAB unsigned 22,2 -m
+Var=PODT unsigned 28,2 -m
+Var=PBKLAB unsigned 30,2 -m
+Var=EDRTRG unsigned 43,2 -m
+
+[ACC1F01]
+ID=344h
+DLC=8
+Var=DSS1GDRV signed 0,10 -m /u:m/s^2 /f:0.1
+Var=DS1STAT2 unsigned 10,3 -m
+Var=DS1STBK2 unsigned 13,3 -m
+Var=PCSWAR bit 21,1 -m
+Var=PCSALM bit 22,1 -m
+Var=PCSOPR bit 23,1 -m
+Var=PCSABK bit 24,1 -m
+Var=PBATRGR unsigned 25,2 -m
+Var=PPTRGR bit 27,1 -m
+Var=IBTRGR bit 28,1 -m
+Var=CLEXTRGR bit 29,1 -m
+Var=IRLT_REQ unsigned 30,2 -m
+Var=BRKHLD bit 34,1 -m
+Var=AVSTRGR bit 35,1 -m
+Var=VGRSTRGR unsigned 36,2 -m
+Var=PREFILL bit 38,1 -m
+Var=PBRTRGR bit 39,1 -m
+Var=PCSDIS bit 44,1 -m
+Var=PBPREPMP bit 47,1 -m
+Var=ACCF01SM unsigned 56,8 -m
+
+[ACC1N01]
+ID=4CBh
+DLC=8
+Var=ACCNID unsigned 0,8 -m
+Var=ACCSNG bit 8,1 -m
+Var=ACCSPF unsigned 16,16 -m
+Var=ACCREV unsigned 32,32 -m
+
+[ACC1S03]
+ID=343h
+DLC=8
+Var=ATACC2 signed 0,16 -m /u:m/s^2 /f:0.001
+Var=ACCTYPE unsigned 16,2 -m
+Var=XTRGT2 bit 18,1 -m
+Var=XLTMD2 bit 19,1 -m
+Var=LCDT2 bit 20,1 -m
+Var=LCNG bit 21,1 -m
+Var=SMC unsigned 22,2 -m
+Var=STOKJD bit 24,1 -m
+Var=PMTBRKG bit 25,1 -m
+Var=LVSTP bit 26,1 -m
+Var=LCCWOK bit 30,1 -m
+Var=LCBW2 bit 31,1 -m
+Var=CACC unsigned 32,8 -m
+Var=AT_RAW signed 40,8 -m /u:m/s^2 /f:0.05
+Var=ACC03SUM unsigned 56,8 -m
+
+[ACN1S01]
+ID=380h
+DLC=8
+Var=R_AC2 bit 1,1 -m
+Var=R_HTR bit 2,1 -m
+Var=ECOSW bit 5,1 -m
+Var=R_EGON unsigned 6,2 -m
+Var=BLWON bit 8,1 -m
+Var=SCAC bit 10,1 -m
+Var=CGIH bit 16,1 -m
+Var=FAN_AC unsigned 17,2 -m
+Var=ACHI bit 19,1 -m
+Var=ACMAX bit 20,1 -m
+Var=R_VSCUS bit 24,1 -m
+Var=R_SHTR bit 25,1 -m
+Var=R_PTC unsigned 26,2 -m /u:piece
+Var=GNRTIH bit 28,1 -m
+Var=R_COL_TM bit 29,1 -m
+Var=R_HET_TM bit 31,1 -m
+Var=TAMOUT signed 48,8 -m /f:0.625
+
+[ACN1S04]
+ID=381h
+DLC=8
+Var=R_ACCALL bit 0,1 -m
+Var=R_AC_WNG bit 1,1 -m
+Var=R_SW_CON bit 2,1 -m
+Var=R_BEEP bit 3,1 -m
+Var=I_RA_AUT bit 4,1 -m
+Var=I_RA_AC bit 5,1 -m
+Var=I_RA_LO bit 6,1 -m
+Var=I_RA_HI bit 7,1 -m
+Var=I_AUTO_D bit 8,1 -m
+Var=I_AUTO_P bit 9,1 -m
+Var=I_DEF bit 10,1 -m
+Var=I_RRDEF bit 11,1 -m
+Var=I_RFAUT bit 12,1 -m
+Var=I_REC bit 13,1 -m
+Var=I_FRS bit 14,1 -m
+Var=I_AC bit 15,1 -m
+Var=I_MHTR bit 16,1 -m
+Var=I_WIPD bit 17,1 -m
+Var=I_DUSY bit 18,1 -m
+Var=I_SWNG bit 19,1 -m
+Var=I_BLW_F unsigned 20,4 -m
+Var=I_OAUT_D bit 24,1 -m
+Var=I_OLET_D unsigned 25,3 -m
+Var=I_OAUT_P bit 28,1 -m
+Var=I_OLET_P unsigned 29,3 -m
+Var=ST_BMN_F bit 32,1 -m
+Var=I_AIRPR bit 40,1 -m
+Var=I_O2 bit 41,1 -m
+Var=I_PLSM unsigned 42,2 -m
+Var=I_KAFUN bit 44,1 -m
+Var=I_SAFS bit 45,1 -m
+Var=I_ACOFF bit 46,1 -m
+Var=R_ONSCRN bit 47,1 -m
+
+[ACN1S07]
+ID=3B0h
+DLC=6
+Var=RDEF bit 0,1 -m
+Var=MHTR bit 1,1 -m
+Var=TR_TEMP unsigned 8,8 -m /f:0.25 /o:-6.5
+Var=ACN_AMB unsigned 24,8 -m
+Var=AC_AMB05 bit 43,1 -m
+Var=AC_MODE unsigned 44,2 -m
+
+[AFS1N01]
+ID=4E2h
+DLC=8
+Var=AFSNID unsigned 0,8 -m
+Var=AFSSNG bit 8,1 -m
+Var=AFSSPF unsigned 16,16 -m
+Var=AFSREV unsigned 32,32 -m
+
+[AFS1S01]
+ID=391h
+DLC=8
+Var=HLLI bit 0,1 -m
+Var=AZB_ADV unsigned 2,2 -m
+Var=HEDH_AZB bit 4,1 -m
+Var=AZB_IND unsigned 10,2 -m
+Var=AZB_HIND bit 12,1 -m
+Var=AZB_PRE bit 13,1 -m
+Var=LED_HLI unsigned 14,2 -m
+Var=LPECU_PR bit 31,1 -m
+
+[AFS1S02]
+ID=34Dh
+DLC=5
+Var=AHRR unsigned 22,10 -m /u:V /f:0.0048828125
+Var=AHVLD bit 32,1 -m
+Var=AHFAIL bit 33,1 -m
+
+[AHB1S01]
+ID=414h
+DLC=8
+Var=AHB_DUTY unsigned 40,8 -m /u:% /f:0.5
+Var=F_AHB unsigned 48,4 -m
+Var=C_AHB unsigned 52,4 -m
+
+[AVN1S01]
+ID=384h
+DLC=6
+Var=RDC unsigned 0,4 -m
+Var=CONFID01 unsigned 4,2 -m
+Var=CONF unsigned 6,2 -m
+Var=LYT unsigned 8,4 -m
+Var=DRVW bit 14,1 -m
+Var=MWMP bit 15,1 -m
+Var=GRAD unsigned 16,3 -m
+Var=HARSHID unsigned 20,4 -m
+Var=BRANCH unsigned 28,4 -m
+Var=HARSH unsigned 36,2 -m
+Var=TOLLGATE bit 38,1 -m
+Var=TUNL bit 39,1 -m
+Var=LEAVEOUT bit 40,1 -m
+Var=MRGLANE bit 41,1 -m
+Var=LVLANE bit 42,1 -m
+
+[AVN1S03]
+ID=386h
+DLC=6
+Var=ANS bit 0,1 -m
+Var=CRS1 bit 8,1 -m
+Var=RQAC unsigned 9,7 -m /u:G /f:0.02
+Var=GUID bit 16,1 -m
+Var=GYRO bit 17,1 -m
+Var=NCRN bit 18,1 -m
+Var=CRN6 bit 19,1 -m
+Var=CRN5 bit 20,1 -m
+Var=CRN3 bit 21,1 -m
+Var=CRN2 bit 22,1 -m
+Var=CRN1 bit 23,1 -m
+Var=CONFID03 unsigned 24,2 -m
+Var=CURV unsigned 26,2 -m
+Var=CVST bit 28,1 -m
+Var=NAVI_STR bit 29,1 -m
+Var=MIND bit 30,1 -m
+Var=ONOFF bit 31,1 -m
+Var=HWPB bit 32,1 -m
+Var=RAD unsigned 33,7 -m /u:m /f:5
+Var=AFS_SW bit 46,1 -m
+Var=AVS_SW bit 47,1 -m
+
+[AVN1S07]
+ID=38Fh
+DLC=8
+Var=TOFC_RST bit 1,1 -m
+Var=SL_CSTM bit 4,1 -m
+Var=SL_RMDG bit 5,1 -m
+Var=ST_RTCOM bit 6,1 -m
+Var=AVN07VLD bit 7,1 -m
+Var=ST_UCST bit 8,1 -m
+Var=RSCOM51 unsigned 16,8 -m
+Var=RSCOM52 unsigned 24,8 -m
+Var=RSCOM53 unsigned 32,8 -m
+Var=RSCOM54 unsigned 40,8 -m
+Var=RSCOM55 unsigned 48,8 -m
+Var=RSCOM56 unsigned 56,8 -m
+
+[AVN1S08]
+ID=389h
+DLC=8
+Var=VVSW unsigned 0,3 -m
+Var=BZV unsigned 3,3 -m
+Var=DFS unsigned 6,2 -m
+Var=BZ_M_SW bit 8,1 -m
+Var=VOL_SW bit 9,1 -m
+Var=BM bit 10,1 -m
+Var=DOFR bit 11,1 -m
+Var=RDSW bit 12,1 -m
+Var=FDSW bit 13,1 -m
+Var=RBSW bit 14,1 -m
+Var=FBSW bit 15,1 -m
+Var=NVDP_OK bit 16,1 -m
+Var=DEVICE unsigned 17,3 -m
+Var=DISPSIZE bit 24,1 -m
+Var=HPTCSW_L bit 25,1 -m
+Var=HPTCSW_R bit 26,1 -m
+Var=HPTCSW_E bit 27,1 -m
+Var=D_MODE bit 28,1 -m
+Var=VARBGM unsigned 29,2 -m
+Var=WBGM bit 31,1 -m
+Var=X_LL unsigned 32,8 -m
+Var=Y_LL unsigned 40,8 -m
+Var=X_RH unsigned 48,8 -m
+Var=Y_RH unsigned 56,8 -m
+
+[AVN1S11]
+ID=3E6h
+DLC=5
+Var=SENSPFM unsigned 0,3 -m
+Var=SENSFAIL unsigned 3,3 -m
+Var=CONFID11 unsigned 6,2 -m
+Var=CONFMMC unsigned 8,8 -m
+Var=DISTERR unsigned 16,8 -m
+Var=CONFLANE unsigned 24,8 -m
+Var=CONFDIR unsigned 32,8 -m
+
+[AVN1S13]
+ID=3A5h
+DLC=8
+Var=HUD_DISP bit 0,1 -m
+Var=DRVSIDE bit 1,1 -m
+Var=DT_GP unsigned 2,6 -m
+Var=DT_UNIT unsigned 8,3 -m
+Var=DIR_TURN unsigned 11,5 -m /u:degree /f:11.25
+Var=ROTARY bit 16,1 -m
+Var=ROAD_TP1 unsigned 17,15 -m
+Var=ROAD_TP2 unsigned 32,16 -m
+Var=N_H_UP bit 48,1 -m
+Var=COMPASS unsigned 49,6 -m /u:degree /f:11.25
+Var=DIR unsigned 56,6 -m /u:degree /f:11.25
+
+[AVN1S16]
+ID=3A8h
+DLC=5
+Var=NDADVSRY unsigned 0,5 -m
+Var=NDCAUTON unsigned 8,5 -m
+Var=NDSSLCT unsigned 16,5 -m
+Var=NDCNFDID unsigned 21,2 -m
+Var=NDINDST unsigned 30,2 -m
+Var=AVN16SUM unsigned 32,8 -m
+
+[AVN1S17]
+ID=3E7h
+DLC=7
+Var=AVN17VLD bit 0,1 -m
+Var=LANEID17 unsigned 1,3 -m
+Var=DRVLANE unsigned 4,4 -m
+Var=DRV_SIDE bit 11,1 -m
+Var=LANE_NS unsigned 12,4 -m
+Var=LANE1FLG unsigned 16,4 -m
+Var=LANE2FLG unsigned 20,4 -m
+Var=LANE1DIR unsigned 24,16 -m
+Var=LANE2DIR unsigned 40,16 -m
+
+[AVN1S18]
+ID=3E8h
+DLC=8
+Var=AVN18VLD bit 0,1 -m
+Var=LANEID18 unsigned 1,3 -m
+Var=LANE3FLG unsigned 4,4 -m
+Var=LANE4FLG unsigned 8,4 -m
+Var=LANE5FLG unsigned 12,4 -m
+Var=LANE3DIR unsigned 16,16 -m
+Var=LANE4DIR unsigned 32,16 -m
+Var=LANE5DIR unsigned 48,16 -m
+
+[AVN1S19]
+ID=3E9h
+DLC=8
+Var=AVN19VLD bit 0,1 -m
+Var=LANEID19 unsigned 1,3 -m
+Var=LANE6FLG unsigned 4,4 -m
+Var=LANE7FLG unsigned 8,4 -m
+Var=LANE8FLG unsigned 12,4 -m
+Var=LANE6DIR unsigned 16,16 -m
+Var=LANE7DIR unsigned 32,16 -m
+Var=LANE8DIR unsigned 48,16 -m
+
+[AVN1S20]
+ID=434h
+DLC=8
+Var=A_LNG_ST unsigned 0,2 -m
+Var=A_LANG unsigned 2,6 -m
+Var=A_LNGDB1 unsigned 8,8 -m
+Var=A_LNGDB2 unsigned 16,8 -m
+Var=A_LNGDB3 unsigned 24,8 -m
+Var=A_LNGDB4 unsigned 32,8 -m
+Var=A_LNGDB5 unsigned 40,8 -m
+Var=A_LNGDB6 unsigned 48,8 -m
+Var=A_LNGDB7 unsigned 56,7 -m
+Var=A_LNGCHG bit 63,1 -m
+
+[AVN1S21]
+ID=435h
+DLC=8
+Var=A_OPEN_S bit 0,1 -m
+Var=OPENCHG bit 1,1 -m
+Var=CAPSW_S unsigned 2,2 -m
+Var=A_CLR_S unsigned 4,4 -m
+Var=DISP_BRT unsigned 8,8 -m
+Var=DISP_CNT unsigned 16,8 -m
+Var=MM_CLOCK unsigned 24,11 -m
+Var=CLK_OFST signed 35,4 -m /u:min /f:5
+Var=DST bit 39,1 -m
+Var=CLK_TYP unsigned 40,2 -m
+Var=A_UNTTMP unsigned 42,2 -m
+Var=A_UNTSP unsigned 44,2 -m
+Var=A_UNTDST unsigned 46,2 -m
+Var=A_UNTCSP unsigned 48,3 -m
+Var=A_CLRCHG bit 51,1 -m
+Var=A_TMPCHG bit 52,1 -m
+Var=A_SPCHG bit 53,1 -m
+Var=A_DSTCHG bit 54,1 -m
+Var=A_CSPCHG bit 55,1 -m
+Var=A_SPLM unsigned 56,6 -m /f:5
+Var=A_UTSPLM unsigned 62,2 -m
+
+[AVN1S31]
+ID=413h
+DLC=8
+Var=GPSTM_Y unsigned 0,8 -m /u:year
+Var=GPSTM_MO unsigned 8,8 -m /u:month
+Var=GPSTM_D unsigned 16,8 -m /u:day
+Var=GPSTM_H unsigned 24,8 -m /u:hour
+Var=GPSTM_MI unsigned 32,8 -m /u:minute
+Var=GMT_DIFF bit 48,1 -m
+Var=GMTDIF_H unsigned 49,4 -m /u:hour
+Var=GMTDIF_M unsigned 53,6 -m /u:minute
+Var=SUMMERTM bit 59,1 -m
+
+[BDB1S19]
+ID=3FCh
+DLC=8
+Var=SOLAR_R unsigned 16,9 -m /f:100
+Var=SOLAR_L unsigned 32,9 -m /f:100
+Var=N_LX unsigned 48,13 -m
+
+[BGM1S01]
+ID=3EDh
+DLC=2
+Var=WCAA bit 0,1 -m
+Var=R_DISP bit 6,1 -m
+Var=BGM_BEEP unsigned 12,2 -m
+Var=BGM_MODE unsigned 14,2 -m
+
+[BSR1N01]
+ID=4D5h
+DLC=8
+Var=BSRNID unsigned 0,8 -m
+Var=BSRSNG bit 8,1 -m
+Var=BSRSPF unsigned 16,16 -m
+Var=BSRREV unsigned 32,32 -m
+
+[BSR1S01]
+ID=3F6h
+DLC=8
+Var=BSD_STAT unsigned 0,3 -m
+Var=BSD_SW bit 8,1 -m
+Var=BSD_BUZ bit 16,1 -m
+
+[CGW1N02]
+ID=45Ah
+DLC=8
+Var=CGW2REV unsigned 0,8 -m
+
+[CSR1N01]
+ID=4CCh
+DLC=8
+Var=CSRNID unsigned 0,8 -m
+Var=CSRSNG bit 8,1 -m
+Var=CSRSPF unsigned 16,16 -m
+Var=CSRREV unsigned 32,32 -m
+
+[CSR1S01]
+ID=396h
+DLC=7
+Var=CSV unsigned 0,3 -m
+Var=CSSR unsigned 3,2 -m
+Var=CSD bit 5,1 -m
+Var=CSME bit 6,1 -m
+Var=CSIN bit 7,1 -m
+Var=FL_INFO unsigned 8,4 -m
+Var=FR_INFO unsigned 12,4 -m
+Var=RB_INFO unsigned 16,4 -m
+Var=FC_INFO unsigned 20,4 -m
+Var=RL_INFO unsigned 24,4 -m
+Var=RR_INFO unsigned 28,4 -m
+Var=CZV unsigned 32,3 -m
+Var=VOT unsigned 40,4 -m
+Var=FCZD bit 44,1 -m
+Var=RCZD bit 45,1 -m
+Var=FCDD bit 46,1 -m
+Var=RCDD bit 47,1 -m
+Var=VOL unsigned 48,3 -m
+Var=CDG unsigned 51,3 -m
+Var=MUTE bit 54,1 -m
+Var=BZ_OFF bit 55,1 -m
+
+[DS11D70]
+ID=365h
+DLC=7
+Var=D_TRGJDG unsigned 0,4 -m
+Var=D_RESSW bit 4,1 -m
+Var=D_SETSW bit 5,1 -m
+Var=D_CANSW bit 6,1 -m
+Var=D_MAINSW bit 7,1 -m
+Var=D_VMCC unsigned 8,8 -m /u:km/h
+Var=D_VNCC unsigned 16,8 -m /u:km/h
+Var=D_CCREQ unsigned 24,8 -m /u:N /f:100 /o:-12800
+Var=D_TGTDST unsigned 32,8 -m /u:m
+Var=D_VRCC signed 40,8 -m /u:km/h
+Var=D_WSTL bit 48,1 -m
+Var=D_DSW bit 49,1 -m
+Var=D_FDJDG bit 51,1 -m
+Var=D_DSSJDG bit 52,1 -m
+
+[DS11D71]
+ID=366h
+DLC=7
+Var=XREQALM bit 0,1 -m
+Var=XREQABK bit 1,1 -m
+Var=TGT_DIST unsigned 2,14 -m /u:m /f:0.01
+Var=XREQPBA bit 16,1 -m
+Var=XREQFPB bit 17,1 -m
+Var=XREQPB bit 18,1 -m
+Var=XREQEXT bit 19,1 -m
+Var=XREQPSB bit 20,1 -m
+Var=TGT_VGAP unsigned 21,11 -m /u:m/s /f:0.025 /o:-51.175
+Var=PCSDISP unsigned 32,4 -m
+Var=XPCSRDY bit 36,1 -m
+Var=TGT_NUMB unsigned 37,3 -m /o:1 /max:0
+Var=TGT_POSX signed 40,8 -m /u:m /f:0.04
+
+[DS11D72]
+ID=367h
+DLC=2
+Var=LKADRTRG unsigned 0,2 -m
+Var=LKADRSHR bit 2,1 -m
+Var=LKADRSLK bit 3,1 -m
+Var=LKADRSLD bit 4,1 -m
+Var=LKADRCC unsigned 5,3 -m
+Var=LKADRTUR unsigned 8,2 -m
+Var=LKADRINV bit 10,1 -m
+
+[DS11F01]
+ID=283h
+DLC=7
+Var=DSCOUNT unsigned 0,8 -m
+Var=DSLCCW1 bit 8,1 -m
+Var=DSSTPBZ bit 9,1 -m
+Var=PBRTRGR2 bit 11,1 -m
+Var=DSSFTRQD unsigned 12,4 -m
+Var=DSS1FDRV signed 16,16 -m /u:N /f:2
+Var=DSS1STBK unsigned 32,3 -m
+Var=DSS1STAT unsigned 35,3 -m
+Var=DSBHOK bit 38,1 -m
+Var=PPTRGR2 bit 39,1 -m
+Var=DSRQBH unsigned 40,2 -m
+Var=IBTRGR2 bit 42,1 -m
+Var=PCSABK2 bit 43,1 -m
+Var=PCSNOCHG bit 46,1 -m
+Var=DS1F01SM unsigned 48,8 -m
+
+[DS12F02]
+ID=411h
+DLC=8
+Var=PCSINDI unsigned 0,2 -m
+Var=PCSWM unsigned 2,2 -m
+Var=PCSFCT bit 4,1 -m
+Var=PCSTUCT bit 5,1 -m
+Var=DS1LCCK unsigned 6,2 -m
+Var=PBTUCT bit 9,1 -m
+Var=PCSEXIST bit 10,1 -m
+Var=PCSWDUCT bit 12,1 -m
+Var=PCSWD unsigned 14,2 -m
+Var=PCSDW unsigned 32,3 -m
+Var=PCSDSRF bit 35,1 -m
+Var=PCSTEMP bit 36,1 -m
+Var=PCSDUST bit 37,1 -m
+Var=PCSLCCK unsigned 38,2 -m
+Var=PCSPEDW unsigned 40,3 -m
+Var=PCSPVSN unsigned 43,2 -m
+Var=PCTEMP2 bit 45,1 -m
+Var=PCSDUST2 bit 46,1 -m
+Var=PCSOFFS bit 47,1 -m
+Var=PCSWDS unsigned 48,2 -m
+Var=FRDADJ unsigned 50,3 -m
+
+[DS12F03]
+ID=412h
+DLC=8
+Var=LKAINDI unsigned 0,2 -m
+Var=LKAWLSL unsigned 2,2 -m
+Var=LKAWLSR unsigned 4,2 -m
+Var=LKAFCT bit 8,1 -m
+Var=LKATUCT bit 9,1 -m
+Var=LKACAMT bit 10,1 -m
+Var=LDWEXIST bit 13,1 -m
+Var=LKASPCND unsigned 16,3 -m
+Var=LKAWTCS unsigned 21,2 -m
+Var=LKASAUT bit 23,1 -m
+Var=LDWBZ bit 39,1 -m
+Var=LDAFCVB bit 40,1 -m
+Var=LDARDA bit 41,1 -m
+Var=SWSSENSD unsigned 42,2 -m
+Var=SWSSWD bit 44,1 -m
+Var=SWSRAD unsigned 48,2 -m
+Var=SWSFLD unsigned 50,3 -m
+Var=SWSBUZ unsigned 53,2 -m
+
+[ECO1D50]
+ID=4B7h
+DLC=8
+Var=DRECO01 unsigned 0,8 -m
+Var=DRECO02 unsigned 8,8 -m
+Var=DRECO03 unsigned 16,8 -m
+Var=DRECO04 unsigned 24,8 -m
+Var=DRECO05 unsigned 32,8 -m
+Var=DRECO06 unsigned 40,8 -m
+Var=DRECO07 unsigned 48,8 -m
+Var=DRECO08 unsigned 56,8 -m
+
+[ECO1S01]
+ID=163h
+DLC=5
+Var=ECOSTAON bit 20,1 -m
+Var=ECOMODE unsigned 21,3 -m
+Var=FCREQ bit 24,1 -m
+Var=SSVMREQ bit 28,1 -m
+Var=E2MRXMK bit 29,1 -m
+Var=BPHLDRQ bit 35,1 -m
+Var=BPHLDRQ2 unsigned 36,2 -m
+Var=ECOEGSTP bit 38,1 -m
+
+[ECO1S90]
+ID=39Ah
+DLC=8
+Var=ECOBZR unsigned 16,2 -m
+Var=ECOLMP unsigned 18,3 -m
+Var=TESTECO bit 25,1 -m
+Var=OPLMPMSK bit 26,1 -m
+Var=MSTART bit 27,1 -m
+Var=ECOMODE3 unsigned 28,4 -m
+Var=INFSSCOP unsigned 32,3 -m
+Var=INFSSSTL unsigned 35,2 -m
+Var=ECLMP unsigned 37,3 -m
+Var=AUTOSTA bit 40,1 -m
+Var=INFSSFAL bit 41,1 -m
+Var=INFSSINH unsigned 42,6 -m
+Var=SSACMODE unsigned 51,2 -m
+Var=INFSSADV unsigned 53,3 -m
+
+[ECT1D50]
+ID=49Eh
+DLC=8
+Var=DRECT01 unsigned 0,8 -m
+Var=DRECT02 unsigned 8,8 -m
+Var=DRECT03 unsigned 16,8 -m
+Var=DRECT04 unsigned 24,8 -m
+Var=DRECT05 unsigned 32,8 -m
+Var=DRECT06 unsigned 40,8 -m
+Var=DRECT07 unsigned 48,8 -m
+Var=DRECT08 unsigned 56,8 -m
+
+[ECT1D51]
+ID=49Fh
+DLC=8
+Var=DRECT11 unsigned 0,8 -m
+Var=DRECT12 unsigned 8,8 -m
+Var=DRECT13 unsigned 16,8 -m
+Var=DRECT14 unsigned 24,8 -m
+Var=DRECT15 unsigned 32,8 -m
+Var=DRECT16 unsigned 40,8 -m
+Var=DRECT17 unsigned 48,8 -m
+Var=DRECT18 unsigned 56,8 -m
+
+[ECT1D52]
+ID=4B0h
+DLC=8
+Var=DRECT21 unsigned 0,8 -m
+Var=DRECT22 unsigned 8,8 -m
+Var=DRECT23 unsigned 16,8 -m
+Var=DRECT24 unsigned 24,8 -m
+Var=DRECT25 unsigned 32,8 -m
+Var=DRECT26 unsigned 40,8 -m
+Var=DRECT27 unsigned 48,8 -m
+Var=DRECT28 unsigned 56,8 -m
+
+[ECT1D53]
+ID=4B1h
+DLC=8
+Var=DRECT31 unsigned 0,8 -m
+Var=DRECT32 unsigned 8,8 -m
+Var=DRECT33 unsigned 16,8 -m
+Var=DRECT34 unsigned 24,8 -m
+Var=DRECT35 unsigned 32,8 -m
+Var=DRECT36 unsigned 40,8 -m
+Var=DRECT37 unsigned 48,8 -m
+Var=DRECT38 unsigned 56,8 -m
+
+[ECT1D54]
+ID=4B2h
+DLC=8
+Var=DRECT41 unsigned 0,8 -m
+Var=DRECT42 unsigned 8,8 -m
+Var=DRECT43 unsigned 16,8 -m
+Var=DRECT44 unsigned 24,8 -m
+Var=DRECT45 unsigned 32,8 -m
+Var=DRECT46 unsigned 40,8 -m
+Var=DRECT47 unsigned 48,8 -m
+Var=DRECT48 unsigned 56,8 -m
+
+[ECT1D55]
+ID=4B3h
+DLC=8
+Var=DRECT51 unsigned 0,8 -m
+Var=DRECT52 unsigned 8,8 -m
+Var=DRECT53 unsigned 16,8 -m
+Var=DRECT54 unsigned 24,8 -m
+Var=DRECT55 unsigned 32,8 -m
+Var=DRECT56 unsigned 40,8 -m
+Var=DRECT57 unsigned 48,8 -m
+Var=DRECT58 unsigned 56,8 -m
+
+[ECT1F03]
+ID=1D0h
+DLC=8
+Var=NT signed 0,16 -m /u:rpm /f:0.390625
+Var=ACT bit 16,1 -m
+Var=XDMET bit 19,1 -m
+Var=XNTSW bit 20,1 -m
+Var=XNMET bit 21,1 -m
+Var=XRMET bit 22,1 -m
+Var=XPMET bit 23,1 -m
+Var=SFTOUT_S bit 26,1 -m
+Var=X3MET bit 29,1 -m
+Var=X2MET bit 30,1 -m
+Var=XLOMET bit 31,1 -m
+Var=L4SW bit 33,1 -m
+Var=SNOW bit 35,1 -m
+Var=XFSFT bit 36,1 -m
+Var=SFTOUT unsigned 37,3 -m
+Var=HSSLWN bit 48,1 -m
+Var=HSINH bit 49,1 -m
+Var=CLTMODBK unsigned 50,2 -m
+Var=LUOUT bit 52,1 -m
+Var=LUKG unsigned 53,2 -m
+Var=FBCOA bit 55,1 -m
+Var=ECTF03SM unsigned 56,8 -m
+
+[ECT1S10]
+ID=2D5h
+DLC=2
+Var=VTORATIO unsigned 0,16 -m /f:0.0009765625
+
+[ECT1S92]
+ID=3BCh
+DLC=8
+Var=B_OILW bit 0,1 -m
+Var=B_OILMD unsigned 2,2 -m
+Var=B_ISNW bit 6,1 -m
+Var=B_RJTB bit 7,1 -m
+Var=B_WNDL bit 8,1 -m
+Var=B_LMULRJ bit 9,1 -m
+Var=B_P bit 10,1 -m
+Var=B_R bit 11,1 -m
+Var=B_N bit 12,1 -m
+Var=B_ISPTM unsigned 13,3 -m
+Var=BV_THOCL unsigned 16,16 -m /f:0.625 /o:-50
+Var=B_GEAR unsigned 32,4 -m
+Var=B_SMDE bit 39,1 -m
+Var=B_D bit 40,1 -m
+Var=B_ECOMI bit 47,1 -m
+Var=B_SPTMI bit 48,1 -m
+Var=B_PWRM unsigned 49,3 -m
+Var=B_OILWM unsigned 52,2 -m
+Var=B_SPTMS unsigned 54,2 -m
+Var=B_DMODE unsigned 58,3 -m
+
+[ENG1D50]
+ID=498h
+DLC=8
+Var=DRENG01 unsigned 0,8 -m
+Var=DRENG02 unsigned 8,8 -m
+Var=DRENG03 unsigned 16,8 -m
+Var=DRENG04 unsigned 24,8 -m
+Var=DRENG05 unsigned 32,8 -m
+Var=DRENG06 unsigned 40,8 -m
+Var=DRENG07 unsigned 48,8 -m
+Var=DRENG08 unsigned 56,8 -m
+
+[ENG1D51]
+ID=499h
+DLC=8
+Var=DRENG11 unsigned 0,8 -m
+Var=DRENG12 unsigned 8,8 -m
+Var=DRENG13 unsigned 16,8 -m
+Var=DRENG14 unsigned 24,8 -m
+Var=DRENG15 unsigned 32,8 -m
+Var=DRENG16 unsigned 40,8 -m
+Var=DRENG17 unsigned 48,8 -m
+Var=DRENG18 unsigned 56,8 -m
+
+[ENG1D52]
+ID=49Ah
+DLC=8
+Var=DRENG21 unsigned 0,8 -m
+Var=DRENG22 unsigned 8,8 -m
+Var=DRENG23 unsigned 16,8 -m
+Var=DRENG24 unsigned 24,8 -m
+Var=DRENG25 unsigned 32,8 -m
+Var=DRENG26 unsigned 40,8 -m
+Var=DRENG27 unsigned 48,8 -m
+Var=DRENG28 unsigned 56,8 -m
+
+[ENG1D53]
+ID=49Bh
+DLC=8
+Var=DRENG31 unsigned 0,8 -m
+Var=DRENG32 unsigned 8,8 -m
+Var=DRENG33 unsigned 16,8 -m
+Var=DRENG34 unsigned 24,8 -m
+Var=DRENG35 unsigned 32,8 -m
+Var=DRENG36 unsigned 40,8 -m
+Var=DRENG37 unsigned 48,8 -m
+Var=DRENG38 unsigned 56,8 -m
+
+[ENG1D54]
+ID=49Ch
+DLC=8
+Var=DRENG41 unsigned 0,8 -m
+Var=DRENG42 unsigned 8,8 -m
+Var=DRENG43 unsigned 16,8 -m
+Var=DRENG44 unsigned 24,8 -m
+Var=DRENG45 unsigned 32,8 -m
+Var=DRENG46 unsigned 40,8 -m
+Var=DRENG47 unsigned 48,8 -m
+Var=DRENG48 unsigned 56,8 -m
+
+[ENG1D55]
+ID=49Dh
+DLC=8
+Var=DRENG51 unsigned 0,8 -m
+Var=DRENG52 unsigned 8,8 -m
+Var=DRENG53 unsigned 16,8 -m
+Var=DRENG54 unsigned 24,8 -m
+Var=DRENG55 unsigned 32,8 -m
+Var=DRENG56 unsigned 40,8 -m
+Var=DRENG57 unsigned 48,8 -m
+Var=DRENG58 unsigned 56,8 -m
+
+[ENG1D56]
+ID=4A8h
+DLC=8
+Var=DRENG61 unsigned 0,8 -m
+Var=DRENG62 unsigned 8,8 -m
+Var=DRENG63 unsigned 16,8 -m
+Var=DRENG64 unsigned 24,8 -m
+Var=DRENG65 unsigned 32,8 -m
+Var=DRENG66 unsigned 40,8 -m
+Var=DRENG67 unsigned 48,8 -m
+Var=DRENG68 unsigned 56,8 -m
+
+[ENG1D57]
+ID=4A7h
+DLC=8
+Var=DRENG71 unsigned 0,8 -m
+Var=DRENG72 unsigned 8,8 -m
+Var=DRENG73 unsigned 16,8 -m
+Var=DRENG74 unsigned 24,8 -m
+Var=DRENG75 unsigned 32,8 -m
+Var=DRENG76 unsigned 40,8 -m
+Var=DRENG77 unsigned 48,8 -m
+Var=DRENG78 unsigned 56,8 -m
+
+[ENG1D58]
+ID=4ADh
+DLC=8
+Var=DRENG81 unsigned 0,8 -m
+Var=DRENG82 unsigned 8,8 -m
+Var=DRENG83 unsigned 16,8 -m
+Var=DRENG84 unsigned 24,8 -m
+Var=DRENG85 unsigned 32,8 -m
+Var=DRENG86 unsigned 40,8 -m
+Var=DRENG87 unsigned 48,8 -m
+Var=DRENG88 unsigned 56,8 -m
+
+[ENG1D59]
+ID=4AEh
+DLC=8
+Var=DRENG91 unsigned 0,8 -m
+Var=DRENG92 unsigned 8,8 -m
+Var=DRENG93 unsigned 16,8 -m
+Var=DRENG94 unsigned 24,8 -m
+Var=DRENG95 unsigned 32,8 -m
+Var=DRENG96 unsigned 40,8 -m
+Var=DRENG97 unsigned 48,8 -m
+Var=DRENG98 unsigned 56,8 -m
+
+[ENG1D60]
+ID=4AFh
+DLC=8
+Var=DRENG101 unsigned 0,8 -m
+Var=DRENG102 unsigned 8,8 -m
+Var=DRENG103 unsigned 16,8 -m
+Var=DRENG104 unsigned 24,8 -m
+Var=DRENG105 unsigned 32,8 -m
+Var=DRENG106 unsigned 40,8 -m
+Var=DRENG107 unsigned 48,8 -m
+Var=DRENG108 unsigned 56,8 -m
+
+[ENG1F03]
+ID=3F9h
+DLC=8
+Var=VARENG1 unsigned 0,4 -m
+Var=VARENG2 unsigned 4,4 -m
+Var=VARENG3 unsigned 8,4 -m
+Var=VARENG4 bit 12,1 -m
+Var=HVFLAG bit 13,1 -m
+Var=VARTRM1 unsigned 16,4 -m
+Var=GEARINF unsigned 20,4 -m
+Var=DVINF unsigned 24,2 -m
+Var=OBDINF unsigned 28,4 -m
+Var=ECOFLAG bit 32,1 -m
+Var=CDYMD unsigned 33,2 -m
+Var=ENGF03SM unsigned 56,8 -m
+
+[ENG1F07]
+ID=1C4h
+DLC=8
+Var=NE1 signed 0,16 -m /u:rpm /f:0.78125
+Var=THA1 unsigned 16,8 -m /f:2.5 /o:-40
+Var=THWX bit 24,1 -m
+Var=EGF bit 25,1 -m
+Var=T2ERXF bit 26,1 -m
+Var=T2ERXMK bit 27,1 -m
+Var=ASTEFI bit 28,1 -m
+Var=B2ERXMK bit 29,1 -m
+Var=PDLF bit 31,1 -m
+Var=ENTCAL2 unsigned 32,8 -m /u:rpm /f:12.5
+Var=EGFB bit 41,1 -m
+Var=PTFB bit 42,1 -m
+Var=MILREQ unsigned 44,4 -m
+Var=B_ECOL unsigned 48,2 -m
+Var=B_IECOCR unsigned 50,6 -m /f:2
+Var=ENGF07SM unsigned 56,8 -m
+
+[ENG1F43]
+ID=072h
+DLC=5
+Var=FAVLMCHL signed 0,16 -m /u:N /f:2
+Var=FAVLMONL signed 16,16 -m /u:N /f:2
+Var=ENGF43SM unsigned 32,8 -m
+
+[ENG1S01]
+ID=2C1h
+DLC=8
+Var=ETCSFB bit 0,1 -m
+Var=ETCSF bit 1,1 -m
+Var=VSCTH bit 2,1 -m
+Var=THF bit 3,1 -m
+Var=IDL1 bit 4,1 -m
+Var=XCCACT2 bit 5,1 -m
+Var=STPSWF bit 6,1 -m
+Var=WTC bit 7,1 -m
+Var=ETQLVSC signed 8,16 -m /u:Nm /f:0.03125
+Var=ETQREAL signed 24,16 -m /u:Nm /f:0.03125
+Var=ETQISC unsigned 40,8 -m /u:Nm /o:-192
+Var=EACCP unsigned 48,8 -m /u:% /f:0.5
+Var=ENG01SUM unsigned 56,8 -m
+
+[ENG1S23]
+ID=3C1h
+DLC=3
+Var=EKLSM unsigned 0,8 -m /u:% /f:0.625
+Var=GATHW signed 8,16 -m /f:0.625
+
+[ENG1S28]
+ID=3D3h
+DLC=2
+Var=B_FC unsigned 0,16 -m /u:ml /f:0.0005
+
+[ENG1S51]
+ID=580h
+DLC=8
+Var=VIN_1 unsigned 0,8 -m
+Var=VIN_2 unsigned 8,8 -m
+Var=VIN_3 unsigned 16,8 -m
+Var=VIN_4 unsigned 24,8 -m
+Var=VIN_5 unsigned 32,8 -m
+Var=VIN_6 unsigned 40,8 -m
+Var=VIN_7 unsigned 48,8 -m
+Var=VIN_8 unsigned 56,8 -m
+
+[ENG1S52]
+ID=581h
+DLC=8
+Var=VIN_9 unsigned 0,8 -m
+Var=VIN_10 unsigned 8,8 -m
+Var=VIN_11 unsigned 16,8 -m
+Var=VIN_12 unsigned 24,8 -m
+Var=VIN_13 unsigned 32,8 -m
+Var=VIN_14 unsigned 40,8 -m
+Var=VIN_15 unsigned 48,8 -m
+Var=VIN_16 unsigned 56,8 -m
+
+[ENG1S54]
+ID=582h
+DLC=8
+Var=VIN_17 unsigned 0,8 -m
+Var=VC unsigned 51,5 -m
+Var=TES unsigned 56,8 -m
+
+[ENG1S92]
+ID=3BBh
+DLC=8
+Var=B_ST bit 0,1 -m
+Var=B_TC bit 1,1 -m
+Var=B_GLOW bit 4,1 -m
+Var=B_STPE bit 7,1 -m
+Var=B_OMWI unsigned 8,2 -m
+Var=B_SILUP bit 10,1 -m
+Var=B_SILDN bit 11,1 -m
+Var=B_WSTP bit 12,1 -m
+Var=B_LOUT bit 13,1 -m
+Var=B_OILPL unsigned 14,2 -m
+Var=B_TMP unsigned 16,8 -m /f:0.5
+Var=OGENETCS bit 25,1 -m
+Var=B_DPFW unsigned 27,3 -m
+Var=BOSLAMP unsigned 34,3 -m
+Var=BOSMINF unsigned 37,3 -m
+Var=GOSLAMP unsigned 42,3 -m
+Var=GOSMINF unsigned 45,3 -m
+
+[ENG1S95]
+ID=399h
+DLC=8
+Var=B_LLSP2 bit 0,1 -m
+Var=TLSTBZ bit 1,1 -m
+Var=B_ASLBZ2 bit 2,1 -m
+Var=B_SPU2 bit 3,1 -m
+Var=ACASID1 unsigned 4,4 -m
+Var=ACASID2 unsigned 8,8 -m
+Var=B_LSP2 unsigned 24,8 -m /u:"km/h Emph"
+Var=B_ASLSP2 unsigned 32,8 -m /u:"km/h Emph"
+Var=CACCTRN bit 40,1 -m
+Var=CACCINF bit 41,1 -m
+Var=CACCFR2 bit 42,1 -m
+Var=CACCFR1 bit 43,1 -m
+Var=CACCFLD bit 44,1 -m
+Var=CACCCM3 bit 45,1 -m
+Var=CACCCM2 bit 46,1 -m
+Var=CACCCM1 bit 47,1 -m
+
+[ENG2F01]
+ID=0EEh
+DLC=4
+Var=STOFOK bit 0,1 -m
+Var=GROWIND bit 1,1 -m
+Var=B_TMP3 unsigned 8,8 -m /f:0.5
+Var=IMMINJST unsigned 16,16 -m
+
+[ENG2F04]
+ID=1D2h
+DLC=8
+Var=XLDR bit 0,1 -m
+Var=XACCACTV bit 1,1 -m
+Var=XACCACT bit 2,1 -m
+Var=XPAIDLV bit 3,1 -m
+Var=XPAIDL bit 4,1 -m
+Var=BHOK bit 5,1 -m
+Var=RQBH unsigned 6,2 -m
+Var=ACCSTAT unsigned 8,3 -m
+Var=ACCSTBK unsigned 11,3 -m
+Var=STPBZ bit 14,1 -m
+Var=PLOCKF bit 15,1 -m
+Var=ACCREQ signed 16,16 -m /u:m/s^2 /f:0.0009765625
+Var=ACCAVL signed 32,16 -m /u:N /f:2
+Var=SPDSTAT unsigned 48,4 -m
+Var=SSTOK bit 52,1 -m
+Var=CANREQ bit 54,1 -m
+Var=FCACT bit 55,1 -m
+Var=SM1D2 unsigned 56,8 -m
+
+[ENG2F05]
+ID=1D3h
+DLC=8
+Var=LCCW2 bit 3,1 -m
+Var=WSTL2 bit 4,1 -m
+Var=LCCHK unsigned 5,3 -m
+Var=XCCOK2 bit 8,1 -m
+Var=SLTACC unsigned 9,2 -m
+Var=LTME2 unsigned 11,2 -m
+Var=STPSWF2 bit 13,1 -m
+Var=CCSF bit 14,1 -m
+Var=CCSNG bit 15,1 -m
+Var=VM unsigned 16,16 -m /u:km/h /f:0.00390625
+Var=INTG signed 32,8 -m /u:m/s^2 /f:0.04
+Var=D2PRXMK bit 40,1 -m
+Var=SM1D3 unsigned 56,8 -m
+
+[ENG2F41]
+ID=077h
+DLC=6
+Var=FDRV signed 0,16 -m /u:N /f:2
+Var=FDRVREAL signed 16,13 -m /u:N /f:10
+Var=XAECT bit 32,1 -m
+Var=XFDRVCOL bit 33,1 -m
+Var=FDRVSELP unsigned 37,3 -m
+Var=ENG2F41S unsigned 40,8 -m
+
+[ENG2F42]
+ID=078h
+DLC=4
+Var=FAVLMCHH signed 0,16 -m /u:N /f:2
+Var=CCRNG bit 16,1 -m
+Var=FDRVTYPD unsigned 17,3 -m
+Var=GEARHD bit 21,1 -m
+Var=ENG2F42S unsigned 24,8 -m
+
+[EPS1S90]
+ID=394h
+DLC=1
+Var=B_WPS0 unsigned 6,2 -m
+
+[FCM1N01]
+ID=4D3h
+DLC=8
+Var=FCMNID unsigned 0,8 -m
+Var=FCMSNG bit 8,1 -m
+Var=FCMSPF unsigned 16,16 -m
+Var=FCMREV unsigned 32,32 -m
+
+[FCM1S10]
+ID=489h
+DLC=8
+Var=TSGN1 unsigned 0,8 -m
+Var=TSGNGRY1 unsigned 11,3 -m
+Var=TSGNHLT1 unsigned 14,2 -m
+Var=SPDVAL1 unsigned 16,8 -m
+Var=SPLSGN1 unsigned 24,4 -m
+Var=SPLSGN2 unsigned 28,4 -m
+Var=TSGN2 unsigned 32,8 -m
+Var=TSGNGRY2 unsigned 43,3 -m
+Var=TSGNHLT2 unsigned 46,2 -m
+Var=SPDVAL2 unsigned 48,8 -m
+Var=BZRRQ_P unsigned 56,2 -m
+Var=BZRRQ_A unsigned 58,2 -m
+Var=SYNCID1 unsigned 60,4 -m
+
+[FCM1S11]
+ID=48Ah
+DLC=8
+Var=TSGN3 unsigned 0,8 -m
+Var=TSGNGRY3 unsigned 11,3 -m
+Var=TSGNHLT3 unsigned 14,2 -m
+Var=SPLSGN3 unsigned 24,4 -m
+Var=SPLSGN4 unsigned 28,4 -m
+Var=TSGN4 unsigned 32,8 -m
+Var=TSGNGRY4 unsigned 43,3 -m
+Var=TSGNHLT4 unsigned 46,2 -m
+Var=DPSGNREQ bit 49,1 -m
+Var=SGNNUMP unsigned 50,3 -m
+Var=SGNNUMA unsigned 53,3 -m
+Var=SPDUNT unsigned 56,2 -m
+Var=TSRWMSG unsigned 58,2 -m
+Var=SYNCID2 unsigned 60,4 -m
+
+[FCM1S12]
+ID=48Bh
+DLC=8
+Var=TSREQPD bit 0,1 -m
+Var=TSRMSW bit 1,1 -m
+Var=OTSGNNTM unsigned 2,2 -m
+Var=NTLVLSPD unsigned 4,2 -m
+Var=OVSPNTM unsigned 6,2 -m
+Var=OVSPVALL unsigned 12,4 -m /o:-5
+Var=OVSPVALM unsigned 20,4 -m /o:-5
+Var=OVSPVALH unsigned 28,4 -m /o:-5
+Var=TSRSPU unsigned 38,2 -m
+
+[FRD1N01]
+ID=4FFh
+DLC=8
+Var=FRDNID unsigned 0,8 -m
+Var=FRDSNG bit 8,1 -m
+Var=FRDSPF unsigned 16,16 -m
+Var=FRDREV unsigned 32,32 -m
+
+[FWM1S01]
+ID=2E1h
+DLC=2
+Var=ACTHLF bit 0,1 -m
+Var=MOT4WD bit 1,1 -m
+Var=CCANCEL bit 2,1 -m
+Var=AI4WD bit 3,1 -m
+Var=LOW4 bit 4,1 -m
+Var=DLOCK bit 5,1 -m
+Var=RDLOCK bit 6,1 -m
+Var=HLN bit 7,1 -m
+Var=F_SP4WD bit 8,1 -m
+Var=RQ_SP4WD unsigned 9,7 -m /u:km/h /o:73 /max:0
+
+[KSS1N01]
+ID=4E9h
+DLC=8
+Var=KSSNID unsigned 0,8 -m
+Var=KSSSNG bit 8,1 -m
+Var=KSSSPF unsigned 16,16 -m
+Var=KSSREV unsigned 32,32 -m
+
+[KSS1S90]
+ID=39Fh
+DLC=1
+Var=LKSS0 unsigned 6,2 -m
+
+[MAV1N01]
+ID=4EFh
+DLC=8
+Var=MAVNID unsigned 0,8 -m
+Var=MAVSNG bit 8,1 -m
+Var=MAVSPF unsigned 16,16 -m
+
+[MET1S18]
+ID=3E0h
+DLC=8
+Var=M_LANG unsigned 0,6 -m
+Var=M_LNG_ST unsigned 6,2 -m
+Var=M_LNGDB1 unsigned 8,8 -m
+Var=M_LNGDB2 unsigned 16,8 -m
+Var=M_LNGDB3 unsigned 24,8 -m
+Var=M_LNGDB4 unsigned 32,8 -m
+Var=M_LNGDB5 unsigned 40,8 -m
+Var=M_LNGDB6 unsigned 48,8 -m
+Var=M_LNGDB7 unsigned 56,7 -m
+
+[SCS1D50]
+ID=4A9h
+DLC=8
+Var=DRSCS01 unsigned 0,8 -m
+Var=DRSCS02 unsigned 8,8 -m
+Var=DRSCS03 unsigned 16,8 -m
+Var=DRSCS04 unsigned 24,8 -m
+Var=DRSCS05 unsigned 32,8 -m
+Var=DRSCS06 unsigned 40,8 -m
+Var=DRSCS07 unsigned 48,8 -m
+Var=DRSCS08 unsigned 56,8 -m
+
+[SCS1N01]
+ID=4CAh
+DLC=8
+Var=SCSNID unsigned 0,8 -m
+Var=SCSSNG bit 8,1 -m
+Var=SCSSPF unsigned 16,16 -m
+Var=SCSREV unsigned 32,32 -m
+
+[SCS1S01]
+ID=2E8h
+DLC=8
+Var=SELECTOR unsigned 4,4 -m
+Var=AVS_MD unsigned 56,3 -m
+
+[SCS1S06]
+ID=32Fh
+DLC=5
+Var=RRVH signed 16,8 -m /u:mm
+Var=RLVH signed 24,8 -m /u:mm
+Var=SCECOINH bit 36,1 -m
+
+[SCS1S90]
+ID=395h
+DLC=4
+Var=B_LSUS6 unsigned 0,2 -m
+Var=B_LSUS4 unsigned 2,2 -m
+Var=B_LSUS2 unsigned 4,2 -m
+Var=B_LSUS8 unsigned 14,2 -m
+Var=DLR_HSID unsigned 16,4 -m
+Var=LAR_HS unsigned 21,2 -m
+Var=AVSNI bit 23,1 -m
+
+[STR1S01]
+ID=025h
+DLC=8
+Var=STS3 bit 0,1 -m
+Var=STS2 bit 1,1 -m
+Var=STS1 bit 2,1 -m
+Var=STS0 bit 3,1 -m
+Var=SSA signed 4,12 -m /u:deg /f:1.5
+Var=SAZS bit 16,1 -m
+Var=SFRZ unsigned 17,3 -m
+Var=SSAZ signed 20,12 -m /u:deg /f:1.5
+Var=SSAS signed 32,4 -m /u:deg /f:0.1
+Var=SSAV signed 36,12 -m /u:deg/s
+Var=STDID bit 52,1 -m
+Var=STR01SUM unsigned 56,8 -m
+
+[STR1S02]
+ID=423h
+DLC=1
+Var=SFR bit 2,1 -m
+Var=STRWVG bit 3,1 -m
+
+[VSC1F01]
+ID=0AAh
+DLC=8
+Var=VXFREF bit 0,1 -m
+Var=VXFR unsigned 1,15 -m /u:km/h /f:0.01 /o:-67.67
+Var=VXFLEF bit 16,1 -m
+Var=VXFL unsigned 17,15 -m /u:km/h /f:0.01 /o:-67.67
+Var=VXRREF bit 32,1 -m
+Var=VXRR unsigned 33,15 -m /u:km/h /f:0.01 /o:-67.67
+Var=VXRLEF bit 48,1 -m
+Var=VXRL unsigned 49,15 -m /u:km/h /f:0.01 /o:-67.67
+
+[VSC1F02]
+ID=1AAh
+DLC=6
+Var=VXFRF bit 0,1 -m
+Var=VXFRIGS bit 1,1 -m
+Var=VXFRHDS bit 2,1 -m
+Var=VXFLF bit 5,1 -m
+Var=VXFLIGS bit 6,1 -m
+Var=VXFLHDS bit 7,1 -m
+Var=VXRRF bit 10,1 -m
+Var=VXRRIGS bit 11,1 -m
+Var=VXRRHDS bit 12,1 -m
+Var=VXRLF bit 15,1 -m
+Var=VXRLIGS bit 16,1 -m
+Var=VXRLHDS bit 17,1 -m
+Var=VSCF02SM unsigned 40,8 -m
+
+[VSC1F06]
+ID=226h
+DLC=8
+Var=VSCF01FG unsigned 0,2 -m
+Var=AHCURQ bit 3,1 -m
+Var=PMCF bit 4,1 -m
+Var=PMCS bit 5,1 -m
+Var=PMC unsigned 6,10 -m /u:Mpa /f:0.02
+Var=ECOEN bit 16,1 -m
+Var=CCS bit 17,1 -m
+Var=FBA bit 18,1 -m
+Var=TRBRKSYS bit 19,1 -m
+Var=TS bit 33,1 -m
+Var=WSTP bit 34,1 -m
+Var=VSCACT bit 35,1 -m
+Var=BAEX bit 36,1 -m
+Var=TEM unsigned 37,3 -m
+Var=FSTP bit 59,1 -m
+Var=ABSACT bit 60,1 -m
+
+[VSC1S03]
+ID=0B4h
+DLC=8
+Var=SP1P unsigned 32,6 -m
+Var=SP1S bit 38,1 -m
+Var=SP1 signed 40,16 -m /u:km/h /f:0.01
+Var=VSC03SUM unsigned 56,8 -m
+
+[VSC1S07]
+ID=320h
+DLC=8
+Var=FBKRLY bit 1,1 -m
+Var=FVSCM bit 3,1 -m
+Var=FVSCSFT bit 4,1 -m
+Var=FABS bit 5,1 -m
+Var=TSVSC bit 6,1 -m
+Var=FVSCL bit 7,1 -m
+Var=RQCSTBKB bit 8,1 -m
+Var=PSBSTBY bit 9,1 -m
+Var=P2BRXMK bit 10,1 -m
+Var=MCC bit 12,1 -m
+Var=RQBKB bit 13,1 -m
+Var=BRSTOP bit 14,1 -m
+Var=BRKON bit 15,1 -m
+Var=ASLP signed 16,8 -m /u:deg
+Var=BRTYPACC unsigned 24,2 -m
+Var=BRKABT3 bit 29,1 -m
+Var=BRKABT2 bit 30,1 -m
+Var=BRKABT1 bit 31,1 -m
+Var=GVC signed 32,8 -m /u:m/s^2 /f:0.04
+Var=XGVCINV bit 44,1 -m
+Var=S07CNT bit 51,1 -m
+Var=PCSBRSTA unsigned 53,2 -m
+Var=VSC07SUM unsigned 56,8 -m
+
+[VSC1S08]
+ID=420h
+DLC=8
+Var=YR1Z signed 0,16 -m /u:rad/s
+Var=YR2Z signed 16,16 -m /u:rad/s
+Var=GL1Z signed 32,8 -m /u:m/s^2 /f:0.0359
+Var=GL2Z signed 40,8 -m /u:m/s^2 /f:0.0359
+Var=YRGSDIR bit 48,1 -m
+Var=GLZS bit 52,1 -m
+Var=YRZF bit 53,1 -m
+Var=YRZS bit 54,1 -m
+Var=YRZKS bit 55,1 -m
+Var=VSC08SUM unsigned 56,8 -m
+
+[VSC1S12]
+ID=0BAh
+DLC=4
+Var=HAC2ESRQ bit 18,1 -m
+Var=FHACHOLD bit 19,1 -m
+Var=VSC12SUM unsigned 24,8 -m
+
+[VSC1S14]
+ID=232h
+DLC=6
+Var=VWPSUMFR unsigned 0,8 -m
+Var=VWPSUMFL unsigned 8,8 -m
+Var=VWPFRPM bit 16,1 -m
+Var=VWPFLPM bit 17,1 -m
+Var=S14CNT unsigned 18,3 -m
+Var=VWPFRPMS bit 21,1 -m
+Var=VWPFLPMS bit 22,1 -m
+Var=VWPSUMRR unsigned 24,8 -m
+Var=VWPSUMRL unsigned 32,8 -m
+Var=VSC14SUM unsigned 40,8 -m
+
+[VSC1S29]
+ID=228h
+DLC=4
+Var=ICBACT bit 0,1 -m
+Var=DVS0PCS signed 1,15 -m /u:m/s^2 /f:0.001
+Var=SM228 unsigned 24,8 -m
+
+[VSC1S92]
+ID=490h
+DLC=1
+Var=C_DCMOD1 bit 0,1 -m
+Var=C_DCMOD2 unsigned 1,3 -m
+Var=C_DCMOD3 unsigned 4,4 -m
+
+[VSC1S95]
+ID=3B7h
+DLC=8
+Var=B_BRKW unsigned 0,2 -m
+Var=B_ABS unsigned 2,3 -m
+Var=B_BRLV bit 9,1 -m
+Var=TRCOFF bit 10,1 -m
+Var=VSCOFF unsigned 11,2 -m
+Var=SLP_WL unsigned 13,3 -m
+Var=B_MCST unsigned 20,2 -m
+Var=B_BUZZER unsigned 24,4 -m
+Var=B_ALSD unsigned 28,2 -m
+Var=B_DACIND unsigned 30,2 -m
+Var=OGENVSC bit 34,1 -m
+Var=B_ATRC bit 40,1 -m
+Var=B_STRC unsigned 41,3 -m
+Var=B_HZD bit 44,1 -m
+Var=VSCSWIH bit 52,1 -m
+Var=STRCDISP unsigned 53,3 -m
+Var=STRCDSP2 bit 59,1 -m
+Var=VSCEXIST bit 60,1 -m
+
+[VSC1S96]
+ID=427h
+DLC=8
+Var=MTS_DISP unsigned 2,4 -m
+Var=B_MTS unsigned 6,2 -m
+Var=TRCCONRL bit 12,1 -m
+Var=TRCCONRR bit 13,1 -m
+Var=TRCCONFL bit 14,1 -m
+Var=TRCCONFR bit 15,1 -m
+
+[VSC2F05]
+ID=221h
+DLC=5
+Var=TQER signed 0,16 -m /u:Nm /f:0.03125
+Var=REQC bit 16,1 -m
+Var=REQ2 bit 17,1 -m
+Var=REQ1 bit 18,1 -m
+Var=AIDWI bit 19,1 -m
+Var=RTD unsigned 20,4 -m
+Var=LOMUSFT bit 24,1 -m
+Var=VSC2F05S unsigned 32,8 -m
+
+[VSC2F07]
+ID=220h
+DLC=4
+Var=FSROT bit 0,1 -m
+Var=BRK2 bit 3,1 -m
+Var=BRK1 bit 4,1 -m
+Var=FCNG bit 6,1 -m
+Var=TSLP bit 7,1 -m
+Var=TRCACT bit 8,1 -m
+Var=ABSSLP bit 9,1 -m
+Var=VDMACT bit 10,1 -m
+Var=DAC_CND unsigned 14,2 -m
+Var=VSC2F07S unsigned 24,8 -m
+
+[YGS1S03]
+ID=024h
+DLC=8
+Var=YRS11S bit 0,1 -m
+Var=YRS14S bit 1,1 -m
+Var=YRS21S bit 2,1 -m
+Var=YRS24S bit 3,1 -m
+Var=YGS1 bit 4,1 -m
+Var=YGS0 bit 5,1 -m
+Var=YR unsigned 6,10 -m /u:deg/sec /f:0.244 /o:-125
+Var=YR_CPUMN unsigned 16,4 -m
+Var=GS4S bit 20,1 -m
+Var=GS1S bit 21,1 -m
+Var=GL1X unsigned 22,10 -m /u:m/s^2 /f:0.03589 /o:-18.375
+Var=YG_ID unsigned 32,4 -m
+Var=GS5S bit 36,1 -m
+Var=GS2S bit 37,1 -m
+Var=GL2Y unsigned 38,10 -m /u:m/s^2 /f:0.03589 /o:-18.375
+Var=YR_DIF unsigned 48,8 -m /u:deg/sec /f:0.244 /o:-31
+Var=YGS03SUM unsigned 56,8 -m
