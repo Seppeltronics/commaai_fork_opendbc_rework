@@ -1,0 +1,967 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="tesla_can"
+
+{ENUMS}
+enum VtSig_DAS_steeringControlType(1="ANGLE_CONTROL", 3="DISABLED", 0="NONE", 2="RESERVED")
+enum VtSig_DAS_steeringAngleRequest(16384="ZERO_ANGLE")
+enum VtSig_DAS_steeringHapticRequest(1="ACTIVE", 0="IDLE")
+enum VtSig_DI_vehicleSpeed(4095="SNA")
+enum VtSig_DAS_accState(15="FAULT_SNA", 13="ACC_CANCEL_GENERIC_SILENT", 11="APC_SELFPARK_START",
+  10="APC_UNPARK_COMPLETE", 9="APC_PAUSE", 8="APC_ABORT", 7="APC_COMPLETE", 6="APC_FORWARD", 5="APC_BACKWARD",
+  4="ACC_ON", 3="ACC_HOLD", 0="ACC_CANCEL_GENERIC")
+enum VtSig_DAS_aebEvent(3="AEB_SNA", 2="AEB_FAULT", 1="AEB_ACTIVE", 0="AEB_NOT_ACTIVE")
+enum VtSig_DAS_locAccelMin(511="SNA")
+enum VtSig_DI_pedalPos(255="SNA")
+enum VtSig_DAS_locMode(3="DAS_LOC_DRIVERLESS", 2="DAS_LOC_RESTRICTED", 1="DAS_LOC_NORMAL", 0="DAS_LOC_OFF")
+enum VtSig_DAS_locState(7="DAS_LOC_FAULT_SNA", 6="DAS_LOC_AEB_ACTIVE", 2="DAS_LOC_CANCEL_SILENT",
+  1="DAS_LOC_CANCEL_GENERIC", 0="DAS_LOC_HEALTHY")
+enum VtSig_DAS_locRequest(4="DAS_RQ_PARK", 3="DAS_RQ_HOLD", 2="DAS_RQ_BACKWARD", 1="DAS_RQ_FORWARD", 0="DAS_RQ_IDLE")
+enum VtSig_DAS_locSpeed(2047="SNA")
+enum VtSig_DAS_leftLineUsage(3="BLACKLISTED", 2="FUSED", 1="AVAILABLE", 0="REJECTED_UNAVAILABLE")
+enum VtSig_DAS_leftFork(3="LEFT_FORK_UNAVAILABLE", 2="LEFT_FORK_SELECTED", 1="LEFT_FORK_AVAILABLE", 0="LEFT_FORK_NONE")
+enum VtSig_DAS_rightFork(3="RIGHT_FORK_UNAVAILABLE", 2="RIGHT_FORK_SELECTED", 1="RIGHT_FORK_AVAILABLE",
+  0="RIGHT_FORK_NONE")
+enum VtSig_GTW_epasControlType(0="WITHOUT", 1="WITH_ANGLE", 3="WITH_BOTH", 2="WITH_TORQUE")
+enum VtSig_GTW_epasEmergencyOn(1="EMERGENCY_POWER", 0="NONE")
+enum VtSig_GTW_epasLDWEnabled(1="ALLOWED", 0="INHIBITED")
+enum VtSig_GTW_epasPowerMode(0="DRIVE_OFF", 1="DRIVE_ON", 3="LOAD_SHED", 2="SHUTTING_DOWN", 15="SNA")
+enum VtSig_GTW_epasTuneRequest(1="DM_COMFORT", 3="DM_SPORT", 2="DM_STANDARD", 0="FAIL_SAFE_DEFAULT", 4="RWD_COMFORT",
+  6="RWD_SPORT", 5="RWD_STANDARD", 7="SNA")
+enum VtSig_EPAS_currentTuneMode(1="DM_COMFORT", 3="DM_SPORT", 2="DM_STANDARD", 0="FAIL_SAFE_DEFAULT", 4="RWD_COMFORT",
+  6="RWD_SPORT", 5="RWD_STANDARD", 7="UNAVAILABLE")
+enum VtSig_EPAS_eacErrorCode(14="EAC_ERROR_EPB_INHIBIT", 3="EAC_ERROR_HANDS_ON", 7="EAC_ERROR_HIGH_ANGLE_RATE_REQ",
+  9="EAC_ERROR_HIGH_ANGLE_RATE_SAFETY", 6="EAC_ERROR_HIGH_ANGLE_REQ", 8="EAC_ERROR_HIGH_ANGLE_SAFETY",
+  10="EAC_ERROR_HIGH_MMOT_SAFETY", 11="EAC_ERROR_HIGH_TORSION_SAFETY", 0="EAC_ERROR_IDLE", 12="EAC_ERROR_LOW_ASSIST",
+  2="EAC_ERROR_MAX_SPEED", 1="EAC_ERROR_MIN_SPEED", 13="EAC_ERROR_PINION_VEL_DIFF", 4="EAC_ERROR_TMP_FAULT",
+  5="EAR_ERROR_MAX_STEER_DELTA", 15="SNA")
+enum VtSig_EPAS_eacStatus(2="EAC_ACTIVE", 1="EAC_AVAILABLE", 3="EAC_FAULT", 0="EAC_INHIBITED", 4="SNA")
+enum VtSig_EPAS_handsOnLevel(0="0", 1="1", 2="2", 3="3")
+enum VtSig_EPAS_steeringFault(1="FAULT", 0="NO_FAULT")
+enum VtSig_EPAS_steeringRackForce(1022="NOT_IN_SPEC", 1023="SNA")
+enum VtSig_EPAS_steeringReduced(0="NORMAL_ASSIST", 1="REDUCED_ASSIST")
+enum VtSig_EPAS_torsionBarTorque(0="SEE_SPECIFICATION", 4095="SNA", 4094="UNDEFINABLE_DATA")
+enum VtSig_StW_Angl(16383="SNA")
+enum VtSig_StW_AnglSens_Stat(2="ERR", 3="ERR_INI", 1="INI", 0="OK")
+enum VtSig_StW_AnglSens_Id(2="MUST", 0="PSBL", 1="SELF")
+enum VtSig_StW_AnglHP_Sens_Stat(3="SNA", 2="ERR", 1="INI", 0="OK")
+enum VtSig_StW_AnglHP_Sens_Id(3="SNA", 2="KOSTAL", 1="DELPHI", 0="TEST")
+enum VtSig_DI_torqueDriver(-4096="SNA")
+enum VtSig_DI_soptState(7="SOPT_TEST_SNA", 4="SOPT_TEST_NOT_RUN", 3="SOPT_TEST_PASSED", 2="SOPT_TEST_FAILED",
+  1="SOPT_TEST_IN_PROGRESS", 0="SOPT_PRE_TEST")
+enum VtSig_DI_motorRPM(-32768="SNA")
+enum VtSig_DI_torqueEstimate(-2048="SNA")
+enum VtSig_DI_gear(7="DI_GEAR_SNA", 4="DI_GEAR_D", 3="DI_GEAR_N", 2="DI_GEAR_R", 1="DI_GEAR_P", 0="DI_GEAR_INVALID")
+enum VtSig_DI_brakePedal(1="Applied", 0="Not_applied")
+enum VtSig_DI_torqueInterfaceFailure(1="TORQUE_INTERFACE_FAILED", 0="TORQUE_INTERFACE_NORMAL")
+enum VtSig_DI_brakePedalState(3="SNA", 2="INVALID", 1="ON", 0="OFF")
+enum VtSig_DI_epbParkRequest(1="Park_requested", 0="No_request")
+enum VtSig_DI_epbInterfaceReady(1="EPB_INTERFACE_READY", 0="EPB_INTERFACE_NOT_READY")
+enum VtSig_ESP_absBrakeEvent(1="ACTIVE", 0="NOT_ACTIVE")
+enum VtSig_ESP_brakeDiscWipingActive(1="ACTIVE", 0="INACTIVE")
+enum VtSig_ESP_brakeLamp(0="OFF", 1="ON")
+enum VtSig_ESP_espLampFlash(1="FLASH", 0="OFF")
+enum VtSig_ESP_hillStartAssistActive(1="ACTIVE", 0="INACTIVE", 2="NOT_AVAILABLE", 3="SNA")
+enum VtSig_ESP_stabilityControlSts(2="ENGAGED", 3="FAULTED", 5="INIT", 4="NOT_CONFIGURED", 0="OFF", 1="ON")
+enum VtSig_YEAR(126="Init", 127="SNA")
+enum VtSig_CERRD(1="CAN error detect", 0="no Can error detected")
+enum VtSig_MONTH(1="Init", 15="SNA")
+enum VtSig_BOOT_STATE(2="Init", 3="SNA", 0="closed", 1="open")
+enum VtSig_MINUTE(62="Init", 63="SNA")
+enum VtSig_Hour(30="Init", 31="SNA")
+enum VtSig_DAY(1="Init", 0="SNA")
+enum VtSig_GTW_updateInProgress(1="IN_PROGRESS", 2="IN_PROGRESS_NOT_USED", 3="IN_PROGRESS_SNA", 0="NOT_IN_PROGRESS")
+enum VtSig_MCU_factoryMode(1="FACTORY_MODE", 0="NORMAL_MODE")
+enum VtSig_MCU_transportModeOn(0="NORMAL_MODE")
+enum VtSig_DI_state(3="ABORT", 4="ENABLE", 2="FAULT", 1="STANDBY", 0="UNAVAILABLE")
+enum VtSig_DI_vehicleHoldState(2="BLEND_IN", 4="BLEND_OUT", 6="FAULT", 7="INIT", 5="PARK", 1="STANDBY", 3="STANDSTILL",
+  0="UNAVAILABLE")
+enum VtSig_DI_cruiseState(2="ENABLED", 5="FAULT", 0="OFF", 4="OVERRIDE", 7="PRE_CANCEL", 6="PRE_FAULT", 1="STANDBY",
+  3="STANDSTILL")
+enum VtSig_DI_immobilizerState(2="AUTHENTICATING", 3="DISARMED", 6="FAULT", 4="IDLE", 0="INIT_SNA", 1="REQUEST",
+  5="RESET")
+enum VtSig_UI_mapSpeedLimitUnits(1="KPH", 0="MPH")
+enum VtSig_DI_aebState(2="ENABLED", 4="FAULT", 7="SNA", 1="STANDBY", 3="STANDSTILL", 0="UNAVAILABLE")
+enum VtSig_StW_Sw_Stat3(7="SNA", 6="NDEF6", 5="NDEF5", 4="NDEF4", 3="PLUS_MINUS", 2="MINUS", 1="PLUS", 0="NPSD")
+enum VtSig_MsgTxmtId(3="NDEF3", 2="NDEF2", 1="SCCM", 0="EWM")
+enum VtSig_TSL_RND_Posn_StW(15="SNA", 8="D", 6="INI", 4="N_DOWN", 2="N_UP", 1="R", 0="IDLE")
+enum VtSig_TSL_P_Psd_StW(3="SNA", 2="INI", 1="PSD", 0="IDLE")
+enum VtSig_SpdCtrlLvr_Stat(32="DN_1ST", 16="UP_1ST", 8="DN_2ND", 4="UP_2ND", 2="RWD", 1="FWD", 0="IDLE")
+enum VtSig_DTR_Dist_Rq(255="SNA", 200="ACC_DIST_7", 166="ACC_DIST_6", 133="ACC_DIST_5", 100="ACC_DIST_4",
+  66="ACC_DIST_3", 33="ACC_DIST_2", 0="ACC_DIST_1")
+enum VtSig_TurnIndLvr_Stat(3="SNA", 2="RIGHT", 1="LEFT", 0="IDLE")
+enum VtSig_HiBmLvr_Stat(3="SNA", 2="HIBM_FLSH_ON_PSD", 1="HIBM_ON_PSD", 0="IDLE")
+enum VtSig_WprWashSw_Psd(3="SNA", 2="WASH", 1="TIPWIPE", 0="NPSD")
+enum VtSig_WprWash_R_Sw_Posn_V2(3="SNA", 2="WASH", 1="INTERVAL", 0="OFF")
+enum VtSig_StW_Lvr_Stat(4="STW_BACK", 3="STW_FWD", 2="STW_DOWN", 1="STW_UP", 0="NPSD")
+enum VtSig_StW_Cond_Psd(3="SNA", 2="DOWN", 1="UP", 0="NPSD")
+enum VtSig_HrnSw_Psd(3="SNA", 2="NDEF2", 1="PSD", 0="NPSD")
+enum VtSig_StW_Sw00_Psd(1="PRESSED", 0="NOT_PRESSED_SNA")
+enum VtSig_WprSw6Posn(7="SNA", 6="STAGE2", 5="STAGE1", 4="INTERVAL4", 3="INTERVAL3", 2="INTERVAL2", 1="INTERVAL1",
+  0="OFF")
+enum VtSig_AirTemp_Outsd(254="INIT", 255="SNA")
+enum VtSig_Bckl_Sw_RL_Stat_SAM_R(2="FLT", 1="NOT", 0="OK", 3="SNA")
+enum VtSig_DL_RLtch_Stat(1="CLS", 0="NDEF0", 2="OPN", 3="SNA")
+enum VtSig_LgtSens_Night(0="DAY", 1="NIGHT")
+enum VtSig_MPkBrk_Stat(1="ENGG", 0="RELS")
+enum VtSig_RevGr_Engg(0="DISENGG", 1="ENGG", 2="NDEF2", 3="SNA")
+enum VtSig_StW_Cond_Stat(3="BLINK", 1="NDEF1", 0="OFF", 2="ON")
+enum VtSig_Trlr_Stat(2="NDEF2", 0="NONE", 1="OK", 3="SNA")
+enum VtSig_MCU_clusterReadyForDrive(0="NO_SNA", 1="YES")
+enum VtSig_driverBrakeStatus(2="APPLIED", 1="NOT_APPLIED")
+enum VtSig_autopilotStatus(5="ACTIVE_NAVIGATE_ON_AUTOPILOT", 4="ACTIVE_2", 3="ACTIVE_1", 2="AVAILABLE", 1="UNAVAILABLE",
+  0="DISABLED")
+enum VtSig_DAS_blindSpotRearLeft(3="SNA", 2="WARNING_LEVEL_2", 1="WARNING_LEVEL_1", 0="NO_WARNING")
+enum VtSig_DAS_fusedSpeedLimit(31="NONE", 0="UNKNOWN_SNA")
+enum VtSig_DAS_suppressSpeedWarning(1="Suppress_Speed_Warning", 0="Do_Not_Suppress")
+enum VtSig_DAS_heaterState(1="HEATER_ON", 0="HEATER_OFF_SNA")
+enum VtSig_DAS_forwardCollisionWarnin(3="SNA", 1="FORWARD_COLLISION_WARNING", 0="NONE")
+enum VtSig_DAS_autoparkReady(1="AUTOPARK_READY", 0="AUTOPARK_UNAVAILABLE")
+enum VtSig_DAS_sideCollisionAvoid(3="SNA", 2="AVOID_RIGHT", 1="AVOID_LEFT", 0="NONE")
+enum VtSig_DAS_sideCollisionWarning(3="WARN_LEFT_RIGHT", 2="WARN_RIGHT", 1="WARN_LEFT", 0="NONE")
+enum VtSig_DAS_sideCollisionInhibit(1="INHIBIT", 0="NO_INHIBIT")
+enum VtSig_DAS_csaState(3="CSA_EXTERNAL_STATE_HOLD", 2="CSA_EXTERNAL_STATE_ENABLE", 1="CSA_EXTERNAL_STATE_AVAILABLE",
+  0="CSA_EXTERNAL_STATE_UNAVAILABLE")
+enum VtSig_DAS_laneDepartureWarning(5="SNA", 4="RIGHT_WARNING_SEVERE", 3="LEFT_WARNING_SEVERE", 2="RIGHT_WARNING",
+  1="LEFT_WARNING", 0="NONE")
+enum VtSig_DAS_fleetSpeedState(3="FLEETSPEED_HOLD", 2="FLEETSPEED_ACTIVE", 1="FLEETSPEED_AVAILABLE",
+  0="FLEETSPEED_UNAVAILABLE")
+enum VtSig_DAS_autopilotHandsOnState(15="LC_HANDS_ON_SNA", 8="LC_HANDS_ON_SUSPENDED", 7="LC_HANDS_ON_REQD_STRUCK_OUT",
+  5="LC_HANDS_ON_REQD_CHIME_2", 4="LC_HANDS_ON_REQD_CHIME_1", 3="LC_HANDS_ON_REQD_VISUAL",
+  2="LC_HANDS_ON_REQD_NOT_DETECTED", 1="LC_HANDS_ON_REQD_DETECTED", 0="LC_HANDS_ON_NOT_REQD")
+enum VtSig_DAS_autoLaneChangeState(31="ALC_SNA", 30="ALC_ABORT_MISSION_PLAN_INVALID", 29="ALC_ABORT_TIMEOUT",
+  28="ALC_WAITING_HANDS_ON", 27="ALC_BLOCKED_LANE_TYPE_R", 26="ALC_BLOCKED_LANE_TYPE_L",
+  25="ALC_BLOCKED_VEH_TTC_AND_USS_R", 24="ALC_BLOCKED_VEH_TTC_R", 23="ALC_BLOCKED_VEH_TTC_AND_USS_L",
+  22="ALC_BLOCKED_VEH_TTC_L", 21="ALC_UNAVAILABLE_SOLID_LANE_LINE", 20="ALC_ABORT_OTHER_REASON",
+  19="ALC_ABORT_BLINKER_TURNED_OFF", 18="ALC_ABORT_LC_HEALTH_BAD", 17="ALC_ABORT_POOR_VIEW_RANGE",
+  16="ALC_ABORT_SIDE_OBSTACLE_PRESENT_R", 15="ALC_ABORT_SIDE_OBSTACLE_PRESENT_L",
+  14="ALC_WAITING_FOR_FWD_OBST_TO_PASS_R", 13="ALC_WAITING_FOR_FWD_OBST_TO_PASS_L",
+  12="ALC_WAITING_FOR_SIDE_OBST_TO_PASS_R", 11="ALC_WAITING_FOR_SIDE_OBST_TO_PASS_L", 10="ALC_IN_PROGRESS_R",
+  9="ALC_IN_PROGRESS_L", 8="ALC_AVAILABLE_BOTH", 7="ALC_AVAILABLE_ONLY_R", 6="ALC_AVAILABLE_ONLY_L",
+  5="ALC_UNAVAILABLE_VEHICLE_SPEED", 4="ALC_UNAVAILABLE_EXITING_HIGHWAY", 3="ALC_UNAVAILABLE_TP_FOLLOW",
+  2="ALC_UNAVAILABLE_SONICS_INVALID", 1="ALC_UNAVAILABLE_NO_LANES", 0="ALC_UNAVAILABLE_DISABLED")
+enum VtSig_DAS_accSpeedLimit(1023="SNA", 0="NONE")
+enum VtSig_DAS_pmmObstacleSeverity(7="PMM_SNA", 6="PMM_ACCEL_LIMIT", 5="PMM_CRASH_FRONT", 4="PMM_CRASH_REAR",
+  3="PMM_BRAKE_REQUEST", 2="PMM_IMMINENT_FRONT", 1="PMM_IMMINENT_REAR", 0="PMM_NONE")
+enum VtSig_DAS_pmmLoggingRequest(1="TRUE", 0="FALSE")
+enum VtSig_DAS_activationFailureStatu(2="LC_ACTIVATION_FAILED_2", 1="LC_ACTIVATION_FAILED_1", 0="LC_ACTIVATION_IDLE")
+enum VtSig_DAS_pmmUltrasonicsFaultRea(4="PMM_ULTRASONICS_INVALID_MIA", 3="PMM_ULTRASONICS_BLOCKED_BOTH",
+  2="PMM_ULTRASONICS_BLOCKED_REAR", 1="PMM_ULTRASONICS_BLOCKED_FRONT", 0="PMM_ULTRASONICS_NO_FAULT")
+enum VtSig_DAS_pmmRadarFaultReason(2="PMM_RADAR_INVALID_MIA", 1="PMM_RADAR_BLOCKED_FRONT", 0="PMM_RADAR_NO_FAULT")
+enum VtSig_DAS_pmmSysFaultReason(7="PMM_FAULT_BRAKE_PEDAL_INHIBIT", 6="PMM_FAULT_ROAD_TYPE",
+  5="PMM_FAULT_DISABLED_BY_USER", 4="PMM_FAULT_STEERING_ANGLE_RATE", 3="PMM_FAULT_DI_FAULT", 2="PMM_FAULT_SPEED",
+  1="PMM_FAULT_DAS_DISABLED", 0="PMM_FAULT_NONE")
+enum VtSig_DAS_pmmCameraFaultReason(2="PMM_CAMERA_INVALID_MIA", 1="PMM_CAMERA_BLOCKED_FRONT", 0="PMM_CAMERA_NO_FAULT")
+enum VtSig_DAS_ACC_report(24="ACC_REPORT_BEHAVIOR_REPORT", 23="ACC_REPORT_CAMERA_ONLY", 22="ACC_REPORT_RADAR_OBJ_FIVE",
+  21="ACC_REPORT_CIPV_CUTTING_OUT", 20="ACC_REPORT_MCVLR_IN_PATH", 19="ACC_REPORT_MCVLR_DPP",
+  18="ACC_REPORT_FLEET_SPEEDS", 17="ACC_REPORT_TARGET_MCP", 16="ACC_REPORT_RADAR_OBJ_TWO",
+  15="ACC_REPORT_RADAR_OBJ_ONE", 14="ACC_REPORT_LC_EXTERNAL_STATE_ACTIVE_RESTRICTED",
+  13="ACC_REPORT_LC_EXTERNAL_STATE_ABORTED", 12="ACC_REPORT_LC_EXTERNAL_STATE_ABORTING",
+  11="ACC_REPORT_LC_HANDS_ON_REQD_STRUCK_OUT", 10="ACC_REPORT_CSA", 9="ACC_REPORT_TARGET_TYPE_FAULT",
+  8="ACC_REPORT_TARGET_TYPE_IPSO", 7="ACC_REPORT_TARGET_TYPE_TRAFFIC_LIGHT", 6="ACC_REPORT_TARGET_TYPE_STOP_SIGN",
+  5="ACC_REPORT_TARGET_CUTIN", 4="ACC_REPORT_TARGET_MCVR", 3="ACC_REPORT_TARGET_MCVL",
+  2="ACC_REPORT_TARGET_IN_FRONT_OF_CIPV", 1="ACC_REPORT_TARGET_CIPV", 0="ACC_REPORT_TARGET_NONE")
+enum VtSig_DAS_lssState(7="LSS_STATE_OFF", 6="LSS_STATE_ABORT", 5="LSS_STATE_BLINDSPOT", 4="LSS_STATE_MONITOR",
+  3="LSS_STATE_ELK", 2="LSS_STATE_LKA", 1="LSS_STATE_LDW", 0="LSS_STATE_FAULT")
+enum VtSig_DAS_radarTelemetry(2="RADAR_TELEMETRY_URGENT", 1="RADAR_TELEMETRY_NORMAL", 0="RADAR_TELEMETRY_IDLE")
+enum VtSig_DAS_robState(3="ROB_STATE_MAPLESS", 2="ROB_STATE_ACTIVE", 1="ROB_STATE_MEASURE", 0="ROB_STATE_INHIBITED")
+enum VtSig_DAS_driverInteractionLevel(2="CONTINUED_DRIVER_NOT_INTERACTING", 1="DRIVER_NOT_INTERACTING",
+  0="DRIVER_INTERACTING")
+enum VtSig_DAS_ppOffsetDesiredRamp(128="PP_NO_OFFSET")
+enum VtSig_DAS_longCollisionWarning(15="FCM_LONG_COLLISION_WARNING_SNA", 12="FCM_LONG_COLLISION_WARNING_VEHICLE_CIPV2",
+  11="FCM_LONG_COLLISION_WARNING_VEHICLE_MCVR2", 10="FCM_LONG_COLLISION_WARNING_VEHICLE_MCVR",
+  9="FCM_LONG_COLLISION_WARNING_VEHICLE_MCVL2", 8="FCM_LONG_COLLISION_WARNING_VEHICLE_MCVL",
+  7="FCM_LONG_COLLISION_WARNING_VEHICLE_CUTIN", 6="FCM_LONG_COLLISION_WARNING_VEHICLE_CIPV",
+  5="FCM_LONG_COLLISION_WARNING_TFL_STOPLINE", 4="FCM_LONG_COLLISION_WARNING_STOPSIGN_STOPLINE",
+  3="FCM_LONG_COLLISION_WARNING_IPSO", 2="FCM_LONG_COLLISION_WARNING_PEDESTRIAN",
+  1="FCM_LONG_COLLISION_WARNING_VEHICLE_UNKNOWN", 0="FCM_LONG_COLLISION_WARNING_NONE")
+enum VtSig_DAS_headlightRequest(3="DAS_HEADLIGHT_REQUEST_INVALID", 1="DAS_HEADLIGHT_REQUEST_ON",
+  0="DAS_HEADLIGHT_REQUEST_OFF")
+enum VtSig_DAS_hazardLightRequest(3="DAS_REQUEST_HAZARDS_SNA", 2="DAS_REQUEST_HAZARDS_UNUSED",
+  1="DAS_REQUEST_HAZARDS_ON", 0="DAS_REQUEST_HAZARDS_OFF")
+enum VtSig_DAS_wiperSpeed(15="DAS_WIPER_SPEED_INVALID", 14="DAS_WIPER_SPEED_14", 13="DAS_WIPER_SPEED_13",
+  12="DAS_WIPER_SPEED_12", 11="DAS_WIPER_SPEED_11", 10="DAS_WIPER_SPEED_10", 9="DAS_WIPER_SPEED_9",
+  8="DAS_WIPER_SPEED_8", 7="DAS_WIPER_SPEED_7", 6="DAS_WIPER_SPEED_6", 5="DAS_WIPER_SPEED_5", 4="DAS_WIPER_SPEED_4",
+  3="DAS_WIPER_SPEED_3", 2="DAS_WIPER_SPEED_2", 1="DAS_WIPER_SPEED_1", 0="DAS_WIPER_SPEED_OFF")
+enum VtSig_DAS_turnIndicatorRequest(3="DAS_TURN_INDICATOR_CANCEL", 2="DAS_TURN_INDICATOR_RIGHT",
+  1="DAS_TURN_INDICATOR_LEFT", 0="DAS_TURN_INDICATOR_NONE")
+enum VtSig_DAS_highLowBeamDecision(3="DAS_HIGH_BEAM_SNA", 2="DAS_HIGH_BEAM_ON", 1="DAS_HIGH_BEAM_OFF",
+  0="DAS_HIGH_BEAM_UNDECIDED")
+enum VtSig_DAS_highLowBeamOffReason(5="HIGH_BEAM_OFF_REASON_SNA", 4="HIGH_BEAM_OFF_REASON_HEAD_LIGHT",
+  3="HIGH_BEAM_OFF_REASON_AMBIENT_LIGHT", 2="HIGH_BEAM_OFF_REASON_MOVING_RADAR_TARGET",
+  1="HIGH_BEAM_OFF_REASON_MOVING_VISION_TARGET", 0="HIGH_BEAM_ON")
+enum VtSig_DAS_turnIndicatorRequestRe(6="DAS_ACTIVE_COMMANDED_LANE_CHANGE", 5="DAS_CANCEL_FORK",
+  4="DAS_CANCEL_LANE_CHANGE", 3="DAS_ACTIVE_FORK", 2="DAS_ACTIVE_SPEED_LANE_CHANGE", 1="DAS_ACTIVE_NAV_LANE_CHANGE",
+  0="DAS_NONE")
+
+{SENDRECEIVE}
+
+[DAS_steeringControl]
+ID=488h
+DLC=4
+Var=DAS_steeringControlType unsigned 16,2 -m /e:VtSig_DAS_steeringControlType
+Var=DAS_steeringControlChecksum unsigned 24,8 -m
+Var=DAS_steeringControlCounter unsigned 20,4 -m
+Var=DAS_steeringAngleRequest unsigned 1,15 -m /u:deg /f:0.1 /o:-1638.35 /max:1638.35 /e:VtSig_DAS_steeringAngleRequest
+Var=DAS_steeringHapticRequest bit 0,1 -m /e:VtSig_DAS_steeringHapticRequest
+
+[DAS_control]
+ID=2B9h
+DLC=8
+Var=DAS_setSpeed unsigned 0,12 /u:kph /f:0.1 /max:409.4 /e:VtSig_DI_vehicleSpeed
+Var=DAS_accState unsigned 12,4 /e:VtSig_DAS_accState
+Var=DAS_aebEvent unsigned 16,2 /e:VtSig_DAS_aebEvent
+Var=DAS_jerkMin unsigned 18,9 /u:m/s^3 /f:0.03 /o:-15.232 /max:0.098 /e:VtSig_DAS_locAccelMin
+Var=DAS_jerkMax unsigned 27,8 /u:m/s^3 /f:0.059 /e:VtSig_DI_pedalPos
+Var=DAS_accelMin unsigned 35,9 /u:m/s^2 /f:0.04 /o:-15 /e:VtSig_DAS_locAccelMin
+Var=DAS_accelMax unsigned 44,9 /u:m/s^2 /f:0.04 /o:-15 /e:VtSig_DAS_locAccelMin
+Var=DAS_controlCounter unsigned 53,3
+Var=DAS_controlChecksum unsigned 56,8
+
+[DAS_longControl]
+ID=209h
+DLC=8
+Var=DAS_locMode unsigned 0,2 /e:VtSig_DAS_locMode
+Var=DAS_locState unsigned 2,3 /e:VtSig_DAS_locState
+Var=DAS_locRequest unsigned 5,3 /e:VtSig_DAS_locRequest
+Var=DAS_locJerkMin unsigned 8,8 /u:m/s^3 /f:0.034 /o:-8.67 /max:0 /e:VtSig_DI_pedalPos
+Var=DAS_locJerkMax unsigned 16,8 /u:m/s^3 /f:0.034 /e:VtSig_DI_pedalPos
+Var=DAS_locSpeed unsigned 24,11 /u:kph /f:0.1 /max:204.7 /e:VtSig_DAS_locSpeed
+Var=DAS_locAccelMin unsigned 35,9 /u:m/s^2 /f:0.04 /o:-15 /e:VtSig_DAS_locAccelMin
+Var=DAS_locAccelMax unsigned 44,9 /u:m/s^2 /f:0.04 /o:-15 /e:VtSig_DAS_locAccelMin
+Var=DAS_longControlCounter unsigned 53,3
+Var=DAS_longControlChecksum unsigned 56,8
+
+[DAS_lanes]
+ID=239h
+DLC=8
+Var=DAS_leftLaneExists bit 0,1
+Var=DAS_rightLaneExists bit 1,1
+Var=DAS_virtualLaneWidth unsigned 4,4 /u:m /f:0.3125 /o:2
+Var=DAS_virtualLaneViewRange unsigned 8,8 /u:m /max:160
+Var=DAS_virtualLaneC0 unsigned 16,8 /u:m /f:0.035 /o:-3.5 /max:3.5
+Var=DAS_virtualLaneC1 unsigned 24,8 /u:rad /f:0.0016 /o:-0.2 /max:0.2
+Var=DAS_virtualLaneC2 unsigned 32,8 /u:m-1 /f:2E-005 /o:-0.0025 /max:0.0025
+Var=DAS_virtualLaneC3 unsigned 40,8 /u:m-2 /f:2.4E-007 /o:-3E-005 /max:3E-005
+Var=DAS_leftLineUsage unsigned 48,2 /e:VtSig_DAS_leftLineUsage
+Var=DAS_rightLineUsage unsigned 50,2 /e:VtSig_DAS_leftLineUsage
+Var=DAS_leftFork unsigned 52,2 /e:VtSig_DAS_leftFork
+Var=DAS_rightFork unsigned 54,2 /e:VtSig_DAS_rightFork
+Var=DAS_lanesCounter unsigned 60,4
+
+[GTW_epasControl]
+ID=101h
+DLC=3
+Var=GTW_epasControlChecksum unsigned 16,8 -m
+Var=GTW_epasControlCounter unsigned 12,4 -m
+Var=GTW_epasControlType unsigned 8,2 -m /e:VtSig_GTW_epasControlType
+Var=GTW_epasEmergencyOn bit 0,1 -m /e:VtSig_GTW_epasEmergencyOn
+Var=GTW_epasLDWEnabled bit 11,1 -m /e:VtSig_GTW_epasLDWEnabled
+Var=GTW_epasPowerMode unsigned 1,4 -m /min:4 /max:14 /e:VtSig_GTW_epasPowerMode
+Var=GTW_epasTuneRequest unsigned 5,3 -m /e:VtSig_GTW_epasTuneRequest
+
+[EPAS_sysStatus]
+ID=370h
+DLC=8
+Var=EPAS_currentTuneMode unsigned 0,4 -m /min:8 /e:VtSig_EPAS_currentTuneMode
+Var=EPAS_eacErrorCode unsigned 16,4 -m /e:VtSig_EPAS_eacErrorCode
+Var=EPAS_eacStatus unsigned 48,3 -m /min:5 /e:VtSig_EPAS_eacStatus
+Var=EPAS_handsOnLevel unsigned 32,2 -m /e:VtSig_EPAS_handsOnLevel
+Var=EPAS_internalSAS unsigned 34,14 -m /u:deg /f:0.1 /o:-819.200012
+Var=EPAS_steeringFault bit 5,1 -m /e:VtSig_EPAS_steeringFault
+Var=EPAS_steeringRackForce unsigned 6,10 -m /u:N /f:50 /o:-25575 /e:VtSig_EPAS_steeringRackForce
+Var=EPAS_steeringReduced bit 4,1 -m /e:VtSig_EPAS_steeringReduced
+Var=EPAS_sysStatusChecksum unsigned 56,8 -m
+Var=EPAS_sysStatusCounter unsigned 52,4 -m
+Var=EPAS_torsionBarTorque unsigned 20,12 -m /u:Nm /f:0.01 /o:-20.5 /e:VtSig_EPAS_torsionBarTorque
+
+[STW_ANGL_STAT]
+ID=003h
+DLC=8
+Var=StW_Angl unsigned 2,14 -m /u:deg /f:0.5 /o:-2048 /e:VtSig_StW_Angl
+Var=StW_AnglSpd unsigned 18,14 -m /u:/s /f:0.5 /o:-2048 /e:VtSig_StW_Angl
+Var=StW_AnglSens_Stat unsigned 38,2 -m /e:VtSig_StW_AnglSens_Stat
+Var=StW_AnglSens_Id unsigned 36,2 -m /min:3 /e:VtSig_StW_AnglSens_Id
+Var=MC_STW_ANGL_STAT unsigned 48,4 -m
+Var=CRC_STW_ANGL_STAT unsigned 56,8 -m
+
+[STW_ANGLHP_STAT]
+ID=00Eh
+DLC=8
+Var=StW_AnglHP unsigned 2,14 -m /u:deg /f:0.1 /o:-819.2 /max:819 /e:VtSig_StW_Angl
+Var=StW_AnglHP_Spd unsigned 18,14 -m /u:deg/s /f:0.5 /o:-4096 /e:VtSig_StW_Angl
+Var=StW_AnglHP_Sens_Stat unsigned 38,2 -m /e:VtSig_StW_AnglHP_Sens_Stat
+Var=StW_AnglHP_Sens_Id unsigned 36,2 -m /e:VtSig_StW_AnglHP_Sens_Id
+Var=MC_STW_ANGLHP_STAT unsigned 48,4 -m
+Var=CRC_STW_ANGLHP_STAT unsigned 56,8 -m
+
+[DI_torque1]
+ID=108h
+DLC=8
+Var=DI_torqueDriver signed 0,13 /u:Nm /f:0.25 /min:-750 /max:750 /e:VtSig_DI_torqueDriver
+Var=DI_torque1Counter unsigned 13,3
+Var=DI_torqueMotor signed 16,13 /u:Nm /f:0.25 /min:-750 /max:750 /e:VtSig_DI_torqueDriver
+Var=DI_soptState unsigned 29,3 /e:VtSig_DI_soptState
+Var=DI_motorRPM signed 32,16 /u:RPM /min:-17000 /max:17000 /e:VtSig_DI_motorRPM
+Var=DI_pedalPos unsigned 48,8 /u:% /f:0.4 /max:100 /e:VtSig_DI_pedalPos
+Var=DI_torque1Checksum unsigned 56,8
+
+[DI_torque2]
+ID=118h
+DLC=6
+Var=DI_torqueEstimate signed 0,12 /u:Nm /f:0.5 /min:-750 /max:750 /e:VtSig_DI_torqueEstimate
+Var=DI_gear unsigned 12,3 /e:VtSig_DI_gear
+Var=DI_brakePedal bit 15,1 /e:VtSig_DI_brakePedal
+Var=DI_vehicleSpeed unsigned 16,12 /u:MPH /f:0.05 /o:-25 /e:VtSig_DI_vehicleSpeed
+Var=DI_gearRequest unsigned 28,3 /e:VtSig_DI_gear
+Var=DI_torqueInterfaceFailure bit 31,1 /e:VtSig_DI_torqueInterfaceFailure
+Var=DI_torque2Counter unsigned 32,4
+Var=DI_brakePedalState unsigned 36,2 /e:VtSig_DI_brakePedalState
+Var=DI_epbParkRequest bit 38,1 /e:VtSig_DI_epbParkRequest
+Var=DI_epbInterfaceReady bit 39,1 /e:VtSig_DI_epbInterfaceReady
+Var=DI_torque2Checksum unsigned 40,8
+
+[ESP_135h]
+ID=135h
+DLC=5
+Var=ESP_135hChecksum unsigned 16,8 -m
+Var=ESP_135hCounter unsigned 12,4 -m
+Var=ESP_absBrakeEvent bit 5,1 -m /e:VtSig_ESP_absBrakeEvent
+Var=ESP_brakeDiscWipingActive bit 3,1 -m /e:VtSig_ESP_brakeDiscWipingActive
+Var=ESP_brakeLamp bit 4,1 -m /e:VtSig_ESP_brakeLamp
+Var=ESP_espFaultLamp bit 1,1 -m /e:VtSig_ESP_brakeLamp
+Var=ESP_espLampFlash bit 0,1 -m /e:VtSig_ESP_espLampFlash
+Var=ESP_hillStartAssistActive unsigned 6,2 -m /e:VtSig_ESP_hillStartAssistActive
+Var=ESP_messagePumpService bit 31,1 -m
+Var=ESP_messagePumpFailure bit 30,1 -m
+Var=ESP_messageEBDFailure bit 29,1 -m
+Var=ESP_absFaultLamp bit 28,1 -m /e:VtSig_ESP_brakeLamp
+Var=ESP_tcDisabledByFault bit 27,1 -m
+Var=ESP_messageDynoModeActive bit 26,1 -m
+Var=ESP_hydraulicBoostEnabled bit 25,1 -m
+Var=ESP_espOffLamp bit 24,1 -m /e:VtSig_ESP_brakeLamp
+Var=ESP_stabilityControlSts unsigned 9,3 -m /min:6 /e:VtSig_ESP_stabilityControlSts
+Var=ESP_tcLampFlash bit 2,1 -m /e:VtSig_ESP_espLampFlash
+Var=ESP_tcOffLamp bit 8,1 -m
+
+[ESP_B]
+ID=155h
+DLC=8
+Var=ESP_BChecksum unsigned 32,8 -m
+Var=ESP_BCounter unsigned 57,4 -m /min:1
+Var=ESP_vehicleSpeed unsigned 40,16 -m /u:kph /f:0.00999999978
+Var=ESP_vehicleSpeedQF unsigned 62,2 -m /min:1 /max:2
+Var=ESP_wheelPulseCountFrL unsigned 0,8 -m /max:254
+Var=ESP_wheelPulseCountFrR unsigned 8,8 -m /max:254
+Var=ESP_wheelPulseCountReL unsigned 16,8 -m /max:254
+Var=ESP_wheelPulseCountReR unsigned 24,8 -m /max:254
+
+[SDM1]
+ID=201h
+DLC=5
+Var=SDM_bcklPassStatus unsigned 4,2 -m
+Var=SDM_bcklDrivStatus unsigned 2,2 -m
+
+[EPB_epasControl]
+ID=214h
+DLC=3
+Var=EPB_epasControlChecksum unsigned 16,8 -m
+Var=EPB_epasControlCounter unsigned 12,4 -m
+Var=EPB_epasEACAllow unsigned 5,3 -m /min:4
+
+[GTW_carState]
+ID=318h
+DLC=8
+Var=YEAR unsigned 0,7 /u:Year /o:2000 /e:VtSig_YEAR
+Var=CERRD bit 7,1 /e:VtSig_CERRD
+Var=MONTH unsigned 8,4 /u:Month /min:1 /max:12 /e:VtSig_MONTH
+Var=DOOR_STATE_FL unsigned 12,2 /e:VtSig_BOOT_STATE
+Var=DOOR_STATE_FR unsigned 14,2 /e:VtSig_BOOT_STATE
+Var=SECOND unsigned 16,6 /u:s /max:59 /e:VtSig_MINUTE
+Var=DOOR_STATE_RL unsigned 22,2 /e:VtSig_BOOT_STATE
+Var=Hour unsigned 24,5 /u:h /max:23 /e:VtSig_Hour
+Var=DOOR_STATE_RR unsigned 29,2 /e:VtSig_BOOT_STATE
+Var=DAY unsigned 32,5 /e:VtSig_DAY
+Var=MINUTE unsigned 40,6 /u:min /max:59 /e:VtSig_MINUTE
+Var=BOOT_STATE unsigned 46,2 /e:VtSig_BOOT_STATE
+Var=GTW_updateInProgress unsigned 48,2 /e:VtSig_GTW_updateInProgress
+Var=DOOR_STATE_FrontTrunk unsigned 50,2 /e:VtSig_BOOT_STATE
+Var=MCU_factoryMode bit 52,1 /e:VtSig_MCU_factoryMode
+Var=MCU_transportModeOn bit 50,1 -m /e:VtSig_MCU_transportModeOn
+Var=BC_headLightLStatus unsigned 48,2 -m
+Var=BC_headLightRStatus unsigned 62,2 -m
+Var=BC_indicatorLStatus unsigned 60,2 -m
+Var=BC_indicatorRStatus unsigned 58,2 -m
+
+[DI_state]
+ID=368h
+DLC=8
+Var=DI_systemState unsigned 0,3 /e:VtSig_DI_state
+Var=DI_vehicleHoldState unsigned 3,3 /e:VtSig_DI_vehicleHoldState
+Var=DI_proximity bit 6,1
+Var=DI_driveReady bit 7,1
+Var=DI_regenLight bit 8,1
+Var=DI_state unsigned 9,3 /e:VtSig_DI_state
+Var=DI_cruiseState unsigned 12,4 /e:VtSig_DI_cruiseState
+Var=DI_analogSpeed unsigned 16,12 /u:speed /f:0.1 /max:150 /e:VtSig_DI_vehicleSpeed
+Var=DI_immobilizerState unsigned 28,3 /e:VtSig_DI_immobilizerState
+Var=DI_speedUnits bit 31,1 /e:VtSig_UI_mapSpeedLimitUnits
+Var=DI_cruiseSet unsigned 32,9 /u:speed /f:0.5
+Var=DI_aebState unsigned 41,3 /e:VtSig_DI_aebState
+Var=DI_stateCounter unsigned 44,4
+Var=DI_digitalSpeed unsigned 48,8 /max:250 /e:VtSig_DI_pedalPos
+Var=DI_stateChecksum unsigned 56,8
+
+[SBW_RQ_SCCM]
+ID=06Dh
+DLC=4
+Var=StW_Sw_Stat3 unsigned 0,3 /e:VtSig_StW_Sw_Stat3
+Var=MsgTxmtId unsigned 6,2 /e:VtSig_MsgTxmtId
+Var=TSL_RND_Posn_StW unsigned 8,4 /e:VtSig_TSL_RND_Posn_StW
+Var=TSL_P_Psd_StW unsigned 12,2 /e:VtSig_TSL_P_Psd_StW
+Var=MC_SBW_RQ_SCCM unsigned 20,4
+Var=CRC_SBW_RQ_SCCM unsigned 24,8
+
+[STW_ACTN_RQ]
+ID=045h
+DLC=8
+Var=SpdCtrlLvr_Stat unsigned 0,6 /e:VtSig_SpdCtrlLvr_Stat
+Var=VSL_Enbl_Rq bit 6,1
+Var=SpdCtrlLvrStat_Inv bit 7,1
+Var=DTR_Dist_Rq unsigned 8,8 /max:200 /e:VtSig_DTR_Dist_Rq
+Var=TurnIndLvr_Stat unsigned 16,2 /e:VtSig_TurnIndLvr_Stat
+Var=HiBmLvr_Stat unsigned 18,2 /e:VtSig_HiBmLvr_Stat
+Var=WprWashSw_Psd unsigned 20,2 /e:VtSig_WprWashSw_Psd
+Var=WprWash_R_Sw_Posn_V2 unsigned 22,2 /e:VtSig_WprWash_R_Sw_Posn_V2
+Var=StW_Lvr_Stat unsigned 24,3 /e:VtSig_StW_Lvr_Stat
+Var=StW_Cond_Flt bit 27,1
+Var=StW_Cond_Psd unsigned 28,2 /e:VtSig_StW_Cond_Psd
+Var=HrnSw_Psd unsigned 30,2 /e:VtSig_HrnSw_Psd
+Var=StW_Sw00_Psd bit 32,1 /e:VtSig_StW_Sw00_Psd
+Var=StW_Sw01_Psd bit 33,1 /e:VtSig_StW_Sw00_Psd
+Var=StW_Sw02_Psd bit 34,1
+Var=StW_Sw03_Psd bit 35,1 /e:VtSig_StW_Sw00_Psd
+Var=StW_Sw04_Psd bit 36,1 /e:VtSig_StW_Sw00_Psd
+Var=StW_Sw05_Psd bit 37,1
+Var=StW_Sw06_Psd bit 38,1
+Var=StW_Sw07_Psd bit 39,1
+Var=StW_Sw08_Psd bit 40,1
+Var=StW_Sw09_Psd bit 41,1
+Var=StW_Sw10_Psd bit 42,1
+Var=StW_Sw11_Psd bit 43,1
+Var=StW_Sw12_Psd bit 44,1
+Var=StW_Sw13_Psd bit 45,1
+Var=StW_Sw14_Psd bit 46,1
+Var=StW_Sw15_Psd bit 47,1
+Var=WprSw6Posn unsigned 48,3 /e:VtSig_WprSw6Posn
+Var=MC_STW_ACTN_RQ unsigned 52,4
+Var=CRC_STW_ACTN_RQ unsigned 56,8
+
+[BODY_R1]
+ID=283h
+DLC=8
+Var=AirTemp_Insd unsigned 40,8 -m /u:C /f:0.25 /max:63.5 /e:VtSig_DI_pedalPos
+Var=AirTemp_Outsd unsigned 56,8 -m /u:C /f:0.5 /o:-40 /max:86.5 /e:VtSig_AirTemp_Outsd
+Var=Bckl_Sw_RL_Stat_SAM_R unsigned 54,2 -m /e:VtSig_Bckl_Sw_RL_Stat_SAM_R
+Var=Bckl_Sw_RM_Stat_SAM_R unsigned 50,2 -m /e:VtSig_Bckl_Sw_RL_Stat_SAM_R
+Var=Bckl_Sw_RR_Stat_SAM_R unsigned 52,2 -m /e:VtSig_Bckl_Sw_RL_Stat_SAM_R
+Var=DL_RLtch_Stat unsigned 14,2 -m /e:VtSig_DL_RLtch_Stat
+Var=DrRLtch_FL_Stat unsigned 6,2 -m /e:VtSig_DL_RLtch_Stat
+Var=DrRLtch_FR_Stat unsigned 4,2 -m /e:VtSig_DL_RLtch_Stat
+Var=DrRLtch_RL_Stat unsigned 2,2 -m /e:VtSig_DL_RLtch_Stat
+Var=DrRLtch_RR_Stat unsigned 0,2 -m /e:VtSig_DL_RLtch_Stat
+Var=EngHd_Stat unsigned 12,2 -m /e:VtSig_DL_RLtch_Stat
+Var=LoBm_On_Rq bit 39,1 -m
+Var=HiBm_On bit 38,1 -m
+Var=Hrn_On bit 29,1 -m
+Var=IrLmp_D_Lt_Flt bit 37,1 -m
+Var=IrLmp_P_Rt_Flt bit 36,1 -m
+Var=LgtSens_Twlgt unsigned 21,3 -m /u:Steps
+Var=LgtSens_SNA bit 20,1 -m
+Var=LgtSens_Tunnel bit 19,1 -m
+Var=LgtSens_Flt bit 18,1 -m
+Var=LgtSens_Night bit 17,1 -m /e:VtSig_LgtSens_Night
+Var=ADL_LoBm_On_Rq bit 16,1 -m
+Var=LoBm_D_Lt_Flt bit 35,1 -m
+Var=LoBm_P_Rt_Flt bit 34,1 -m
+Var=MPkBrk_Stat bit 27,1 -m /e:VtSig_MPkBrk_Stat
+Var=RevGr_Engg unsigned 32,2 -m /e:VtSig_RevGr_Engg
+Var=StW_Cond_Stat unsigned 48,2 -m /e:VtSig_StW_Cond_Stat
+Var=Term54_Actv bit 28,1 -m
+Var=Trlr_Stat unsigned 30,2 -m /e:VtSig_Trlr_Stat
+Var=VTA_Alm_Actv bit 10,1 -m
+Var=WprOutsdPkPosn bit 26,1 -m
+
+[UI_gpsVehicleSpeed]
+ID=2F8h
+DLC=8
+Var=UI_gpsHDOP unsigned 0,8 /u:1 /f:0.1
+Var=UI_gpsVehicleHeading unsigned 8,16 /u:deg /f:0.0078125
+Var=UI_gpsVehicleSpeed unsigned 24,16 /u:km/hr /f:0.00390625 /max:250.996
+Var=UI_userSpeedOffset unsigned 40,6 /u:kph/mph /o:-30
+Var=UI_mapSpeedLimitUnits bit 46,1 /e:VtSig_UI_mapSpeedLimitUnits
+Var=UI_userSpeedOffsetUnits bit 47,1 /e:VtSig_UI_mapSpeedLimitUnits
+Var=UI_mppSpeedLimit unsigned 48,5 /u:kph/mph /f:5
+Var=UI_gpsNmeaMIA bit 53,1
+
+[MCU_chassisControl]
+ID=218h
+DLC=8
+Var=MCU_dasDebugEnable bit 0,1
+Var=MCU_parkBrakeRequest unsigned 1,2
+Var=MCU_trailerModeCH bit 3,1
+Var=MCU_fcwSensitivity unsigned 4,2
+Var=MCU_fcwEnable unsigned 6,2
+Var=MCU_latControlEnable unsigned 8,2
+Var=MCU_accOvertakeEnable unsigned 10,2
+Var=MCU_ldwEnable unsigned 12,2
+Var=MCU_aebEnable unsigned 14,2
+Var=MCU_bsdEnable unsigned 16,2
+Var=MCU_ahlbEnable unsigned 18,2
+Var=MCU_parkSetting unsigned 20,2
+Var=MCU_pedalSafetyEnable unsigned 22,2
+Var=MCU_frontDefrostReq_das unsigned 24,2
+Var=MCU_autoParkRequest unsigned 26,4
+Var=MCU_redLightStopSignEnable unsigned 30,2
+Var=MCU_enableCreepTorqueCH bit 32,1
+Var=MCU_narrowGarages bit 33,1
+Var=MCU_rebootAutopilot bit 34,1
+Var=MCU_enableAutowipers bit 35,1
+Var=MCU_overPaintedUSS unsigned 38,2
+Var=MCU_selfParkTune unsigned 40,4
+Var=MCU_towModeEnable unsigned 44,2
+Var=MCU_zeroSpeedConfirmed unsigned 46,2
+Var=MCU_aesEnable unsigned 48,2
+Var=MCU_autoLaneChangeEnable unsigned 50,2
+Var=MCU_chassisControlCounter unsigned 52,4
+Var=MCU_chassisControlChecksum unsigned 56,8
+
+[MCU_clusterBacklightRequest]
+ID=388h
+DLC=3
+Var=MCU_clusterBacklightOn bit 7,1
+Var=MCU_clusterBrightnessLevel unsigned 8,8 /u:% /f:0.5
+Var=MCU_clusterReadyForDrive bit 6,1 /e:VtSig_MCU_clusterReadyForDrive
+Var=MCU_clusterReadyForPowerOff bit 5,1
+
+[MCU_locationStatus]
+ID=3D8h
+DLC=8
+Var=MCU_gpsAccuracy unsigned 57,7 /u:m /f:0.2
+Var=MCU_latitude signed 0,28 /u:deg /f:1E-006
+Var=MCU_longitude signed 28,29 /u:deg /f:1E-006
+
+[MCU_locationStatus2]
+ID=068h
+DLC=8
+Var=MCU_elevation signed 0,32 /u:m /f:0.1
+Var=MCU_navigonExpectedSpeed unsigned 32,7 /u:mph /max:126
+
+[GTW_status]
+ID=348h
+DLC=8
+Var=GTW_accGoingDown bit 1,1 -m
+Var=GTW_accRailReq bit 15,1 -m
+Var=GTW_brakePressed bit 6,1 -m
+Var=GTW_driveGoingDown bit 0,1 -m
+Var=GTW_driveRailReq bit 7,1 -m
+Var=GTW_driverIsLeaving bit 2,1 -m
+Var=GTW_driverPresent bit 5,1 -m
+Var=GTW_hvacGoingDown bit 12,1 -m
+Var=GTW_hvacRailReq bit 14,1 -m
+Var=GTW_icPowerOff bit 3,1 -m
+Var=GTW_notEnough12VForDrive bit 4,1 -m
+Var=GTW_preconditionRequest bit 13,1 -m
+Var=GTW_statusChecksum unsigned 56,8 -m
+Var=GTW_statusCounter unsigned 52,4 -m
+
+[GTW_carConfig]
+ID=398h
+DLC=8
+Var=GTW_performanceConfig unsigned 5,3 -m
+Var=GTW_fourWheelDrive unsigned 3,2 -m
+Var=GTW_unknown1 bit 2,1 -m
+Var=GTW_dasHw unsigned 0,2 -m
+Var=GTW_parkAssistInstalled unsigned 14,2 -m
+Var=GTW_forwardRadarHw unsigned 12,2 -m
+Var=GTW_airSuspensionInstalled unsigned 9,3 -m
+Var=GTW_unknown2 bit 8,1 -m
+Var=GTW_country unsigned 16,16 -m
+Var=GTW_parkSensorGeometryType unsigned 38,2 -m
+Var=GTW_rhd bit 37,1 -m
+Var=GTW_bodyControlsType bit 36,1 -m
+Var=GTW_radarPosition unsigned 32,4 -m
+Var=GTW_rearCornerRadarHw unsigned 46,2 -m
+Var=GTW_frontCornerRadarHw unsigned 44,2 -m
+Var=GTW_epasType unsigned 42,2 -m
+Var=GTW_chassisType unsigned 40,2 -m /max:2
+Var=GTW_wheelType unsigned 51,5 -m
+Var=GTW_rearSeatControllerMask unsigned 48,3 -m
+Var=GTW_euVehicle bit 63,1 -m
+Var=GTW_foldingMirrorsInstalled bit 62,1 -m
+Var=GTW_brakeHwType unsigned 60,2 -m /max:2
+Var=GTW_autopilot unsigned 58,2 -m
+Var=GTW_unknown3 unsigned 56,2 -m
+
+[UI_autopilotControl]
+ID=3EEh
+DLC=8
+Mux=UI_autopilotControlIndex_0 0,3 0
+Var=UI_hovEnabled bit 3,1
+Var=UI_donDisableAutoWiperDuration unsigned 4,3
+Var=UI_donDisableOnAutoWiperSpeed unsigned 7,4
+Var=UI_blindspotMinSpeed unsigned 11,4
+Var=UI_blindspotDistance unsigned 15,3
+Var=UI_blindspotTTC unsigned 18,3
+Var=UI_donStopEndOfRampBuffer unsigned 21,3
+Var=UI_donDisableCutin bit 24,1
+Var=UI_donMinGoreWidthForAbortMap unsigned 25,4
+Var=UI_donAlcProgGoreAbortThres unsigned 29,4
+Var=UI_donMinGoreWidthForAbortNotMap unsigned 33,4
+Var=UI_alcDisableUltrasonicCheck bit 37,1
+Var=UI_alcUltrasonicDistance unsigned 38,4
+Var=UI_alcUltrasonicWaitTime unsigned 42,3
+Var=UI_alcEgoLeadingReactionAccel unsigned 48,2
+Var=UI_alcMergIntervalRearDHyst unsigned 50,2
+Var=UI_alcMergingIntervalHeadwayHyst unsigned 52,2
+Var=UI_alcAssertivenessRate unsigned 54,2
+Var=UI_alcViewRangeSensitivity unsigned 56,2
+
+[UI_autopilotControl]
+DLC=8
+Mux=UI_autopilotControlIndex_1 0,3 1
+Var=UI_camBlockLaneCheckDisable bit 3,1
+Var=UI_camBlockLaneCheckThreshold unsigned 4,6 /u:% /f:0.01587
+Var=UI_camBlockBlurDisable bit 10,1
+Var=UI_camBlockBlurThreshold unsigned 11,6 /u:% /f:0.01587
+
+[UI_csaOfframpCurvature]
+ID=2D8h
+DLC=8
+Var=UI_csaOfframpCurvC2 signed 0,16 /u:1/m /f:1E-006
+Var=UI_csaOfframpCurvC3 signed 16,16 /u:1/m2 /f:4E-009
+Var=UI_csaOfframpCurvRange unsigned 32,8 /u:m /f:2
+Var=UI_csaOfframpCurvCounter unsigned 40,8
+Var=UI_csaOfframpCurvUsingTspline bit 48,1
+Var=UI_csaOfframpCurvReserved unsigned 49,7
+Var=UI_csaOfframpCurvChecksum unsigned 56,8
+
+[UI_csaRoadCurvature]
+ID=2E8h
+DLC=8
+Var=UI_csaRoadCurvC2 signed 0,16 /u:1/m /f:1E-006
+Var=UI_csaRoadCurvC3 signed 16,16 /u:1/m2 /f:4E-009
+Var=UI_csaRoadCurvRange unsigned 32,8 /u:m /f:2
+Var=UI_csaRoadCurvCounter unsigned 40,8
+Var=UI_csaRoadCurvUsingTspline bit 48,1
+Var=UI_csaRoadCurvReserved unsigned 49,7
+Var=UI_csaRoadCurvChecksum unsigned 56,8
+
+[UI_driverAssistAnonDebugParams]
+ID=438h
+DLC=8
+Var=UI_anonDebugParam1 unsigned 0,7 /max:100
+Var=UI_anonDebugFlag1 bit 7,1
+Var=UI_anonDebugParam2 unsigned 8,7 /max:100
+Var=UI_anonDebugFlag2 bit 15,1
+Var=UI_anonDebugParam3 unsigned 16,7 /max:100
+Var=UI_anonDebugFlag3 bit 23,1
+Var=UI_anonDebugParam4 unsigned 24,7 /max:100
+Var=UI_anonDebugFlag4 bit 31,1
+Var=UI_anonDebugParam5 unsigned 32,7 /max:100
+Var=UI_anonDebugParam6 unsigned 40,7 /max:100
+Var=UI_anonDebugParam7 unsigned 48,7 /max:100
+Var=UI_visionSpeedSlider unsigned 56,7 /max:100
+
+[UI_driverAssistControl]
+ID=3E8h
+DLC=8
+Var=UI_autopilotControlRequest bit 0,1
+Var=UI_ulcStalkConfirm bit 1,1
+Var=UI_summonHeartbeat unsigned 2,2
+Var=UI_curvSpeedAdaptDisable bit 4,1
+Var=UI_dasDeveloper bit 5,1
+Var=UI_enableVinAssociation bit 6,1
+Var=UI_lssLkaEnabled bit 7,1
+Var=UI_lssLdwEnabled bit 8,1
+Var=UI_autoSummonEnable bit 10,1
+Var=UI_exceptionListEnable bit 11,1
+Var=UI_roadCheckDisable bit 12,1
+Var=UI_driveOnMapsEnable bit 13,1
+Var=UI_handsOnRequirementDisable bit 14,1
+Var=UI_forksEnable bit 15,1
+Var=UI_fuseLanesDisable bit 16,1
+Var=UI_fuseHPPDisable bit 17,1
+Var=UI_fuseVehiclesDisable bit 18,1
+Var=UI_enableNextGenACC bit 19,1
+Var=UI_visionSpeedType unsigned 20,2
+Var=UI_curvatureDatabaseOnly bit 22,1
+Var=UI_lssElkEnabled bit 23,1
+Var=UI_summonExitType unsigned 24,2
+Var=UI_summonEntryType unsigned 26,2
+Var=UI_selfParkRequest unsigned 28,4
+Var=UI_summonReverseDist unsigned 32,6
+Var=UI_undertakeAssistEnable bit 38,1
+Var=UI_adaptiveSetSpeedEnable bit 39,1
+Var=UI_drivingSide unsigned 40,2
+Var=UI_enableClipTelemetry bit 42,1
+Var=UI_enableTripTelemetry bit 43,1
+Var=UI_enableRoadSegmentTelemetry bit 44,1
+Var=UI_followNavRouteEnable bit 46,1
+Var=UI_ulcSpeedConfig unsigned 48,2
+Var=UI_ulcBlindSpotConfig unsigned 50,2
+Var=UI_autopilotAlwaysOn bit 52,1
+Var=UI_accFromZero bit 53,1
+Var=UI_alcOffHighwayEnable bit 54,1
+Var=UI_validationLoop bit 55,1
+Var=UI_ulcOffHighway bit 56,1
+Var=UI_enableNavRouteCSA bit 57,1
+Var=UI_enableCutinExperiments bit 58,1
+Var=UI_source3D unsigned 60,3
+Var=UI_enableVisionOnlyStops bit 63,1
+
+[UI_driverAssistMapData]
+ID=3C8h
+DLC=8
+Var=UI_mapSpeedLimitDependency unsigned 0,3
+Var=UI_roadClass unsigned 3,3
+Var=UI_inSuperchargerGeofence bit 6,1
+Var=UI_mapSpeedUnits bit 7,1
+Var=UI_mapSpeedLimit unsigned 8,5
+Var=UI_mapSpeedLimitType unsigned 13,3
+Var=UI_countryCode unsigned 16,10
+Var=UI_streetCount unsigned 26,2
+Var=UI_gpsRoadMatch bit 28,1
+Var=UI_navRouteActive bit 29,1
+Var=UI_parallelAutoparkEnabled bit 30,1
+Var=UI_perpendicularAutoparkEnabled bit 31,1
+Var=UI_nextBranchDist unsigned 32,5 /u:m /f:10 /max:300
+Var=UI_controlledAccess bit 37,1
+Var=UI_nextBranchLeftOffRamp bit 38,1
+Var=UI_nextBranchRightOffRamp bit 39,1
+Var=UI_rejectLeftLane bit 40,1
+Var=UI_rejectRightLane bit 41,1
+Var=UI_rejectHPP bit 42,1
+Var=UI_rejectNav bit 43,1
+Var=UI_rejectLeftFreeSpace bit 44,1
+Var=UI_rejectRightFreeSpace bit 45,1
+Var=UI_rejectAutosteer bit 46,1
+Var=UI_rejectHandsOn bit 47,1
+Var=UI_acceptBottsDots bit 48,1
+Var=UI_autosteerRestricted bit 49,1
+Var=UI_pmmEnabled bit 50,1
+Var=UI_scaEnabled bit 51,1
+Var=UI_mapDataCounter unsigned 52,4
+Var=UI_mapDataChecksum unsigned 56,8
+
+[UI_driverAssistRoadSign]
+ID=238h
+DLC=8
+Mux=UI_roadSign_0 0,8 0
+Var=UI_splineLocConfidence unsigned 40,7 /max:100
+Var=UI_splineID unsigned 48,4
+Var=UI_roadSignCounter unsigned 52,4
+Var=UI_roadSignChecksum unsigned 56,8
+Var=UI_dummyData bit 8,1
+
+[UI_driverAssistRoadSign]
+DLC=8
+Mux=UI_roadSign_1 0,8 1
+Var=UI_splineLocConfidence unsigned 40,7 /max:100
+Var=UI_splineID unsigned 48,4
+Var=UI_roadSignCounter unsigned 52,4
+Var=UI_roadSignChecksum unsigned 56,8
+Var=UI_stopSignStopLineDist unsigned 8,10 /u:m /f:0.25 /o:-8 /max:247.5
+Var=UI_stopSignStopLineConf unsigned 18,7 /max:100
+
+[UI_driverAssistRoadSign]
+DLC=8
+Mux=UI_roadSign_2 0,8 2
+Var=UI_splineLocConfidence unsigned 40,7 /max:100
+Var=UI_splineID unsigned 48,4
+Var=UI_roadSignCounter unsigned 52,4
+Var=UI_roadSignChecksum unsigned 56,8
+Var=UI_trafficLightStopLineDist unsigned 8,10 /u:m /f:0.25 /o:-8 /max:247.5
+Var=UI_trafficLightStopLineConf unsigned 18,7 /max:100
+
+[UI_driverAssistRoadSign]
+DLC=8
+Mux=UI_roadSign_3 0,8 3
+Var=UI_splineLocConfidence unsigned 40,7 /max:100
+Var=UI_splineID unsigned 48,4
+Var=UI_roadSignCounter unsigned 52,4
+Var=UI_roadSignChecksum unsigned 56,8
+Var=UI_baseMapSpeedLimitMPS unsigned 8,8 /u:m/s /f:0.25
+Var=UI_bottomQrtlFleetSpeedMPS unsigned 16,8 /u:m/s /f:0.25
+Var=UI_topQrtlFleetSpeedMPS unsigned 24,8 /u:m/s /f:0.25
+
+[UI_driverAssistRoadSign]
+DLC=8
+Mux=UI_roadSign_4 0,8 4
+Var=UI_splineLocConfidence unsigned 40,7 /max:100
+Var=UI_splineID unsigned 48,4
+Var=UI_roadSignCounter unsigned 52,4
+Var=UI_roadSignChecksum unsigned 56,8
+Var=UI_meanFleetSplineSpeedMPS unsigned 8,8 /u:m/s /f:0.25
+Var=UI_medianFleetSpeedMPS unsigned 16,8 /u:m/s /f:0.25
+Var=UI_meanFleetSplineAccelMPS2 unsigned 24,8 /u:m/s^2 /f:0.05 /o:-6.35 /max:6.4
+Var=UI_rampType unsigned 32,3
+
+[UI_driverAssistRoadSign]
+DLC=8
+Mux=UI_roadSign_5 0,8 5
+Var=UI_splineLocConfidence unsigned 40,7 /max:100
+Var=UI_splineID unsigned 48,4
+Var=UI_roadSignCounter unsigned 52,4
+Var=UI_roadSignChecksum unsigned 56,8
+Var=UI_currSplineIdFull unsigned 8,32 /max:1
+
+[UI_radarMapData]
+ID=2B8h
+DLC=8
+Var=UI_radarTargetDx unsigned 0,8 /u:m /o:-95
+Var=UI_radarTargetDxEnd unsigned 8,8 /u:m
+Var=UI_radarTargetTrustMap bit 16,1
+Var=UI_radarEnableBraking bit 17,1
+Var=UI_radarMapDataCounter unsigned 52,4
+Var=UI_radarMapDataChecksum unsigned 56,8
+
+[UI_roadCurvature]
+ID=2C8h
+DLC=8
+Var=UI_roadCurvC0 signed 0,11 /u:m /f:0.02
+Var=UI_roadCurvC1 signed 11,10 /u:1 /f:0.00075 /max:0.38325
+Var=UI_roadCurvC2 signed 21,14 /u:1/m /f:7.5E-006 /min:-0.03072 /max:0.03071625
+Var=UI_roadCurvC3 signed 35,13 /u:1/m2 /f:3E-008
+Var=UI_roadCurvRange unsigned 48,6 /u:m /f:4
+Var=UI_roadCurvHealth unsigned 54,2
+Var=UI_roadCurvChecksum unsigned 56,8
+
+[UI_solarData]
+ID=246h
+DLC=5
+Var=UI_solarAzimuthAngle signed 0,16 /u:deg /min:0 /max:360
+Var=UI_solarAzimuthAngleCarRef signed 16,9 /u:deg /min:-180 /max:180
+Var=UI_isSunUp bit 25,1
+Var=UI_solarElevationAngle signed 32,8 /u:deg /min:-90 /max:90
+
+[UI_status]
+ID=338h
+DLC=8
+Var=UI_touchActive bit 0,1
+Var=UI_audioActive bit 1,1
+Var=UI_bluetoothActive bit 2,1
+Var=UI_cellActive bit 3,1
+Var=UI_displayReady bit 4,1
+Var=UI_gpsActive bit 5,1
+Var=UI_wifiConnected bit 6,1
+Var=UI_systemActive bit 7,1
+Var=UI_xmActive bit 8,1
+Var=UI_displayOn bit 9,1
+Var=UI_readyForDrive bit 10,1
+Var=UI_cellConnected bit 11,1
+Var=UI_vpnActive bit 12,1
+Var=UI_wifiActive bit 13,1
+Var=UI_cameraActive bit 14,1
+Var=UI_usbActive bit 15,1
+Var=UI_screenshotActive bit 16,1
+Var=UI_monitorModemPower bit 17,1
+Var=UI_factoryReset unsigned 18,2
+Var=UI_cellNetworkTechnology unsigned 20,4
+Var=UI_tegraCoreTemperature unsigned 24,8 /u:"deg C" /o:-64
+Var=UI_tegraAmbientTemperature unsigned 32,8 /u:"deg C" /o:-64
+Var=UI_googleWifiUsages unsigned 40,8
+Var=UI_autopilotTrial unsigned 48,2
+Var=UI_cellSignalBars unsigned 50,3
+Var=UI_hardwareType unsigned 53,2
+Var=UI_developmentCar bit 55,1
+Var=UI_cellReceiverPower unsigned 56,8 /u:dB /o:-128
+
+[UI_telemetryControl]
+ID=428h
+DLC=8
+Var=UI_TCR_enable bit 0,1
+Var=UI_TCR_moveStateStanding bit 1,1
+Var=UI_TCR_moveStateStopped bit 2,1
+Var=UI_TCR_moveStateMoving bit 3,1
+Var=UI_TCR_moveStateIndeterm bit 4,1
+Var=UI_TCR_classConstElem bit 5,1
+Var=UI_TCR_classMovingPed bit 6,1
+Var=UI_TCR_classMovingTwoWheel bit 7,1
+Var=UI_TCR_classMovingFourWheel bit 8,1
+Var=UI_TCR_classUnknown bit 9,1
+Var=UI_TCR_downSampleFactor unsigned 16,4
+Var=UI_TCR_wExist unsigned 24,5
+Var=UI_TCR_vehSpeed unsigned 32,8
+Var=UI_TCR_minRCS unsigned 40,8 /u:dB /f:0.25 /o:-14
+Var=UI_TCR_maxDy unsigned 48,5 /u:m /f:0.5
+Var=UI_TCR_maxObjects unsigned 56,5
+Var=UI_TCR_maxRoadClass unsigned 61,3
+
+[BrakeMessage]
+ID=20Ah
+DLC=8
+Var=driverBrakeStatus unsigned 2,2 /e:VtSig_driverBrakeStatus
+
+[AutopilotStatus]
+ID=399h
+DLC=8
+Var=autopilotStatus unsigned 0,4 /e:VtSig_autopilotStatus
+Var=DAS_blindSpotRearLeft unsigned 4,2 /e:VtSig_DAS_blindSpotRearLeft
+Var=DAS_blindSpotRearRight unsigned 6,2 /e:VtSig_DAS_blindSpotRearLeft
+Var=DAS_fusedSpeedLimit unsigned 8,5 /u:kph/mph /f:5 /max:150 /e:VtSig_DAS_fusedSpeedLimit
+Var=DAS_suppressSpeedWarning bit 13,1 /e:VtSig_DAS_suppressSpeedWarning
+Var=DAS_summonObstacle bit 14,1
+Var=DAS_summonClearedGate bit 15,1
+Var=DAS_visionOnlySpeedLimit unsigned 16,5 /u:kph/mph /f:5 /max:150 /e:VtSig_DAS_fusedSpeedLimit
+Var=DAS_heaterState bit 21,1 /e:VtSig_DAS_heaterState
+Var=DAS_forwardCollisionWarning unsigned 22,2 /e:VtSig_DAS_forwardCollisionWarnin
+Var=DAS_autoparkReady bit 24,1 /e:VtSig_DAS_autoparkReady
+Var=DAS_autoParked bit 25,1
+Var=DAS_autoparkWaitingForBrake bit 26,1
+Var=DAS_summonFwdLeashReached bit 28,1
+Var=DAS_summonRvsLeashReached bit 29,1
+Var=DAS_sideCollisionAvoid unsigned 30,2 /e:VtSig_DAS_sideCollisionAvoid
+Var=DAS_sideCollisionWarning unsigned 32,2 /e:VtSig_DAS_sideCollisionWarning
+Var=DAS_sideCollisionInhibit bit 34,1 /e:VtSig_DAS_sideCollisionInhibit
+Var=DAS_csaState unsigned 35,2 /e:VtSig_DAS_csaState
+Var=DAS_laneDepartureWarning unsigned 37,3 /e:VtSig_DAS_laneDepartureWarning
+Var=DAS_fleetSpeedState unsigned 40,2 /e:VtSig_DAS_fleetSpeedState
+Var=DAS_autopilotHandsOnState unsigned 42,4 /e:VtSig_DAS_autopilotHandsOnState
+Var=DAS_autoLaneChangeState unsigned 46,5 /e:VtSig_DAS_autoLaneChangeState
+Var=DAS_summonAvailable bit 51,1
+Var=DAS_statusCounter unsigned 52,4
+Var=DAS_statusChecksum unsigned 56,8
+
+[DAS_status2]
+ID=389h
+DLC=8
+Var=DAS_accSpeedLimit unsigned 0,10 /u:mph /f:0.2 /max:204.6 /e:VtSig_DAS_accSpeedLimit
+Var=DAS_pmmObstacleSeverity unsigned 10,3 /e:VtSig_DAS_pmmObstacleSeverity
+Var=DAS_pmmLoggingRequest bit 13,1 /e:VtSig_DAS_pmmLoggingRequest
+Var=DAS_activationFailureStatus unsigned 14,2 /max:1 /e:VtSig_DAS_activationFailureStatu
+Var=DAS_pmmUltrasonicsFaultReason unsigned 16,3 /e:VtSig_DAS_pmmUltrasonicsFaultRea
+Var=DAS_pmmRadarFaultReason unsigned 19,2 /e:VtSig_DAS_pmmRadarFaultReason
+Var=DAS_pmmSysFaultReason unsigned 21,3 /e:VtSig_DAS_pmmSysFaultReason
+Var=DAS_pmmCameraFaultReason unsigned 24,2 /e:VtSig_DAS_pmmCameraFaultReason
+Var=DAS_ACC_report unsigned 26,5 /e:VtSig_DAS_ACC_report
+Var=DAS_lssState unsigned 31,3 /e:VtSig_DAS_lssState
+Var=DAS_radarTelemetry unsigned 34,2 /e:VtSig_DAS_radarTelemetry
+Var=DAS_robState unsigned 36,2 /e:VtSig_DAS_robState
+Var=DAS_driverInteractionLevel unsigned 38,2 /e:VtSig_DAS_driverInteractionLevel
+Var=DAS_ppOffsetDesiredRamp unsigned 40,8 /u:m /f:0.01 /o:-1.28 /e:VtSig_DAS_ppOffsetDesiredRamp
+Var=DAS_longCollisionWarning unsigned 48,4 /e:VtSig_DAS_longCollisionWarning
+Var=DAS_status2Counter unsigned 52,4
+Var=DAS_status2Checksum unsigned 56,8
+
+[DAS_bodyControls]
+ID=3E9h
+DLC=8
+Var=DAS_headlightRequest unsigned 0,2 /e:VtSig_DAS_headlightRequest
+Var=DAS_hazardLightRequest unsigned 2,2 /e:VtSig_DAS_hazardLightRequest
+Var=DAS_wiperSpeed unsigned 4,4 /e:VtSig_DAS_wiperSpeed
+Var=DAS_turnIndicatorRequest unsigned 8,2 /e:VtSig_DAS_turnIndicatorRequest
+Var=DAS_highLowBeamDecision unsigned 10,2 /e:VtSig_DAS_highLowBeamDecision
+Var=DAS_highLowBeamOffReason unsigned 12,3 /max:4 /e:VtSig_DAS_highLowBeamOffReason
+Var=DAS_turnIndicatorRequestReason unsigned 16,4 /e:VtSig_DAS_turnIndicatorRequestRe
+Var=DAS_bodyControlsCounter unsigned 52,4
+Var=DAS_bodyControlsChecksum unsigned 56,8

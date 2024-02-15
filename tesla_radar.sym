@@ -1,0 +1,1439 @@
+FormatVersion=5.0 // Do not edit this line!
+Title="tesla_radar"
+
+{ENUMS}
+enum VtSig_MovingState(3="RADAR_MOVESTATE_STANDING", 2="RADAR_MOVESTATE_STOPPED", 1="RADAR_MOVESTATE_MOVING",
+  0="RADAR_MOVESTATE_INDETERMINATE")
+enum VtSig_Class(4="RADAR_CLASS_CONSTRUCTION_ELEMENT", 3="RADAR_CLASS_MOVING_PEDESTRIAN",
+  2="RADAR_CLASS_MOVING_TWO_WHEEL_VEHICLE", 1="RADAR_CLASS_MOVING_FOUR_WHEEL_VEHICLE", 0="RADAR_CLASS_UNKNOWN")
+enum VtSig_Msg2A9_FourWheelDrive(3="SNA", 2="UNUSED", 1="4WD", 0="2WD")
+
+{SENDRECEIVE}
+
+[TeslaRadarSguInfo]
+ID=301h
+DLC=8
+Var=RADC_VerticalMisalignment unsigned 0,8
+Var=RADC_SCUTemperature unsigned 8,8 /o:-128
+Var=RADC_VMA_Plaus unsigned 16,8
+Var=RADC_SGU_ITC unsigned 24,8
+Var=RADC_HorizontMisalignment unsigned 32,12
+Var=RADC_SensorDirty bit 44,1
+Var=RADC_HWFail bit 45,1
+Var=RADC_SGUFail bit 46,1
+Var=RADC_SGUInfoConsistBit bit 47,1
+
+[TeslaRadarTguInfo]
+ID=302h
+DLC=8
+Var=RADC_ACCTargObj1_sguIndex unsigned 0,6
+Var=RADC_ACCTargObj2_sguIndex unsigned 6,6
+Var=RADC_ACCTargObj3_sguIndex unsigned 12,6
+Var=RADC_ACCTargObj4_sguIndex unsigned 18,6
+Var=RADC_ACCTargObj5_sguIndex unsigned 24,6
+Var=unused30 bit 30,1
+Var=RADC_TGUInfoConsistBit bit 31,1
+Var=RADC_ACCTargObj1_dBPower unsigned 32,16
+Var=RADC_ACCTargObj5_dBPower unsigned 48,16
+
+[TeslaRadarAlertMatrix]
+ID=501h
+DLC=8
+Var=RADC_a001_ecuInternalPerf bit 0,1
+Var=RADC_a002_flashPerformance bit 1,1
+Var=RADC_a003_vBatHigh bit 2,1
+Var=RADC_a004_adjustmentNotDone bit 3,1
+Var=RADC_a005_adjustmentReq bit 4,1
+Var=RADC_a006_adjustmentNotOk bit 5,1
+Var=RADC_a007_sensorBlinded bit 6,1
+Var=RADC_a008_plantModeActive bit 7,1
+Var=RADC_a009_configMismatch bit 8,1
+Var=RADC_a010_canBusOff bit 9,1
+Var=RADC_a011_bdyMIA bit 10,1
+Var=RADC_a012_espMIA bit 11,1
+Var=RADC_a013_gtwMIA bit 12,1
+Var=RADC_a014_sccmMIA bit 13,1
+Var=RADC_a015_adasMIA bit 14,1
+Var=RADC_a016_bdyInvalidCount bit 15,1
+Var=RADC_a017_adasInvalidCount bit 16,1
+Var=RADC_a018_espInvalidCount bit 17,1
+Var=RADC_a019_sccmInvalidCount bit 18,1
+Var=RADC_a020_bdyInvalidChkSm bit 19,1
+Var=RADC_a021_espInvalidChkSm bit 20,1
+Var=RADC_a022_sccmInvalidChkSm bit 21,1
+Var=RADC_a023_sccmInvalidChkSm bit 22,1
+Var=RADC_a024_absValidity bit 23,1
+Var=RADC_a025_ambTValidity bit 24,1
+Var=RADC_a026_brakeValidity bit 25,1
+Var=RADC_a027_CntryCdValidity bit 26,1
+Var=RADC_a028_espValidity bit 27,1
+Var=RADC_a029_longAccOffValidity bit 28,1
+Var=RADC_a030_longAccValidity bit 29,1
+Var=RADC_a031_odoValidity bit 30,1
+Var=RADC_a032_gearValidity bit 31,1
+Var=RADC_a033_steerAngValidity bit 32,1
+Var=RADC_a034_steerAngSpdValidity bit 33,1
+Var=RADC_a035_indctrValidity bit 34,1
+Var=RADC_a036_vehStandStillValidity bit 35,1
+Var=RADC_a037_vinValidity bit 36,1
+Var=RADC_a038_whlRotValidity bit 37,1
+Var=RADC_a039_whlSpdValidity bit 38,1
+Var=RADC_a040_whlStandStillValidity bit 39,1
+Var=RADC_a041_wiperValidity bit 40,1
+Var=RADC_a042_xwdValidity bit 41,1
+Var=RADC_a043_yawOffValidity bit 42,1
+Var=RADC_a044_yawValidity bit 43,1
+Var=RADC_a045_bsdSanity bit 44,1
+Var=RADC_a046_rctaSanity bit 45,1
+Var=RADC_a047_lcwSanity bit 46,1
+Var=RADC_a048_steerAngOffSanity bit 47,1
+Var=RADC_a049_tireSizeSanity bit 48,1
+Var=RADC_a050_velocitySanity bit 49,1
+Var=RADC_a051_yawSanity bit 50,1
+Var=RADC_a052_radomeHtrInop bit 51,1
+Var=RADC_a053_espmodValidity bit 52,1
+Var=RADC_a054_gtwmodValidity bit 53,1
+Var=RADC_a055_stwmodValidity bit 54,1
+Var=RADC_a056_bcmodValidity bit 55,1
+Var=RADC_a057_dimodValidity bit 56,1
+Var=RADC_a058_opmodValidity bit 57,1
+Var=RADC_a059_drmiInvalidChkSm bit 58,1
+Var=RADC_a060_drmiInvalidCount bit 59,1
+Var=RADC_a061_radPositionMismatch bit 60,1
+Var=RADC_a062_strRackMismatch bit 61,1
+Var=unused62 unsigned 62,2
+
+[M_310hex]
+ID=310h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_310hex2]
+ID=311h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_313hex]
+ID=313h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_313hex2]
+ID=314h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_316hex]
+ID=316h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_316hex2]
+ID=317h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_319hex]
+ID=319h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_319hex2]
+ID=31Ah
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_31Chex]
+ID=31Ch
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_31Chex2]
+ID=31Dh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_31Fhex]
+ID=31Fh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_31Fhex2]
+ID=320h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_322hex]
+ID=322h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_322hex2]
+ID=323h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_325hex]
+ID=325h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_325hex2]
+ID=326h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_328hex]
+ID=328h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_328hex2]
+ID=329h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_32Bhex]
+ID=32Bh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_32Bhex2]
+ID=32Ch
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_32Ehex]
+ID=32Eh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_32Ehex2]
+ID=32Fh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_331hex]
+ID=331h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_331hex2]
+ID=332h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_334hex]
+ID=334h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_334hex2]
+ID=335h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_337hex]
+ID=337h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_337hex2]
+ID=338h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_33Ahex]
+ID=33Ah
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_33Ahex2]
+ID=33Bh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_33Dhex]
+ID=33Dh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_33Dhex2]
+ID=33Eh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_340hex]
+ID=340h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_340hex2]
+ID=341h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_343hex]
+ID=343h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_343hex2]
+ID=344h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_346hex]
+ID=346h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_346hex2]
+ID=347h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_349hex]
+ID=349h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_349hex2]
+ID=34Ah
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_34Chex]
+ID=34Ch
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_34Chex2]
+ID=34Dh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_34Fhex]
+ID=34Fh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_34Fhex2]
+ID=350h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_352hex]
+ID=352h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_352hex2]
+ID=353h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_355hex]
+ID=355h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_355hex2]
+ID=356h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_358hex]
+ID=358h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_358hex2]
+ID=359h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_35Bhex]
+ID=35Bh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_35Bhex2]
+ID=35Ch
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_35Ehex]
+ID=35Eh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_35Ehex2]
+ID=35Fh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_361hex]
+ID=361h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_361hex2]
+ID=362h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_364hex]
+ID=364h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_364hex2]
+ID=365h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_367hex]
+ID=367h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_367hex2]
+ID=368h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_36Ahex]
+ID=36Ah
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_36Ahex2]
+ID=36Bh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[M_36Dhex]
+ID=36Dh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[M_36Dhex2]
+ID=36Eh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[L_1_371hex]
+ID=371h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[L_1_371hex2]
+ID=372h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[L_2_374hex]
+ID=374h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[L_2_375hex2]
+ID=375h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[L_3_377hex]
+ID=377h
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[L_3_378hex2]
+ID=378h
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[L_4_37ahex]
+ID=37Ah
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[L_4_37ahex2]
+ID=37Bh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[L_5_37dhex]
+ID=37Dh
+DLC=8
+Var=LongDist unsigned 0,12 /u:meters /f:0.0625 /max:255.9
+Var=LongSpeed unsigned 12,12 /u:meters/sec /f:0.0625 /o:-128
+Var=LatDist unsigned 24,11 /u:meters /f:0.125 /o:-128
+Var=ProbExist unsigned 35,5 /u:% /f:3.125
+Var=LongAccel unsigned 40,10 /u:meters/sec/sec /f:0.03125 /o:-16
+Var=ProbObstacle unsigned 50,5 /u:% /f:3.125
+Var=Valid bit 55,1
+Var=ProbNonObstacle unsigned 56,5 /u:% /f:3.125
+Var=Meas bit 61,1
+Var=Tracked bit 62,1
+Var=Index bit 63,1
+
+[L_5_37dhex2]
+ID=37Eh
+DLC=8
+Var=LatSpeed unsigned 0,10 /u:meters/sec /f:0.125 /o:-64
+Var=Length unsigned 10,6 /u:m /f:0.125
+Var=dZ unsigned 16,6 /u:m /f:0.25 /o:-5
+Var=MovingState unsigned 22,2 /e:VtSig_MovingState
+Var=dxSigma unsigned 24,6
+Var=vxSigma unsigned 30,6
+Var=axSigma unsigned 36,6
+Var=dySigma unsigned 42,6
+Var=ProbClass unsigned 48,5 /u:% /f:3.125
+Var=Class unsigned 53,3 /e:VtSig_Class
+Var=dxRearEndLoss unsigned 56,6
+Var=NotUsed bit 62,1
+Var=Index2 bit 63,1
+
+[VIN_VIP_405HS]
+ID=2B9h // Start with MuxID 0x12, then 0x11 and finally 0x10 (VIN is then transmitted in the reverse order)
+DLC=8
+CycleTime=250
+Mux=VIN_MuxID_16 0,8 10h
+Var=VIN_Part1 unsigned 40,24 -m
+
+[VIN_VIP_405HS]
+DLC=8
+CycleTime=250
+Mux=VIN_MuxID_17 0,8 11h
+Var=VIN_Part2 unsigned 8,56 -m
+
+[VIN_VIP_405HS]
+DLC=8
+CycleTime=250
+Mux=VIN_MuxID_18 0,8 12h
+Var=VIN_Part3 unsigned 8,56 -m
+
+[Msg2A9_GTW_carConfig]
+ID=2A9h // Message sent every 1000 ms. All fixed bytes, no checksum, the byte for RWD or AWD needs to match VIN config
+DLC=8
+CycleTime=1000
+Var=Msg2A9_Always0x02 unsigned 48,8
+Var=Msg2A9_Always0x10 unsigned 56,8
+Var=Msg2A9_Always0x16 unsigned 8,8
+Var=Msg2A9_Always0x41 unsigned 24,8
+Var=Msg2A9_Value1_0x02 unsigned 0,3
+Var=Msg2A9_FourWheelDrive unsigned 3,2 /e:VtSig_Msg2A9_FourWheelDrive
+Var=Msg2A9_Value2_0x02 unsigned 5,3
+Var=Msg2A9_Always0x43 unsigned 16,8
+
+[Msg199_STW_ANGLHP_STAT]
+ID=199h // Message sent every 10ms. Checksum : use all first 7 bytes with the SAE J1850 CRC algo
+DLC=8
+CycleTime=10
+Var=Msg199Always0x04 unsigned 32,8
+Var=Msg199Always0x20 unsigned 16,8
+Var=Msg199Always0x2F unsigned 0,8
+Var=Msg199Always0x67 unsigned 8,8
+Var=Msg199Always0xFF unsigned 40,8
+Var=Msg199Checksum unsigned 56,8
+Var=Msg199Counter unsigned 52,4
+
+[Msg169_ESP_wheelSpeeds]
+ID=169h // Message sent every 10ms. Checksum : Sum of all first 7 bytes + 0x76
+DLC=8
+CycleTime=10
+Var=ESP_wheelSpeedFrL_HS unsigned 0,13 /u:km/h /f:0.04
+Var=ESP_wheelSpeedFrR_HS unsigned 13,13 /u:km/h /f:0.04
+Var=ESP_wheelSpeedReL_HS unsigned 26,13 /u:km/h /f:0.04
+Var=ESP_wheelSpeedReR_HS unsigned 39,13 /u:km/h /f:0.04
+Var=Msg169Checksum unsigned 56,8
+Var=Msg169Counter unsigned 52,4
+
+[Msg159_ESP_C]
+ID=159h // Message sent every 20ms. Checksum : Sum of all first bytes + 0xc; place checksum in 4th octet
+DLC=8
+CycleTime=20
+Var=Msg159Always0x3A unsigned 16,8
+Var=Msg159Always0xA5 unsigned 0,8
+Var=Msg159Always0xCF unsigned 32,8
+Var=Msg159Always0xF4 unsigned 8,8
+Var=Msg159Counter unsigned 44,4
+Var=Msg159Checksum unsigned 24,8
+
+[Msg149_ESP_145h]
+ID=149h // Message sent every 20ms. Checksum : Sum of all first 7 bytes + 0x46
+DLC=8
+CycleTime=20
+Var=Msg149Always0x02 unsigned 16,8
+Var=Msg149Always0x04 unsigned 40,8
+Var=Msg149Always0x26 unsigned 8,8
+Var=Msg149Always0x6A unsigned 24,8
+Var=Msg149Always0xAA unsigned 32,8
+Var=Msg149Always0xF unsigned 48,4
+Var=Msg149Checksum unsigned 56,8
+Var=Msg149Counter unsigned 52,4
+
+[Msg129_ESP_115h]
+ID=129h // Message sent every 20ms. Checksum : Sum of all first 5 bytes + 0x16
+DLC=6
+CycleTime=20
+Var=Msg129Always0x20 unsigned 24,8
+Var=Msg129Checksum unsigned 40,8
+Var=Msg129Counter unsigned 36,4
+
+[Msg119_DI_torque2]
+ID=119h // Message sent every 10ms. Checksum : Sum of all first 5 bytes + 0x17
+DLC=6
+CycleTime=10
+Var=Msg119Always0x11 unsigned 24,8
+Var=Msg119Always0x1F unsigned 8,8
+Var=Msg119Always0x8 unsigned 36,4
+Var=Msg119Always0xF4 unsigned 16,8
+Var=Msg119Always0xFF unsigned 0,8
+Var=Msg119Checksum unsigned 40,8
+Var=Msg119Counter unsigned 32,4
+
+[Msg109_DI_torque1]
+ID=109h // Message sent every 10ms. Checksum : Sum of all first 7 bytes + 0x7
+DLC=8
+CycleTime=10
+Var=Msg109Always0x80 unsigned 24,8
+Var=Msg109Checksum unsigned 56,8
+Var=Msg109Counter unsigned 13,3
+
+[Msg209_GTW_odo]
+ID=209h // Message sent every 100ms. All fixed bytes, no checksum.
+DLC=8
+CycleTime=100
+Var=Msg209Always0x61 unsigned 8,8
+Var=Msg209Always0x94 unsigned 16,8
+Var=Msg209Always0x52 unsigned 24,8
+Var=Msg209Always0x13 unsigned 32,8
+Var=Msg209Always0x03 unsigned 40,8
+Var=Msg209Always0x80 unsigned 48,8
+
+[Msg219_STW_ACTN_RQ]
+ID=219h // Message sent every 100ms. Checksum : use all first 7 bytes with the SAE J1850 CRC algo
+DLC=8
+CycleTime=100
+Var=Msg219Counter unsigned 52,4
+Var=Msg219CRC unsigned 56,8
+
+[Msg1A9_DI_espControl]
+ID=1A9h // Message sent every 20ms. Checksum : Sum of all first 4 bytes + 0x38
+DLC=5
+CycleTime=20
+Var=Msg1A9Always0x0C unsigned 16,8
+Var=Msg1A9Counter unsigned 28,4
+Var=Msg1A9Checksum unsigned 32,8
+
+[Msg2D9_BC_status]
+ID=2D9h // Message sent every 1000ms. All fixed bytes, no checksum.
+DLC=8
+CycleTime=1000
+Var=Msg2D9Always0x80 unsigned 0,8
+Var=Msg2D9Always0x40 unsigned 8,8
+Var=Msg2D9Always0x83 unsigned 16,8
+
+[UDS_radarRequest]
+ID=641h
+DLC=8
+Var=UDS_radarRequestData unsigned 0,64 -m
+
+[Radar_udsResponse]
+ID=651h
+DLC=8
+Var=Radar_udsResponseData unsigned 0,64 -m
